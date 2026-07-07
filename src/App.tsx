@@ -102,7 +102,7 @@ export default function App() {
 מידע על התוכנית:
 - שם התוכנית: הדיאלוג הדיגיטלי - בינה מלאכותית לצוותי חינוך (מספר מענה 64342 במסלול הירוק בגפ"ן).
 - מפתחי ומנחי התוכנית: עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית. עופר הוא מהנדס מהטכניון ומומחה בהטמעת בינות מלאכותיות במערכות חינוך.
-- הבטחה שיווקית: תוכנית מעשית להטמעת AI שמחזירה למורים לפחות 5 שעות עבודה שבועיות. במקום להיאבק בניירת, הצוות לומד "לרקוד עם המכונה".
+- הבטחה שיווקית: תוכנית מעשית להטמעת AI שחוסכת למורים שעות עבודה שבועיות רבות ומפנה להם זמן יקר. במקום להיאבק בניירת, הצוות לומד "לרקוד עם המכונה".
 - טכנולוגיות מובילות בתוכנית: Google AI Studio, NotebookLM, Gems (עוזרים אישיים קבועים) ו-Canva.
 - היקף התוכנית: 8 מפגשים חווייתיים ויישומיים.
 - כל מורה יוצא מהתוכנית עם עוזרי הוראה דיגיטליים קבועים משלו, השמורים בסביבת העבודה שלו ללא צורך במנויים בתשלום (מבוסס על הגרסאות החינמיות והרחבות ביותר של גוגל).
@@ -526,7 +526,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
               {/* Subtitle description with key technologies highlighted */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl" id="hero_desc">
-                תוכנית הטמעה מעשית (מספר 64342 בגפ"ן) שמחזירה למורים שלך לפחות 5 שעות עבודה שבועיות. במקום להיאבק בניירת, הצוות שלך ילמד <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">לרקוד עם המכונה</strong> – לפתח סוכני AI מותאמים אישית (<strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Gems</strong>) ב- <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Google AI Studio</strong> ולחקור באופן מאובטח ומבוקר מעל ספרי הלימוד הרשמיים בעזרת <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">NotebookLM</strong>, לצד שילוב כלי העזר החזותיים של <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Canva</strong>.
+                תוכנית הטמעה מעשית (מספר 64342 בגפ"ן) שחוסכת למורים שעות עבודה שבועיות רבות ומפנה להם זמן יקר. במקום להיאבק בניירת, הצוות שלך ילמד <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">לרקוד עם המכונה</strong> – לפתח סוכני AI מותאמים אישית (<strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Gems</strong>) ב- <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Google AI Studio</strong> ולחקור באופן מאובטח ומבוקר מעל ספרי הלימוד הרשמיים בעזרת <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">NotebookLM</strong>, לצד שילוב כלי העזר החזותיים של <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Canva</strong>.
               </p>
 
               {/* Stats/Details Grid */}
