@@ -1,4 +1,4 @@
-const https = require("https");
+import https from "https";
 
 function callGemini(apiKey, messages, systemInstruction) {
   return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ function callGemini(apiKey, messages, systemInstruction) {
   });
 }
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
   // CORS headers
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -130,4 +130,4 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ error: "Failed to process request: " + error.message }),
     };
   }
-};
+}
