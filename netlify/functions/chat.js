@@ -1,3 +1,50 @@
+const https = require("https");
+
+function callGemini(apiKey, messages, systemInstruction) {
+  return new Promise((resolve, reject) => {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const postData = JSON.stringify({
+      contents: messages,
+      systemInstruction: {
+        parts: [{ text: systemInstruction }]
+      }
+    });
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(postData),
+      }
+    };
+
+    const req = https.request(url, options, (res) => {
+      let body = "";
+      res.on("data", (chunk) => {
+        body += chunk;
+      });
+      res.on("end", () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          try {
+            resolve(JSON.parse(body));
+          } catch (e) {
+            reject(new Error("Failed to parse JSON response: " + e.message));
+          }
+        } else {
+          reject(new Error(`API Error: ${res.statusCode} - ${body}`));
+        }
+      });
+    });
+
+    req.on("error", (e) => {
+      reject(e);
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
+
 exports.handler = async (event, context) => {
   // CORS headers
   const headers = {
@@ -35,8 +82,6 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
     const systemInstruction = `אתה עוזר דיגיטלי חכם בשם "הדיאלוג הדיגיטלי" עבור התוכנית של עופר קאופמן (מענה גפ"ן מספר 64342 - מסלול ירוק).
 תפקידך לענות למנהלי בתי ספר וצוותי חינוך על שאלות לגבי התוכנית, הסילבוס, והערך הפדגוגי והניהולי שלה.
 ענה תמיד בעברית מקצועית, נעימה, מכבדת ומאוד שיווקית.
@@ -63,37 +108,13 @@ exports.handler = async (event, context) => {
 1. אם שואלים לגבי מחיר או פרטי התקשרות אישיים שאינם באתר, הפנה אותם באדיבות להשאיר פרטים בטופס יצירת הקשר באתר או ליצור קשר עם עופר קאופמן בטלפון 052-6947202 או מייל saritofer.k@gmail.com.
 2. אל תמציא פרטים על התוכנית שאינם מופיעים כאן. אם אינך יודע משהו, ענה בנימוס והצע להם לתאם שיחת ייעוץ אישית עם עופר.`;
 
-    const apiBody = {
-      contents: messages,
-      systemInstruction: {
-        parts: [
-          {
-            text: systemInstruction
-          }
-        ]
-      }
-    };
+    // format messages to clean up any extra fields React might pass
+    const formattedMessages = messages.map(m => ({
+      role: m.role === "model" ? "model" : "user",
+      parts: m.parts.map(p => ({ text: p.text }))
+    }));
 
-    // Use global fetch (built into Node 18+)
-    const apiResponse = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiBody),
-    });
-
-    if (!apiResponse.ok) {
-      const errText = await apiResponse.text();
-      console.error("Gemini API error status:", apiResponse.status, errText);
-      return {
-        statusCode: apiResponse.status,
-        headers,
-        body: JSON.stringify({ error: "Error from Gemini API" }),
-      };
-    }
-
-    const data = await apiResponse.json();
+    const data = await callGemini(apiKey, formattedMessages, systemInstruction);
     const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text || "סליחה, לא הצלחתי לעבד את התשובה.";
 
     return {
