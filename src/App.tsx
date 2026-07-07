@@ -172,17 +172,25 @@ const handleFormSubmit = async (e: React.FormEvent) => {
    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwidxZytHsZTDRJ-AHzu5bA6_B0CMzMnJ8uB0XfCUJjzkS-kgiM9hPSXyGB7ObP8hciZw/exec"; 
 
     try {
-      // יצירת פורמט שה-Apps Script יודע לקרוא
-      const formDataObj = new FormData();
-      formDataObj.append("name", formData.name);
-      formDataObj.append("role", formData.role);
-      formDataObj.append("school", formData.school);
-      formDataObj.append("contact", formData.contact);
+      // שימוש ב-URLSearchParams כדי לשלוח כ-application/x-www-form-urlencoded
+      // זו השיטה היחידה שבה Google Apps Script (doPost) יודע לקרוא את הפרטים בצורה אמינה
+      const searchParams = new URLSearchParams();
+      searchParams.append("name", formData.name);
+      searchParams.append("role", formData.role);
+      searchParams.append("school", formData.school);
+      searchParams.append("contact", formData.contact);
+      searchParams.append("email", ""); // שדות ריקים כפי שמצפה הגוגל סקריפט
+      searchParams.append("track", "");
+      searchParams.append("notes", "");
+      searchParams.append("formType", "מורחב");
 
       await fetch(SCRIPT_URL, {
         method: "POST",
-        body: formDataObj,
-        mode: "no-cors" // חשוב כדי למנוע בעיות CORS
+        mode: "no-cors", // חשוב למניעת בעיות CORS בדפדפן
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: searchParams.toString()
       });
 
       setIsSubmitted(true);
