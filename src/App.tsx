@@ -44,6 +44,121 @@ export default function App() {
     contact: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Chatbot states
+  const [chatMessages, setChatMessages] = useState<
+    { role: "user" | "model"; parts: { text: string }[] }[]
+  >([
+    {
+      role: "model",
+      parts: [
+        {
+          text: 'שלום! אני העוזר הדיגיטלי של תוכנית "הדיאלוג הדיגיטלי" (גפ"ן 64342). אשמח לענות לכם על כל שאלה לגבי המפגשים, התכנים והערך של התוכנית לבית הספר שלכם. במה אוכל לעזור?'
+        }
+      ]
+    }
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const [isChatLoading, setIsChatLoading] = useState(false);
+  const [isChatFloatingOpen, setIsChatFloatingOpen] = useState(false);
+
+  const quickQuestions = [
+    "איך זה חוסך זמן למורים?",
+    "מה לומדים במפגשים?",
+    "האם צריך לשלם על מנויים?",
+    "כיצד התוכנית מאושרת בגפ\"ן?"
+  ];
+
+  const handleSendMessage = async (textToSend: string) => {
+    if (!textToSend.trim() || isChatLoading) return;
+
+    const userMessage = { role: "user" as const, parts: [{ text: textToSend }] };
+    const updatedMessages = [...chatMessages, userMessage];
+    setChatMessages(updatedMessages);
+    setChatInput("");
+    setIsChatLoading(true);
+
+    try {
+      let fetchUrl = "/.netlify/functions/chat";
+      let bodyData: any = { messages: updatedMessages.map(m => ({ role: m.role, parts: m.parts })) };
+      let headersData: any = { "Content-Type": "application/json" };
+
+      // Fallback for local development if VITE_GEMINI_API_KEY is defined in .env.local
+      const localKey = import.meta.env.VITE_GEMINI_API_KEY;
+      if (import.meta.env.DEV && localKey) {
+        fetchUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${localKey}`;
+        bodyData = {
+          contents: updatedMessages.map(m => ({
+            role: m.role === "model" ? "model" : "user",
+            parts: m.parts
+          })),
+          systemInstruction: {
+            parts: [
+              {
+                text: `אתה עוזר דיגיטלי חכם בשם "הדיאלוג הדיגיטלי" עבור התוכנית של עופר קאופמן (מענה גפ"ן מספר 64342 - מסלול ירוק).
+תפקידך לענות למנהלי בתי ספר וצוותי חינוך על שאלות לגבי התוכנית, הסילבוס, והערך הפדגוגי והניהולי שלה.
+ענה תמיד בעברית מקצועית, נעימה, מכבדת ומאוד שיווקית.
+
+מידע על התוכנית:
+- שם התוכנית: הדיאלוג הדיגיטלי - בינה מלאכותית לצוותי חינוך (מספר מענה 64342 במסלול הירוק בגפ"ן).
+- מפתחי ומנחי התוכנית: עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית. עופר הוא מהנדס מהטכניון ומומחה בהטמעת בינות מלאכותיות במערכות חינוך.
+- הבטחה שיווקית: תוכנית מעשית להטמעת AI שמחזירה למורים לפחות 5 שעות עבודה שבועיות. במקום להיאבק בניירת, הצוות לומד "לרקוד עם המכונה".
+- טכנולוגיות מובילות בתוכנית: Google AI Studio, NotebookLM, Gems (עוזרים אישיים קבועים) ו-Canva.
+- היקף התוכנית: 8 מפגשים חווייתיים ויישומיים.
+- כל מורה יוצא מהתוכנית עם עוזרי הוראה דיגיטליים קבועים משלו, השמורים בסביבת העבודה שלו ללא צורך במנויים בתשלום (מבוסס על הגרסאות החינמיות והרחבות ביותר של גוגל).
+
+רשימת המפגשים:
+1. מבוא לעולם ה-AI והדיאלוג החדש: מפיגים את החששות.
+2. חוסכים זמן ביומיום: עבודה חכמה עם Gemini (LLM) לניסוח מיילים, סיכומים וכד'.
+3. נוסחאות קיצור הדרך: הנדסת פרומפטים (Prompt Engineering) ייעודית למורים לייצור מבחנים ומערכי שיעור.
+4. עובדים ללא הזיות: מחקר עם NotebookLM ו-Google AI Studio מעל ספרי הלימוד הרשמיים.
+5. בניית העוזרים האישיים הקבועים שלכם (Gems) - עוזר כתיבה פדגוגי, עוזר מחוונים וכד'.
+6. הופכים טקסט לחוויה חזותית: עיצוב מצגות וחומרים ב-Canva.
+7. מביאים את זה לשטח: אינטגרציה ובדיקות של העוזרים בכיתות.
+8. שומרים על הכללים: אתיקה חינוכית, קוד אתי בית-ספרי ותערוכת תוצרים.
+
+הנחיות חשובות לבוט:
+1. אם שואלים לגבי מחיר או פרטי התקשרות אישיים שאינם באתר, הפנה אותם באדיבות להשאיר פרטים בטופס יצירת הקשר באתר או ליצור קשר עם עופר קאופמן בטלפון 052-6947202 או מייל saritofer.k@gmail.com.
+2. אל תמציא פרטים על התוכנית שאינם מופיעים כאן. אם אינך יודע משהו, ענה בנימוס והצע להם לתאם שיחת ייעוץ אישית עם עופר.`
+              }
+            ]
+          }
+        };
+      }
+
+      const response = await fetch(fetchUrl, {
+        method: "POST",
+        headers: headersData,
+        body: JSON.stringify(bodyData),
+      });
+
+      if (!response.ok) {
+        throw new Error("API call failed");
+      }
+
+      const data = await response.json();
+      let replyText = "";
+      
+      if (import.meta.env.DEV && localKey) {
+        replyText = data.candidates?.[0]?.content?.parts?.[0]?.text || "סליחה, משהו השתבש בעיבוד התשובה.";
+      } else {
+        replyText = data.reply || "סליחה, משהו השתבש בעיבוד התשובה.";
+      }
+
+      setChatMessages((prev) => [...prev, { role: "model" as const, parts: [{ text: replyText }] }]);
+    } catch (error) {
+      console.error("Chatbot API error:", error);
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: "model" as const,
+          parts: [{ text: "סליחה, אירעה שגיאה בחיבור לעוזר הדיגיטלי. אנא נסה שנית מאוחר יותר." }]
+        }
+      ]);
+    } finally {
+      setIsChatLoading(false);
+    }
+  };
 /*
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,51 +194,51 @@ const handleFormSubmit = async (e: React.FormEvent) => {
   const sessions: SessionInfo[] = [
     {
       id: 1,
-      title: "מבוא לעולם ה-AI והדיאלוג החדש",
-      value: "בניית הבנה יסודית של עולם ה-AI, הפגת חששות ויצירת דיאלוג ראשוני פורה מול מודלי השפה של גוגל. דיון בהזדמנויות ובמגבלות הטכנולוגיה בעשייה הפדגוגית.",
-      deliverable: "התנסות אישית ראשונית ויצירת מודעות בקרב הצוות לאפשרויות היישום בכיתה.",
+      title: "מבוא לעולם ה-AI והדיאלוג החדש: מפיגים את החששות",
+      value: "בניית הבנה יסודית של עולם ה-AI, הפגת חששות ויצירת דיאלוג ראשוני פורה מול מודלי השפה של גוגל. נבין כיצד ה-AI יכול להפוך משותף מאיים לעוזר יומיומי נאמן, ונדון בהזדמנויות ובמגבלות הטכנולוגיה בעשייה הפדגוגית.",
+      deliverable: "הפגת החשש הראשוני בקרב הצוות, יצירת תודעת יעילות ומעבר מיידי להתנסות אישית ראשונה בכיתה.",
     },
     {
       id: 2,
-      title: "צלילה לעומק עם מודלי Gemini (LLM)",
-      value: "היכרות מעמיקה עם מודל ה-LLM של גוגל (Gemini) ולמידת העקרונות לתקשורת נכונה ואפקטיבית לצורך ייעול משימות שוטפות כמו ניסוח מיילים, סיכום פרוטוקולים והכנת מענים להורים.",
-      deliverable: "התקנת סביבת עבודה אישית ותרגול פתרון בעיות ניהוליות יומיומיות.",
+      title: "חוסכים זמן ביומיום: עבודה חכמה עם מודלי Gemini (LLM)",
+      value: "היכרות מעמיקה עם מודל ה-LLM של גוגל (Gemini) ולמידת העקרונות לתקשורת אפקטיבית. נתרגל ייעול משימות שוטפות שלוקחות שעות: ניסוח מיילים רגישים להורים, סיכום פרוטוקולים ארוכים ויצירת מענים מהירים ומקצועיים.",
+      deliverable: "התקנת סביבת עבודה אישית פועלת ופתרון מעשי של 3 משימות ניהוליות יומיומיות של המורה בשטח.",
     },
     {
       id: 3,
-      title: "הנדסת פרומפטים מתקדמת (Prompt Engineering)",
-      value: "מעבר משיח חובבני לכתיבה מקצועית ושיטתית של הנחיות. המורים ילמדו את \"נוסחאות הפרומפט\" שחוסכות זמן ומפיקות תוצרים פדגוגיים מדויקים ואיכותיים בהרבה.",
-      deliverable: "בניית בנק פרומפטים אישי לצוות ההוראה מותאם למקצועות הלימוד השונים.",
+      title: "נוסחאות קיצור הדרך: הנדסת פרומפטים (Prompt Engineering) למורים",
+      value: "מעבר משיח חובבני של ניסוי וטעייה לכתיבה מקצועית ושיטתית של הנחיות. המורים ילמדו את 'נוסחאות הפרומפט' המדויקות שמפיקות תוצרים פדגוגיים מרהיבים, מבחנים ממוקדים ומערכי שיעור מותאמים בשבריר מהזמן.",
+      deliverable: "בנק פרומפטים מותאם אישית לכל מורה, מוכן לשימוש מיידי במקצוע ההוראה שלו.",
     },
     {
       id: 4,
-      title: "עוברים למקצוענים: Google AI Studio ו-NotebookLM",
-      value: "שימוש בכלים אסטרטגיים לטווח ארוך. מעבר מעשי לעבודה עם Google AI Studio וסביבת NotebookLM כדי להעלות סילבוסים, ספרי לימוד ותוכניות עבודה של משרד החינוך ולעבוד מולם באופן מבוקר ובטוח, ללא המצאת נתונים.",
-      deliverable: "בניית סביבת למידה אישית ומאובטחת לכל מורה המבוססת על חומרי הלימוד הרשמיים שלו.",
+      title: "עובדים ללא הזיות: מחקר עם NotebookLM ו-Google AI Studio",
+      value: "מעבר מעשי לעבודה עם Google AI Studio וסביבת NotebookLM כדי להעלות סילבוסים, ספרי לימוד ותוכניות עבודה של משרד החינוך. המורים ילמדו לעבוד מול חומרי הלימוד הרשמיים שלהם באופן מבוקר ובטוח, ללא המצאת נתונים (Hallucinations).",
+      deliverable: "הקמת סביבת מחקר וסיכום אישית ומאובטחת לכל מורה, המבוססת על חומרי הלימוד הרשמיים שלו.",
     },
     {
       id: 5,
-      title: "אומנות ה-System Instructions ובניית Gems אישיים",
-      value: "למידת הדרך להגדיר למודל את תפקידו המדויק ואת מגבלותיו באמצעות System Instructions, ופיתוח סוכני Gems אישיים קבועים (לדוגמה: \"סוכן לבניית מערכי שיעור מותאמים אישית\", או \"סוכן למשוב פדגוגי מעצים\" הזמין בלחיצת כפתור).",
-      deliverable: "יצירת Gems אישיים קבועים השמורים בסביבת העבודה של המורה וחוסכים לו שעות עבודה שבועיות.",
+      title: "בניית העוזרים האישיים הקבועים שלכם (Custom Gems)",
+      value: "למידת הדרך להגדיר למודל את תפקידו המדויק ואת מגבלותיו באמצעות System Instructions, ופיתוח סוכני Gems אישיים קבועים (כמו: 'סוכן אישי לבניית מערכי שיעור דיפרנציאליים', או 'סוכן למשוב פדגוגי מעצים ומפתח').",
+      deliverable: "יצירת Gems אישיים קבועים השמורים בסביבת העבודה של המורה וחוסכים לו שעות עבודה שבועיות רבות.",
     },
     {
       id: 6,
-      title: "שילוב מדיה חזותית בעיצוב Canva",
-      value: "הפיכת הטקסט למדיה מרתקת. למידה מעשית של כלי העיצוב הפופולרי Canva כדי לייצר מצגות דינמיות, כרזות, חומרי לימוד ועזרים חזותיים מרהיבים שיוצרים חיבור רגשי ואסתטי אצל התלמידים.",
-      deliverable: "יצירת חבילת חומרי למידה מעוצבים ומותאמים אישית לשנת הלימודים.",
+      title: "הופכים טקסט לחוויה חזותית: עיצוב ב-Canva",
+      value: "הפיכת רעיונות ומערכי שיעור יבשים למדיה מרתקת. למידה מעשית של כלי העיצוב הפופולרי Canva כדי לייצר מצגות דינמיות, כרזות, עזרים חזותיים וחומרי לימוד מרהיבים שיוצרים חיבור רגשי ואסתטי חזק אצל התלמידים.",
+      deliverable: "יצירת חבילת חומרי למידה מעוצבים ומותאמים אישית לפתיחת שנת הלימודים הבאה.",
     },
     {
       id: 7,
-      title: "פיתוח פרויקטים ואינטגרציה בשטח",
+      title: "מביאים את זה לשטח: אינטגרציה ובדיקות בכיתות",
       value: "מפגש עבודה מעשי שכולו מוקדש ליישום, הטמעה ובדיקה בשטח של עוזרי ההוראה, ה-Gems וסביבות ה-NotebookLM שפותחו. ליווי צמוד של המנחה כדי לוודא שכל הפתרונות מותאמים לצרכי המורים ורמת הכיתות שלהם.",
-      deliverable: "פרויקט פועל ומנוסה המוכן להפעלה ישירה מול תלמידים או הנהלה.",
+      deliverable: "פרויקט פועל ומנוסה המוכן להפעלה ישירה מול תלמידים או הנהלה בשבועות הראשונים של השנה.",
     },
     {
       id: 8,
-      title: "אתיקה חינוכית, סיכום והצגת תוצרים",
-      value: "מפגש שיא שבו הצוות מציג את עוזרי ההוראה החדשים שלו. בנוסף, נגבש יחד קוד אתי בית-ספרי שישמש מצפן מוסדי לעבודה נכונה, שמירה על אבטחת מידע ופרטיות בהמשך הדרך.",
-      deliverable: "מסמך קוד אתי מוסדי מוכן להפצה לצוות ולהורים, ותערוכת תוצרים בית-ספרית.",
+      title: "שומרים על הכללים: אתיקה חינוכית ותערוכת תוצרים",
+      value: "מפגש שיא שבו הצוות מציג את עוזרי ההוראה החדשים שלו. בנוסף, נגבש יחד קוד אתי בית-ספרי שישמש מצפן מוסדי לעבודה נכונה, שמירה על אבטחת מידע, פרטיות התלמידים וזכויות יוצרים בהתאם להנחיות המשרד.",
+      deliverable: "מסמך קוד אתי מוסדי מוכן להפצה לצוות ולהורים, ותערוכת תוצרים בית-ספרית מעוררת השראה.",
     },
   ];
 
@@ -380,8 +495,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               {/* Main Headline & Logo */}
               <div className="flex flex-col-reverse md:flex-row md:items-start justify-between gap-6" id="hero_title_group">
                 <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-[1.25]">
-                  הדיאלוג הדיגיטלי: <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">מובילים את החדשנות</span> בבית הספר שלך
+                  המורים שלך קורסים מהעומס? <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">הפוך את ה-AI לעוזר ההוראה</span> האישי שלהם
                 </h2>
                 
                 {/* Embedded Big SVG Logo */}
@@ -403,7 +518,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
               {/* Subtitle description with key technologies highlighted */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl" id="hero_desc">
-                תוכנית פיתוח מקצועי פורצת דרך לצוותי חינוך והנהלה, המתמקדת באקו-סיסטם המתקדם של Google: פיתוח ב- <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Google AI Studio</strong>, עבודה מחקרית עם סביבת <strong class="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">NotebookLM</strong>, בניית סוכני בינה מלאכותית מותאמים אישית (<strong class="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Gems</strong>), לצד שילוב כלי העזר <strong class="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Canva</strong>.
+                תוכנית הטמעה מעשית (מספר 64342 בגפ"ן) שמחזירה למורים שלך לפחות 5 שעות עבודה שבועיות. במקום להיאבק בניירת, הצוות שלך ילמד <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">לרקוד עם המכונה</strong> – לפתח סוכני AI מותאמים אישית (<strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Gems</strong>) ב- <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Google AI Studio</strong> ולחקור באופן מאובטח ומבוקר מעל ספרי הלימוד הרשמיים בעזרת <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">NotebookLM</strong>, לצד שילוב כלי העזר החזותיים של <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Canva</strong>.
               </p>
 
               {/* Stats/Details Grid */}
@@ -475,9 +590,9 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div className="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
                   <Flame className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">עומס אדמיניסטרטיבי ושחיקת מורים</h4>
+                <h4 className="text-lg font-bold text-slate-900">שחיקת מורים ועומס אדמיניסטרטיבי בלתי נסבל</h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  המורים קורסים תחת הררי משימות. התוכנית מעניקה להם פתרונות אוטומציה ובניית עוזרי Gems קבועים שיבצעו עבורם משימות כתיבה, תכנון ומעקב שוטף, ויפנו להם שעות עבודה יקרות בשבוע.
+                  מורים מקדישים שעות רבות בבית לבדיקת מבחנים, כתיבת מחוונים, מענה להורים ותכנון שיעורים. התוכנית מעניקה להם פתרונות אוטומציה ובניית עוזרי Gems קבועים שיבצעו עבורם משימות כתיבה ותכנון שוטפות, ויחזירו להם זמן יקר למנוחה ולפדגוגיה איכותית.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-rose-600 flex items-center gap-1.5">
@@ -492,9 +607,9 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
                   <BrainCircuit className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">חשש מהזיות AI ופער דיגיטלי</h4>
+                <h4 className="text-lg font-bold text-slate-900">חשש מהזיות AI ופער דיגיטלי בצוות</h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  מורים חוששים שבינה מלאכותית תמציא עובדות לא נכונות. שילוב סביבת **NotebookLM** של גוגל מאפשר להם לעבוד בצורה מבוקרת ומדויקת אך ורק על בסיס קבצים, סילבוסים וספרי לימוד מאושרים.
+                  מורים רבים חוששים שבינה מלאכותית תמציא עובדות לא נכונות או שהם יישארו מאחור. שילוב סביבת NotebookLM של גוגל מאפשר להם לעבוד בצורה מבוקרת ומדויקת אך ורק על בסיס קבצים, סילבוסים וספרי לימוד מאושרים – ללא שום הזיות AI.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-indigo-600 flex items-center gap-1.5">
@@ -509,9 +624,9 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
                   <ShieldAlert className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">אבטחת מידע ואתיקה מוסדית</h4>
+                <h4 className="text-lg font-bold text-slate-900">שמירה על אבטחת מידע ואתיקה מוסדית</h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  עבודה עם כלים לא מאושרים מסכנת את פרטיות התלמידים. אנו עובדים עם הסביבות המאובטחות של Google ומגבשים יחד קוד אתי בית-ספרי שישמור על הפרטיות בהתאם להנחיות המשרד.
+                  שימוש בכלים לא מאושרים מסכן את פרטיות התלמידים והצוות. אנו מלמדים עבודה בתוך הסביבות המאובטחות והחינמיות של Google ומגבשים יחד קוד אתי בית-ספרי מוגדר, כדי לעבוד בראש שקט ובהתאם להנחיות המשרד.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-amber-600 flex items-center gap-1.5">
@@ -699,6 +814,110 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           </div>
         </section>
 
+        {/* FAQ / Chatbot Section */}
+        <section className="space-y-8 max-w-4xl mx-auto" id="faq_section">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">התנסות מעשית בבינה מלאכותית</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">יש לכם שאלות? שאלו את העוזר הדיגיטלי שלנו</h3>
+            <p className="text-slate-500 text-sm md:text-base">
+              במקום לקרוא שאלות ותשובות יבשות, אתם מוזמנים להתנסות בבוט ה-AI של התוכנית. הוא עונה על הכל:
+            </p>
+          </div>
+
+          {/* Inline Chat Container */}
+          <div className="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden flex flex-col h-[500px]" id="inline_chat_container">
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 p-4 text-white flex justify-between items-center shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-base animate-pulse">🤖</div>
+                <div>
+                  <h4 className="font-bold text-sm">העוזר הדיגיטלי - הדיאלוג הדיגיטלי</h4>
+                  <p className="text-[10px] text-indigo-100">מחובר ומנוהל ב-Netlify Functions מאובטח</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span className="text-xs text-indigo-100 font-bold">פעיל</span>
+              </div>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 flex flex-col" id="inline_chat_messages">
+              {chatMessages.map((msg, index) => {
+                const isUser = msg.role === "user";
+                return (
+                  <div 
+                    key={index}
+                    className={`flex ${isUser ? "justify-end" : "justify-start"} items-start gap-2.5`}
+                  >
+                    {!isUser && (
+                      <div className="w-8 h-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm shrink-0">🤖</div>
+                    )}
+                    <div className={`p-3.5 rounded-2xl max-w-[80%] text-sm leading-relaxed ${
+                      isUser 
+                        ? "bg-indigo-600 text-white rounded-tl-none font-medium shadow-sm" 
+                        : "bg-white text-slate-800 border border-slate-100 rounded-tr-none shadow-sm"
+                    }`}>
+                      <p className="whitespace-pre-line">{msg.parts[0].text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+              {isChatLoading && (
+                <div className="flex justify-start items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm">🤖</div>
+                  <div className="bg-white border border-slate-100 p-3.5 rounded-2xl rounded-tr-none shadow-sm flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                    <span className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: "300ms" }}></span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Questions Chips */}
+            <div className="p-3 bg-white border-t border-slate-100 flex flex-wrap gap-2 overflow-x-auto shrink-0">
+              {quickQuestions.map((q, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSendMessage(q)}
+                  disabled={isChatLoading}
+                  className="px-3 py-1.5 bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 border border-indigo-100/50 rounded-full text-xs font-bold transition cursor-pointer active:scale-95 disabled:opacity-50"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+
+            {/* Chat Input */}
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (chatInput.trim()) {
+                  handleSendMessage(chatInput);
+                }
+              }}
+              className="p-3 bg-white border-t border-slate-100 flex gap-2 shrink-0"
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                disabled={isChatLoading}
+                placeholder={isChatLoading ? "העוזר הדיגיטלי כותב תשובה..." : "הקלידו שאלה פה (למשל: כמה מפגשים יש?)..."}
+                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none disabled:bg-slate-50 disabled:text-slate-400"
+              />
+              <button
+                type="submit"
+                disabled={!chatInput.trim() || isChatLoading}
+                className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition cursor-pointer active:scale-95 disabled:opacity-50 flex items-center justify-center"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </form>
+          </div>
+        </section>
+
         {/* Contact Trigger Button */}
         <div className="flex justify-center my-6 no-print" id="contact_trigger_above_developers_container">
           <button 
@@ -806,6 +1025,130 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         </div>
       </footer>
 
+      {/* Floating Chatbot */}
+      <div className="fixed bottom-6 left-6 z-50 no-print font-sans" id="floating_chatbot_widget" dir="rtl">
+        <AnimatePresence>
+          {isChatFloatingOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-3xl border border-slate-150 shadow-2xl overflow-hidden flex flex-col w-[350px] md:w-[385px] h-[500px] mb-4 origin-bottom-left"
+              id="floating_chat_card"
+            >
+              {/* Floating Chat Header */}
+              <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 p-4 text-white flex justify-between items-center shrink-0">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-base">🤖</div>
+                  <div>
+                    <h4 className="font-bold text-sm">העוזר הדיגיטלי</h4>
+                    <p className="text-[10px] text-indigo-100">שאלות ותשובות גפ"ן 64342</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsChatFloatingOpen(false)}
+                  className="p-1.5 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Chat Messages */}
+              <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 flex flex-col" id="floating_chat_messages">
+                {chatMessages.map((msg, index) => {
+                  const isUser = msg.role === "user";
+                  return (
+                    <div 
+                      key={index}
+                      className={`flex ${isUser ? "justify-end" : "justify-start"} items-start gap-2`}
+                    >
+                      {!isUser && (
+                        <div className="w-7 h-7 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-xs shrink-0">🤖</div>
+                      )}
+                      <div className={`p-3 rounded-2xl max-w-[85%] text-xs leading-relaxed ${
+                        isUser 
+                          ? "bg-indigo-600 text-white rounded-tl-none font-medium shadow-sm" 
+                          : "bg-white text-slate-800 border border-slate-100 rounded-tr-none shadow-sm"
+                      }`}>
+                        <p className="whitespace-pre-line">{msg.parts[0].text}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {isChatLoading && (
+                  <div className="flex justify-start items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-xs">🤖</div>
+                    <div className="bg-white border border-slate-100 p-3 rounded-2xl rounded-tr-none shadow-sm flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: "300ms" }}></span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Quick Questions Chips */}
+              <div className="p-2.5 bg-white border-t border-slate-100 flex gap-1.5 overflow-x-auto shrink-0 select-none">
+                {quickQuestions.map((q, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSendMessage(q)}
+                    disabled={isChatLoading}
+                    className="px-2.5 py-1.5 bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 border border-indigo-100/50 rounded-full text-[10px] font-bold transition cursor-pointer active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+
+              {/* Chat Input */}
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (chatInput.trim()) {
+                    handleSendMessage(chatInput);
+                  }
+                }}
+                className="p-3 bg-white border-t border-slate-100 flex gap-2 shrink-0"
+              >
+                <input
+                  type="text"
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  disabled={isChatLoading}
+                  placeholder="הקלד/י שאלה פה..."
+                  className="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-xs focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none disabled:bg-slate-50"
+                />
+                <button
+                  type="submit"
+                  disabled={!chatInput.trim() || isChatLoading}
+                  className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition cursor-pointer active:scale-95 disabled:opacity-50 flex items-center justify-center"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Floating Bubble Button */}
+        <button
+          onClick={() => setIsChatFloatingOpen(!isChatFloatingOpen)}
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:via-indigo-700 hover:to-indigo-800 text-white shadow-2xl hover:shadow-indigo-300 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative group border-0 outline-none"
+          id="floating_chat_bubble_btn"
+        >
+          {isChatFloatingOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <div className="relative">
+              <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white animate-ping"></span>
+              <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white"></span>
+              <span className="text-xl">🤖</span>
+            </div>
+          )}
+        </button>
+      </div>
     </div>
   );
 }
