@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Assistant', 'Rubik', ui-sans-serif, system-ui, sans-serif;
+  
+  --color-gemini-blue: #1a73e8;
+  --color-gemini-purple: #8ab4f8;
+  --color-gemini-dark: #1e1f20;
+  --color-gemini-accent: #4285f4;
+  
+  --color-canva-cyan: #00c4cc;
+  --color-canva-purple: #7d2ae8;
+}
+
+@layer utilities {
+  .gemini-gradient {
+    background: linear-gradient(135deg, #1a73e8 0%, #7d2ae8 100%);
+  }
+  .canva-gradient {
+    background: linear-gradient(135deg, #00c4cc 0%, #7d2ae8 100%);
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .custom-shadow {
+    box-shadow: none !important;
+  }
+  
+  /* Force accordion items to be fully visible during print */
+  .accordion-content {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .accordion-icon {
+    display: none !important;
+  }
+}
+

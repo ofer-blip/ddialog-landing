@@ -1,0 +1,6 @@
+{
+  "name": "הדיאלוג הדיגיטלי (64342)- הבינה המלאכותית נכנסת לכיתה",
+  "description": "דף מידע שיווקי אינטראקטיבי עבור תוכנית גפ\"ן 64342 - הדיאלוג הדיגיטלי",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
