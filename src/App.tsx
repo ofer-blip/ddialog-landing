@@ -42,6 +42,9 @@ export default function App() {
     role: "",
     school: "",
     contact: "",
+    email: "",
+    track: "מסלול ב': מודל קפסולה",
+    notes: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -103,6 +106,7 @@ export default function App() {
 - שם התוכנית: הדיאלוג הדיגיטלי - בינה מלאכותית לצוותי חינוך (מספר מענה 64342 במסלול הירוק בגפ"ן).
 - מפתחי ומנחי התוכנית: עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית. עופר הוא מהנדס מהטכניון ומומחה בהטמעת בינות מלאכותיות במערכות חינוך.
 - הבטחה שיווקית: תוכנית מעשית להטמעת AI שחוסכת למורים שעות עבודה שבועיות רבות ומפנה להם זמן יקר. במקום להיאבק בניירת, הצוות לומד "לרקוד עם המכונה".
+- התאמה לחינוך מיוחד ושילוב: התוכנית מציעה התאמה ייחודית ומלאה לחינוך מיוחד, עם דגש על יצירת עוזרי הוראה לכתיבת יעדי תל"א (תכנית לימודים אישית) באופן מהיר ומבוקר, פישוט לשוני של חומרים והנגשת תכני לימוד.
 - טכנולוגיות מובילות בתוכנית: Google AI Studio, NotebookLM, Gems (עוזרים אישיים קבועים) ו-Canva.
 - היקף התוכנית: 8 מפגשים חווייתיים ויישומיים.
 - כל מורה יוצא מהתוכנית עם עוזרי הוראה דיגיטליים קבועים משלו, השמורים בסביבת העבודה שלו ללא צורך במנויים בתשלום (מבוסס על הגרסאות החינמיות והרחבות ביותר של גוגל).
@@ -112,14 +116,15 @@ export default function App() {
 2. חוסכים זמן ביומיום: עבודה חכמה עם Gemini (LLM) לניסוח מיילים, סיכומים וכד'.
 3. נוסחאות קיצור הדרך: הנדסת פרומפטים (Prompt Engineering) ייעודית למורים לייצור מבחנים ומערכי שיעור.
 4. עובדים ללא הזיות: מחקר עם NotebookLM ו-Google AI Studio מעל ספרי הלימוד הרשמיים.
-5. בניית העוזרים האישיים הקבועים שלכם (Gems) - עוזר כתיבה פדגוגי, עוזר מחוונים וכד'.
+5. בניית העוזרים האישיים הקבועים שלכם (Gems) - עוזר כתיבה פדגוגי, עוזר מחוונים, ועוזרי תל"א דיפרנציאליים לחינוך מיוחד.
 6. הופכים טקסט לחוויה חזותית: עיצוב מצגות וחומרים ב-Canva.
 7. מביאים את זה לשטח: אינטגרציה ובדיקות של העוזרים בכיתות.
 8. שומרים על הכללים: אתיקה חינוכית, קוד אתי בית-ספרי ותערוכת תוצרים.
 
 הנחיות חשובות לבוט:
 1. אם שואלים לגבי מחיר או פרטי התקשרות אישיים שאינם באתר, הפנה אותם באדיבות להשאיר פרטים בטופס יצירת הקשר באתר או ליצור קשר עם עופר קאופמן בטלפון 052-6947202 או מייל saritofer.k@gmail.com.
-2. אל תמציא פרטים על התוכנית שאינם מופיעים כאן. אם אינך יודע משהו, ענה בנימוס והצע להם לתאם שיחת ייעוץ אישית עם עופר.`
+2. תמוך והדגש את הערך המוסף העצום של התוכנית לחינוך מיוחד, במיוחד בהקשר של כתיבת תל"א ופישוט תכנים, במידה והנושא עולה.
+3. אל תמציא פרטים על התוכנית שאינם מופיעים כאן. אם אינך יודע משהו, ענה בנימוס והצע להם לתאם שיחת ייעוץ אישית עם עופר.`
               }
             ]
           }
@@ -179,9 +184,9 @@ const handleFormSubmit = async (e: React.FormEvent) => {
       searchParams.append("role", formData.role);
       searchParams.append("school", formData.school);
       searchParams.append("contact", formData.contact);
-      searchParams.append("email", ""); // שדות ריקים כפי שמצפה הגוגל סקריפט
-      searchParams.append("track", "");
-      searchParams.append("notes", "");
+      searchParams.append("email", formData.email); 
+      searchParams.append("track", formData.track);
+      searchParams.append("notes", formData.notes);
       searchParams.append("formType", "מורחב");
 
       await fetch(SCRIPT_URL, {
@@ -227,8 +232,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
     {
       id: 5,
       title: "בניית העוזרים האישיים הקבועים שלכם (Custom Gems)",
-      value: "למידת הדרך להגדיר למודל את תפקידו המדויק ואת מגבלותיו באמצעות System Instructions, ופיתוח סוכני Gems אישיים קבועים (כמו: 'סוכן אישי לבניית מערכי שיעור דיפרנציאליים', או 'סוכן למשוב פדגוגי מעצים ומפתח').",
-      deliverable: "יצירת Gems אישיים קבועים השמורים בסביבת העבודה של המורה וחוסכים לו שעות עבודה שבועיות רבות.",
+      value: "למידת הדרך להגדיר למודל את תפקידו המדויק ואת מגבלותיו באמצעות System Instructions, ופיתוח סוכני Gems אישיים קבועים (כמו: 'עוזר לכתיבת יעדי תל\"א מותאמים אישית לחינוך מיוחד', 'סוכן לבניית מערכי שיעור דיפרנציאליים', או 'סוכן למשוב פדגוגי מעצים').",
+      deliverable: "יצירת Gems אישיים קבועים (כולל עוזר תל\"א אישי ומאובטח) השמורים בסביבת העבודה של המורה וחוסכים לו שעות עבודה שבועיות רבות.",
     },
     {
       id: 6,
@@ -316,7 +321,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 onClick={() => {
                   setIsContactOpen(false);
                   setIsSubmitted(false);
-                  setFormData({ name: "", role: "", school: "", contact: "" });
+                  setFormData({ name: "", role: "", school: "", contact: "", email: "", track: "מסלול ב': מודל קפסולה", notes: "" });
                 }}
                 className="absolute top-4 left-4 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition cursor-pointer"
                 id="close_contact_modal_btn"
@@ -379,17 +384,59 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                       />
                     </div>
 
-                    {/* Contact phone/email */}
+                    {/* Contact phone */}
                     <div className="space-y-1">
-                      <label htmlFor="form_contact" className="text-xs font-bold text-slate-700 block">טלפון / אימייל ליצירת קשר *</label>
+                      <label htmlFor="form_contact" className="text-xs font-bold text-slate-700 block">טלפון ליצירת קשר *</label>
                       <input 
                         type="text"
                         id="form_contact"
                         required
                         value={formData.contact}
                         onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                        placeholder="כיצד נוכל לחזור אליך?"
+                        placeholder="לדוגמה: 050-1234567"
                         className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1">
+                      <label htmlFor="form_email" className="text-xs font-bold text-slate-700 block">אימייל</label>
+                      <input 
+                        type="email"
+                        id="form_email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="yourname@example.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none"
+                      />
+                    </div>
+
+                    {/* Preferred Track selection */}
+                    <div className="space-y-1">
+                      <label htmlFor="form_track" className="text-xs font-bold text-slate-700 block">מסלול מועדף *</label>
+                      <select 
+                        id="form_track"
+                        required
+                        value={formData.track}
+                        onChange={(e) => setFormData({ ...formData, track: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none bg-white"
+                      >
+                        <option value="מסלול א': הרצאת השראה וחשיפה">מסלול א': הרצאת השראה וחשיפה (חד-פעמי)</option>
+                        <option value="מסלול ב': מודל קפסולה">מסלול ב': מודל קפסולה (פיילוט של 8 מפגשים)</option>
+                        <option value="מסלול ג': ארכיטקטורה וליווי שנתי">מסלול ג': ארכיטקטורה וליווי שנתי (הטמעה מלאה)</option>
+                      </select>
+                    </div>
+
+                    {/* Notes */}
+                    <div className="space-y-1">
+                      <label htmlFor="form_notes" className="text-xs font-bold text-slate-700 block">הערות ובקשות מיוחדות</label>
+                      <textarea 
+                        id="form_notes"
+                        value={formData.notes}
+                        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                        placeholder="ספרו לנו על צרכים מיוחדים של בית הספר שלכם..."
+                        rows={3}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none resize-none"
                       />
                     </div>
                   </div>
@@ -417,14 +464,16 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <p className="text-slate-600 text-sm max-w-xs mx-auto leading-relaxed">
                     תודה, <strong>{formData.name}</strong> ({formData.role} במוסד {formData.school}).
                     <br />
-                    פרטי ההתקשרות התקבלו בהצלחה. נחזור אליכם בהקדם לטלפון / אימייל: {formData.contact}
+                    פרטי ההתקשרות והבחירה ב<strong>{formData.track}</strong> התקבלו בהצלחה.
+                    <br />
+                    נחזור אליכם בהקדם לטלפון: {formData.contact} {formData.email && `או לאימייל: ${formData.email}`}
                   </p>
                   
                   <button 
                     onClick={() => {
                       setIsContactOpen(false);
                       setIsSubmitted(false);
-                      setFormData({ name: "", role: "", school: "", contact: "" });
+                      setFormData({ name: "", role: "", school: "", contact: "", email: "", track: "מסלול ב': מודל קפסולה", notes: "" });
                     }}
                     className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition cursor-pointer active:scale-95"
                     id="close_success_modal_btn"
@@ -590,7 +639,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             <p className="text-slate-500 text-sm md:text-base">תרגום של מטרות התוכנית לפתרונות אמיתיים לכאבים בוערים בשטח:</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6" id="pain_points_grid">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="pain_points_grid">
             
             {/* Card 1 */}
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-rose-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_1">
@@ -640,6 +689,125 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-amber-600 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping"></span>
                 <span>שמירה קפדנית על פרטיות ואתיקה מקצועית</span>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_4">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <h4 className="text-lg font-bold text-slate-900">העומס הכפול בחינוך המיוחד ובכתיבת תל"א</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  רכזי שילוב ומורי חינוך מיוחד קורסים תחת כתיבת תוכניות לימודים אישיות (תל"א) והנגשת חומרים. התוכנית כוללת התאמה ייחודית המאפשרת לצוות לבנות עוזרי Gems לכתיבת יעדי תל"א פדגוגיים מבוססי מטרות, פישוט טקסטים מהיר והתאמות נגישות דינמיות.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-emerald-600 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>הקלה ישירה על צוותי החינוך המיוחד והשילוב</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Collaboration Tracks Section */}
+        <section className="space-y-8" id="collaboration_tracks_section">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">גמישות תקציבית ותפעולית</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">איך עובדים יחד? 3 מסלולי הטמעה בגפ"ן</h3>
+            <p className="text-slate-500 text-sm md:text-base">
+              התאמה מדויקת לצרכים, למבנה הארגוני ולתקציב של בית הספר שלכם:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6" id="collaboration_tracks_grid">
+            
+            {/* Track A */}
+            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" id="track_card_1">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">
+                  <Sparkle className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-blue-600 uppercase block mb-1">מפגש חד-פעמי</span>
+                  <h4 className="text-xl font-extrabold text-slate-900">מסלול א': הרצאת השראה וחשיפה</h4>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  סדנה או הרצאה ממוקדת לכלל צוות המורים והמחנכות בבית הספר. אידיאלי לפתיחת הראש, חשיפת הפוטנציאל הפדגוגי של ה-AI והפגת חששות ופחדים ראשוניים בקרב הצוות.
+                </p>
+              </div>
+              <div className="mt-8 space-y-3">
+                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ הרצאה מעוררת השראה</span>
+                  <span className="flex items-center gap-1.5">✓ הפחתת חסמים ראשוניים בצוות</span>
+                </div>
+                <button 
+                  onClick={() => setIsContactOpen(true)}
+                  className="w-full py-2.5 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-bold rounded-xl border border-slate-150 hover:border-blue-200 transition cursor-pointer active:scale-98"
+                >
+                  לפרטים ותיאום מפגש
+                </button>
+              </div>
+            </div>
+
+            {/* Track B */}
+            <div className="bg-white p-6 rounded-3xl border-2 border-indigo-600 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden" id="track_card_2">
+              <div className="absolute top-0 left-0 bg-indigo-600 text-white px-3 py-1 rounded-br-2xl text-[10px] font-bold tracking-wider">
+                המסלול המוביל
+              </div>
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-lg">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-indigo-600 uppercase block mb-1">פיילוט צוות מוביל</span>
+                  <h4 className="text-xl font-extrabold text-slate-900">מסלול ב': מודל קפסולה</h4>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  השתלמות וליווי מעשי ממוקד מול "צוות חלוץ" (ההנהלה, רכזי תקשוב ומחנכות נבחרות) על בסיס תוכנית 8 המפגשים שלנו. פיצוח פרומפטים ובניית עוזרי Gems ייעודיים לבית הספר שלכם.
+                </p>
+              </div>
+              <div className="mt-8 space-y-3">
+                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
+                  <span className="flex items-center gap-1.5 font-semibold text-indigo-750">✓ קורס הטמעה מקיף (8 מפגשים)</span>
+                  <span className="flex items-center gap-1.5 font-semibold text-indigo-750">✓ יצירת מנהיגות טכנולוגית מוסדית</span>
+                </div>
+                <button 
+                  onClick={() => setIsContactOpen(true)}
+                  className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition cursor-pointer active:scale-98"
+                >
+                  תיאום פיילוט קפסולה
+                </button>
+              </div>
+            </div>
+
+            {/* Track C */}
+            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" id="track_card_3">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-lg">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-purple-600 uppercase block mb-1">ליווי שנתי מקיף</span>
+                  <h4 className="text-xl font-extrabold text-slate-900">מסלול ג': ארכיטקטורה פדגוגית</h4>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  ליווי שנתי מתמשך לעיצוב והתאמה אישית (Customization) של כלי ה-AI למערכות הדאטה, לתרבות הארגונית ולמערכת הניהול הבית-ספרית שלכם (כמו אפסקול / צפונט) להבטחת רצף פדגוגי רב-שנתי.
+                </p>
+              </div>
+              <div className="mt-8 space-y-3">
+                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ ליווי שנתי צמוד של עופר וצוותו</span>
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ אינטגרציה מול צפונט / אפסקול / Drive</span>
+                </div>
+                <button 
+                  onClick={() => setIsContactOpen(true)}
+                  className="w-full py-2.5 bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 text-xs font-bold rounded-xl border border-slate-150 hover:border-purple-200 transition cursor-pointer active:scale-98"
+                >
+                  תיאום שיחת ייעוץ שנתי
+                </button>
               </div>
             </div>
 
@@ -809,15 +977,30 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           </div>
 
           {/* Flexibility Info Box */}
-          <div className="max-w-4xl mx-auto bg-amber-50 rounded-2xl p-5 md:p-6 border border-amber-200 flex gap-4 items-start" id="flexibility_box">
-            <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-xl font-bold shrink-0">
-              💡
+          <div className="max-w-4xl mx-auto space-y-4" id="info_boxes_container">
+            <div className="bg-amber-50 rounded-2xl p-5 md:p-6 border border-amber-200 flex gap-4 items-start" id="flexibility_box">
+              <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-xl font-bold shrink-0">
+                💡
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-base md:text-lg">גמישות פדגוגית מוחלטת בהתאמה אליך</h5>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed mt-1.5">
+                  אנו מבינים שלכל בית ספר אפיון, ערכים וחזון ייחודי משלו. התוכנית מתאפיינת בגמישות מלאה – ניתן להתאים את הדגשים, קצב הלמידה והתכנים המעשיים כך שישתלבו בצורה הרמונית עם רוח בית הספר והמטרות השנתיות שאת/ה כמנהל/ת מציב/ה.
+                </p>
+              </div>
             </div>
-            <div>
-              <h5 className="font-bold text-slate-900 text-base md:text-lg">גמישות פדגוגית מוחלטת בהתאמה אליך</h5>
-              <p className="text-xs md:text-sm text-slate-600 leading-relaxed mt-1.5">
-                אנו מבינים שלכל בית ספר אפיון, ערכים וחזון ייחודי משלו. התוכנית מתאפיינת בגמישות מלאה – ניתן להתאים את הדגשים, קצב הלמידה והתכנים המעשיים כך שישתלבו בצורה הרמונית עם רוח בית הספר והמטרות השנתיות שאת/ה כמנהל/ת מציב/ה.
-              </p>
+
+            {/* Special Ed / IEP Box */}
+            <div className="bg-emerald-50 rounded-2xl p-5 md:p-6 border border-emerald-200 flex gap-4 items-start" id="special_ed_box">
+              <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 text-xl font-bold shrink-0">
+                🌟
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-base md:text-lg">התאמה מיוחדת לחינוך מיוחד, כיתות שילוב וכתיבת תל"א</h5>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed mt-1.5">
+                  בתי ספר רבים משלבים בתוכנית סדנאות ייעודיות לצוותי חינוך מיוחד ומתי"א. אנו מתמקדים בהפחתת העומס הבירוקרטי באמצעות בניית מודלים מותאמים לכתיבה יעילה ובטוחה של יעדי תוכניות לימודים אישיות (תל"א), פישוט והנגשת טקסטים, ופיתוח עזרים חזותיים מותאמים ללמידה מונגשת.
+                </p>
+              </div>
             </div>
           </div>
         </section>
