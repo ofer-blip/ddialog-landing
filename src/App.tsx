@@ -632,6 +632,19 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           </div>
         </section>
 
+        {/* Clean Video Player Only (No Wrappers or Texts) */}
+        <div className="flex justify-center my-8" id="video_section">
+          <video 
+            src="/ddialog-mobile.mp4" 
+            controls 
+            playsInline 
+            preload="metadata"
+            className="w-full max-w-sm md:max-w-md rounded-3xl shadow-2xl border border-slate-200 aspect-[9/16] bg-black"
+          >
+            הדפדפן שלך אינו תומך בניגון וידאו HTML5.
+          </video>
+        </div>
+
         {/* Why / Pain Points Section */}
         <section className="space-y-8" id="pain_points_section">
           <div className="text-center max-w-2xl mx-auto space-y-2">
