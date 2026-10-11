@@ -587,7 +587,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex flex-wrap gap-4 text-xs font-semibold text-slate-700">
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> חיסכון של שעות עבודה שבועיות</span>
-                <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> אפס הזיות (סביבת NotebookLM)</span>
+                <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> פיתוח משותף של כלים וסוכנים עם הצוות</span>
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> ללא עלויות רישוי שנתיות</span>
               </div>
 
@@ -820,15 +820,15 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
-                    אפס הזיות AI • למידה מבוקרת
+                    פיתוח משותף של כלים וסוכנים למוסד
                   </h4>
                   <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
-                    עבודה מאובטחת בסביבת NotebookLM מעל ספרי הלימוד והסילבוסים המאושרים בלבד – תשובות מדויקות ואמינות ללא המצאת עובדות.
+                    לא רק צורכים טכנולוגיה קיימת – אנו מפתחים יחד עם הנהלת בית הספר והצוות כלים ייעודיים, סוכני תוכן ומפות דרכים שנשארים כנכס קבוע במוסד.
                   </p>
                 </div>
               </div>
               <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
-                דיוק פדגוגי מוחלט
+                נכסים פדגוגיים למוסד
               </span>
             </div>
 
