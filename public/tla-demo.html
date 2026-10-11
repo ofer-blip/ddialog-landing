@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הדגמה: מפת דרכים לבניית תל"א | הדיאלוג הדיגיטלי</title>
+    
+    <!-- Google Fonts: Assistant & Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --bg-sand: #FDF9F0;
+            --primary-jungle: #115E59;
+            --primary-light: #14B8A6;
+            --accent-sunset: #F97316;
+            --accent-mango: #F59E0B;
+            --accent-coral: #F43F5E;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --glass-card: rgba(255, 255, 255, 0.88);
+            --card-shadow: 0 10px 25px -5px rgba(17, 94, 89, 0.08), 0 8px 10px -6px rgba(17, 94, 89, 0.05);
+            --border-radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Assistant', 'Rubik', sans-serif;
+            background-color: var(--bg-sand);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 18px;
+            scroll-behavior: smooth;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(20, 184, 166, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-jungle);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-jungle) 0%, #0F766E 50%, var(--accent-mango) 120%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 8px solid var(--accent-sunset);
+            box-shadow: 0 10px 30px rgba(17, 94, 89, 0.15);
+        }
+
+        header::before {
+            content: "🌴";
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.12;
+            right: -20px;
+            bottom: -30px;
+            transform: rotate(-15deg);
+        }
+        header::after {
+            content: "🌿";
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            left: -10px;
+            top: -20px;
+            transform: rotate(25deg);
+        }
+
+        .header-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .main-layout {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            background: var(--glass-card);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(20, 184, 166, 0.15);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .sidebar-nav h3 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-jungle);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-mango);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            padding: 12px 14px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            gap: 10px;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: rgba(20, 184, 166, 0.08);
+            color: var(--primary-light);
+            transform: translateX(-4px);
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-jungle);
+            color: white;
+            box-shadow: 0 4px 12px rgba(17, 94, 89, 0.2);
+        }
+
+        /* Progress Card */
+        .progress-box {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(17, 94, 89, 0.1);
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #E2E8F0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-mango));
+            transition: width 0.4s ease;
+        }
+
+        /* Content Area */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        section {
+            background: var(--glass-card);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 40px;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(17, 94, 89, 0.12);
+        }
+
+        /* Left-border colored indicators */
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background: var(--primary-light);
+        }
+
+        section:nth-of-type(1)::before { background: var(--primary-light); }
+        section:nth-of-type(2)::before { background: var(--accent-mango); }
+        section:nth-of-type(3)::before { background: var(--accent-sunset); }
+        section:nth-of-type(4)::before { background: var(--accent-coral); }
+        section:nth-of-type(5)::before { background: var(--primary-jungle); }
+        section:nth-of-type(6)::before { background: #8B5CF6; } /* purple for step 6 */
+
+        .section-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--primary-light);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: rgba(20, 184, 166, 0.1);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        section h2 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-jungle);
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: #334155;
+        }
+
+        /* Action Buttons and Links */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-jungle);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(17, 94, 89, 0.15);
+            text-decoration: none;
+        }
+
+        .primary-btn:hover {
+            background-color: #0F766E;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(17, 94, 89, 0.25);
+        }
+
+        .secondary-btn {
+            background-color: white;
+            color: var(--primary-jungle);
+            border: 2px solid var(--primary-jungle);
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .secondary-btn:hover {
+            background-color: rgba(17, 94, 89, 0.04);
+            transform: translateY(-1px);
+        }
+
+        .btn-locked {
+            background-color: #CBD5E1;
+            color: #94A3B8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .btn-locked:hover {
+            background-color: #CBD5E1;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Pulsing & Blinking Animation for Loading Demo */
+        @keyframes pulse-blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.45; }
+            100% { opacity: 1; }
+        }
+
+        .btn-loading {
+            background-color: var(--accent-mango) !important;
+            color: white !important;
+            cursor: wait;
+            animation: pulse-blink 1.5s infinite;
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(-360deg); }
+        }
+
+        /* Phrasing Cheat Sheet Box */
+        .cheat-sheet-box {
+            background: white;
+            border: 1px solid rgba(17, 94, 89, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 25px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .cheat-sheet-box h4 {
+            font-family: 'Rubik', sans-serif;
+            color: var(--primary-jungle);
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .comparison-card.wrong {
+            background-color: #FFF1F2;
+            border: 1px solid #FFE4E6;
+        }
+
+        .comparison-card.correct {
+            background-color: #ECFDF5;
+            border: 1px solid #D1FAE5;
+        }
+
+        .comparison-header {
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .comparison-header.wrong { color: var(--accent-coral); }
+        .comparison-header.correct { color: #059669; }
+
+        .comparison-content {
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .phrasing-note {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-right: 3px solid var(--accent-mango);
+            padding-right: 10px;
+        }
+
+        /* Checklists */
+        .checklist-container {
+            background: white;
+            border: 2px dashed rgba(20, 184, 166, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 25px;
+        }
+
+        .checklist-title {
+            font-family: 'Rubik', sans-serif;
+            color: var(--primary-jungle);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 12px 10px;
+            border-bottom: 1px solid #F1F5F9;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-radius: 8px;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item:hover {
+            background-color: rgba(20, 184, 166, 0.03);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .checklist-item.checked .checklist-checkbox {
+            background: var(--primary-jungle);
+            border-color: var(--primary-jungle);
+        }
+
+        .checklist-item.checked .checklist-checkbox::after {
+            content: "✓";
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .checklist-text {
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item.checked .checklist-text {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* Modal windows */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-coral);
+        }
+
+        .modal h3 {
+            font-family: 'Rubik', sans-serif;
+            color: var(--primary-jungle);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: #000;
+            border-radius: 12px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-play-btn {
+            width: 65px;
+            height: 65px;
+            background: var(--accent-sunset);
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+        }
+
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
+        }
+
+        .video-title {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .video-duration {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Request access success box */
+        .success-box {
+            background-color: #ECFDF5;
+            border: 2px solid #A7F3D0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #065F46;
+            display: none;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Floating action buttons */
+        .floating-actions {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .btn-floating {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: var(--primary-jungle);
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-floating:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-jungle);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 5px solid var(--accent-mango);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 0;
+            color: white;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+            }
+            header h1 {
+                font-size: 2.1rem;
+            }
+        }
+    
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .modal-close {
+            float: left;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .dashboard-table th {
+            text-align: right;
+            padding: 10px;
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            border-bottom: 2px solid #cbd5e1;
+        }
+        .dashboard-table tr:hover td {
+            background: #f8fafc;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <!-- Settings button in header (top left) -->
+        <div class="header-actions" style="position: absolute; left: 20px; top: 20px; z-index: 5;">
+            <button id="settings-btn" class="btn-floating" style="display: none !important; width: 45px; height: 45px; font-size: 16px; background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.25);" onclick="openSettingsModal()" title="הגדרות מערכת (לניהול)">
+                <i data-lucide="settings"></i>
+            </button>
+        </div>
+
+        <div class="header-container">
+            <h1>הדיאלוג הדיגיטלי • סביבת הדגמה לבניית תל"א</h1>
+            <p>שילוב בינה מלאכותית מלווה בבניית תוכנית לימודים אישית (תל"א) – שלב אחר שלב באופן עצמאי ומאובטח בתוך הדרייב הארגוני.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+        
+        <!-- Sidebar Navigation & Progress -->
+        <aside>
+            <div class="sidebar-nav">
+                <h3>🌴 שלבי העבודה</h3>
+                <ul>
+                    <li><a href="#step1" class="nav-link active"><i data-lucide="sheet"></i> <span>1.</span> מילוי הפרופיל</a></li>
+                    <li><a href="#step2" class="nav-link"><i data-lucide="sparkles"></i> <span>2.</span> סיכום פרופיל (AI)</a></li>
+                    <li><a href="#step3" class="nav-link"><i data-lucide="users"></i> <span>3.</span> טרום ישיבת תל"א</a></li>
+                    <li><a href="#step4" class="nav-link"><i data-lucide="users"></i> <span>4.</span> ישיבת תל"א</a></li>
+                    <li><a href="#step5" class="nav-link"><i data-lucide="file-text"></i> <span>5.</span> תוכנית עבודה (AI)</a></li>
+                    <li><a href="#step6" class="nav-link"><i data-lucide="printer"></i> <span>6.</span> טופס הורים</a></li>
+                </ul>
+
+                <div class="progress-box">
+                    <div class="progress-label">
+                        <span>התקדמות כללית</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main>
+            
+            <!-- Global Teacher & Class Details -->
+            <div style="background: var(--glass-card); backdrop-filter: blur(10px); border: 2px solid rgba(20, 184, 166, 0.2); border-radius: var(--border-radius); padding: 25px; box-shadow: var(--card-shadow); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: center;">
+                <div style="grid-column: 1 / span 3; border-bottom: 1px solid rgba(17, 94, 89, 0.1); padding-bottom: 10px;">
+                    <h3 style="font-family: 'Rubik', sans-serif; color: var(--primary-jungle); font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="user-check" style="color: var(--primary-light);"></i>
+                        <span>פרטי מורה וכיתה</span>
+                    </h3>
+                </div>
+                <div>
+                    <label for="teacher-name" style="font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 6px; color: var(--primary-jungle);">שם המחנכת:</label>
+                    <input type="text" id="teacher-name" placeholder="מחנכת (אוטומטי)" readonly style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 0.95rem; background: #f1f5f9; cursor: not-allowed;">
+                </div>
+                <div>
+                    <label for="class-name" style="font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 6px; color: var(--primary-jungle);">שם הכיתה:</label>
+                    <select id="class-name" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 0.95rem; background: white;"><option value="" disabled selected>טוען כיתות...</option></select>
+                </div>
+                <div>
+                    <label for="student-name" style="font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 6px; color: var(--primary-jungle);">שם התלמיד/ה:</label>
+                    <select id="student-name" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 0.95rem; background: white;" disabled><option value="" disabled selected>בחר כיתה קודם</option></select>
+                </div>
+            </div>
+
+
+            <button id="btn-dashboard" style="display:none !important;" onclick="openDashboard()" class="primary-btn" style="width: 100%; margin-bottom: 25px; display: none; justify-content: center; background-color: var(--primary-light); color: white;"><i data-lucide="bar-chart-2"></i><span style="margin-right: 8px;">לחצו כאן לראות את הטבלה הכיתתית</span></button>
+
+            <!-- Step 1 -->
+            <section id="step1">
+                <span class="section-tag">שלב 1</span>
+                <h2>📊 מילוי הפרופיל התפקודי (Google Sheets)</h2>
+                <p>הזיני את הנתונים בגיליון האקסל בדרייב הארגוני.</p>
+                <ul>
+                    <li>הקפידי לדרג את כל ההגדים תחת עמודת השנה הנוכחית (תשפ"ז).</li>
+                    <li>במידת האפשר, הוסיפי הערות מלל חופשי לעזרה בהמשך התהליך.</li>
+                </ul>
+
+                <div class="btn-group">
+                    </div>
+
+                <div class="checklist-container">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 1:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task1_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">מילוי הפרופיל התפקודי</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2 -->
+            <section id="step2">
+                <span class="section-tag">שלב 2</span>
+                <h2>✨ סיכום פרופיל (Gemini)</h2>
+                <p>הפיקי סיכום פרופיל קצר וממוקד לקראת הישיבה באמצעות ה-AI. העתיקי את הנתונים ל-Gem וקבלי סיכום המציג את כוחות ואתגרי התלמיד.</p>
+                <div class="btn-group">
+                    <a href="https://gemini.google.com/gem/1PL52Z6KJAx9x6J7mnpKZuJhYd8w5fnym?usp=sharing" target="_blank" class="primary-btn">
+                        <i data-lucide="external-link"></i>
+                        <span>מעבר ישיר לג'ם: תל"א שלב ראשון</span>
+                    </a>
+                </div>
+<div class="checklist-container">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 2:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task2_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">הפקת סיכום הפרופיל בעזרת ג'ם 'תל"א שלב ראשון - מסכם פרופיל תפקודי'</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3 -->
+            <section id="step3">
+                <span class="section-tag">שלב 3</span>
+                <h2>👥 טרום ישיבת תל"א (הכנה)</h2>
+                <p>הכנה לישיבה: בחרי מראש עד 3 תחומי חיים מרכזיים לעבודה (למשל: תקשורת, עצמאות, למידה). לכל תחום נסחי מטרה כללית אחת או שתיים (סה״כ עד 5 מטרות לתלמיד).</p>
+
+                <div class="checklist-container">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 3:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task3_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">הכנה לישיבה קבוצתית</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4 -->
+            <section id="step4">
+                <span class="section-tag">שלב 4</span>
+                <h2>🤝 ישיבת תל"א מקצועית</h2>
+                <p>הישיבה המקצועית עם הצוות (מחנכת, פרא-רפואי וכו'). בישיבה זו מאשרים ומדייקים יחד את המטרות הכלליות שנבחרו.</p>
+
+                <div class="checklist-container">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 4:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task4_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">ביצוע ישיבה מקצועית עם הצוות</div>
+                    </div>
+                </div>
+            </section>
+            <!-- Step 5 -->
+            <section id="step5">
+                <span class="section-tag">שלב 5</span>
+                <h2>📝 תוכנית עבודה ודיוק יעדים (Gemini + Docs)</h2>
+                <p>השתמשי ב-Gemini להפקת טיוטת תוכנית עבודה (יעדים ומדדים). לאחר מכן, עברי עליה עם הצוות ודייקי את הניסוחים למדדים ברורים. הקפידי על שפה פשוטה וממוקדת תלמיד.</p>
+                <div class="btn-group">
+                    <a href="https://gemini.google.com/gem/1yLQDgXo4QgAtNnWSQD53E4ugsgJCPCmP?usp=sharing" target="_blank" class="primary-btn">
+                        <i data-lucide="external-link"></i>
+                        <span>מעבר ישיר לג'ם: תוכנית עבודה</span>
+                    </a>
+                </div>
+                
+                <p><strong>עקרון פדגוגי קריטי - שפת היעדים הבית-ספרית:</strong></p>
+                <p>הבינה המלאכותית נוטה לפעמים לייצר יעדים רובוטיים או מורכבים מדי. עלינו לוודא שהיעדים מנוסחים בשפה המקצועית שלנו וממוקדים בהישג של התלמיד:</p>
+
+                <!-- Phrasing Cheat Sheet -->
+                <div class="cheat-sheet-box">
+                    <h4><i data-lucide="graduation-cap"></i> מדריך ניסוח יעדים מהיר ומדויק למורה</h4>
+                    
+                    <div class="comparison-grid">
+                        <div class="comparison-card wrong">
+                            <div class="comparison-header wrong">
+                                <i data-lucide="x-circle"></i>
+                                <span>ניסוח שגוי, רובוטי או מורכב מדי (להימנע)</span>
+                            </div>
+                            <div class="comparison-content">
+                                ❌ "בינתן משימה לימודית מוגדרת אחת בכיתה, התלמיד יבצע באופן עצמאי..." (רובוטי ומסורבל)
+                                <br><br>
+                                ❌ "פיתוח עצמאות בשמירה על ניקיון סביבת האכילה האישית" (מנופח ולא ממוקד)
+                            </div>
+                        </div>
+
+                        <div class="comparison-card correct">
+                            <div class="comparison-header correct">
+                                <i data-lucide="check-circle2"></i>
+                                <span>ניסוח נכון, פשוט וממוקד תלמיד (מומלץ)</span>
+                            </div>
+                            <div class="comparison-content">
+                                ✔ "התלמיד יבצע משימה מוגדרת אחת באופן עצמאי." (פשוט וברור)
+                                <br><br>
+                                ✔ "משה ינקה את שולחן האוכל שלו בסיום הארוחה באופן עצמאי, ב-4 מתוך 5 הזדמנויות." (מדיד, פשוט וברור)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phrasing-note">
+                        <strong>שימי לב:</strong> מטרת העל צריכה להיות כללית מאוד (עד 7-8 מילים, לדוגמה: "שיתוף פעולה עם חבר בשיעור"). היעד האופרטיבי הוא זה שמפרט את מעשי התלמיד בצורה מדידה ופשוטה הכוללת את תדירות הביצוע ורמת העצמאות שלו.
+                    </div>
+                </div>
+
+                <div class="checklist-container">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 5:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task5_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">סיום תוכנית עבודה</div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Step 6 -->
+            <section id="step6">
+                <span class="section-tag">שלב 6</span>
+                <h2>🖨️ הפקת טופס יום הורים</h2>
+                <p>הפקת הטופס תיעשה במתכונת הנוכחית. יש להעביר את הנתונים (הכוחות והמטרות) באופן ידני לטופס יום ההורים המוכר.</p>
+                <div class="checklist-container" style="margin-top: 25px;">
+                    <div class="checklist-title">
+                        <i data-lucide="check-square"></i>
+                        <span>משימות לביצוע בשלב 6:</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleTask(this, 'task6_1')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">הפקת טופס ליום הורים</div>
+                    </div>
+                </div>
+            </section><!-- Footer -->
+    <footer>
+        <div class="header-container">
+            <p>הדיאלוג הדיגיטלי • פותח במשותף עם עמותת אלומות אור 2026</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">כלים טכנולוגיים לתמיכה במחנכת החינוך המיוחד • סביבת עבודה מאובטחת בצפונט.</p>
+        <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.8;"><a href="#" onclick="if(confirm('האם אתה בטוח שברצונך לאפס את כל הסימונים השמורים בדפדפן זה?')) { localStorage.clear(); location.reload(); } return false;" style="color: #fff; text-decoration: underline; cursor: pointer;">איפוס נתונים מקומי (למנהלים)</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+
+        // Navigation Highlight
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Toggle task checklist and calculate progress
+        const totalTasks = 19;
+        
+                
+
+        function reportTaskCompletion(taskId, taskText, stepNumber, statusStr) {
+            console.log("דמו פעיל - ללא שליחה לשרת:", taskId, statusStr);
+            return;
+            var webhookUrl = "https://script.google.com/macros/s/AKfycbyB7XTKVCCcMm4Mn9quMq3AIzmxH2IO_SP6kSB9bAODbGu_US9MqKuMjUwLsWVPcT5G/exec";
+            
+            var teacher = document.getElementById('teacher-name').value || "לא הוזן";
+            var className = document.getElementById('class-name').value || "לא הוזן";
+            var student = document.getElementById('student-name').value || "לא הוזן";
+            
+            var params = "?actionType=task_progress" + 
+                         "&teacherName=" + encodeURIComponent(teacher) +
+                         "&className=" + encodeURIComponent(className) +
+                         "&studentName=" + encodeURIComponent(student) +
+                         "&stepNumber=" + encodeURIComponent(stepNumber) +
+                         "&taskName=" + encodeURIComponent(taskText) +
+                         "&taskId=" + encodeURIComponent(taskId) +
+                         "&status=" + encodeURIComponent(statusStr);
+                         
+            // Use Image Pixel tracking (100% immune to CORS and file:/// restrictions)
+            var pixel = new Image();
+            pixel.src = webhookUrl + params;
+            
+            
+            
+        }
+
+        
+
+        // Load checklist states and settings on start
+        window.addEventListener('DOMContentLoaded', () => {
+            // Memory now handled by dynamic student fetch
+
+            // Load saved teacher and class names
+            const savedTeacher = localStorage.getItem('saved_teacher_name');
+            const savedClass = localStorage.getItem('saved_class_name');
+            if (savedTeacher) {
+                document.getElementById('teacher-name').value = savedTeacher;
+            }
+            if (savedClass) {
+                document.getElementById('class-name').value = savedClass;
+            }
+
+            // Restore request states
+            const adminEmail = localStorage.getItem('admin_email') || "ofer@ddialog.co.il";
+            const types = ['profile', 'plan'];
+
+            types.forEach(type => {
+                if (localStorage.getItem(`gem_access_requested_${type}`) === 'true') {
+                    const btn = document.getElementById(`${type}-gem-btn`);
+                    const successBox = document.getElementById(`${type}-success-box`);
+                    const teacherName = savedTeacher || "מחנכת";
+                    const className = savedClass || "כיתה";
+                    const requestTypeName = type === 'profile' ? "סיכום פרופיל" : "תוכנית עבודה";
+
+                    btn.disabled = true;
+                    btn.classList.add('btn-locked');
+                    btn.innerHTML = `<i data-lucide="check"></i><span>הבקשה נשלחה!</span>`;
+                    
+                    successBox.innerHTML = `✓ בקשת האישור של <strong>${teacherName}</strong> (כיתה: ${className}) ל-<strong>${requestTypeName}</strong> נשלחה בהצלחה אל <strong>${adminEmail}</strong>!<br><span style="font-size: 0.85rem; font-weight: normal; opacity: 0.95; display: inline-block; margin-top: 5px;">קישור ה-Gem יישלח אלייך במייל עם אישור הבקשה.</span> <span style="margin-right: 15px; font-size: 0.85rem; text-decoration: underline; cursor: pointer; color: #B91C1C; font-weight: bold;" onclick="resetAccessRequest('${type}')">(שליחת בקשה חדשה / איפוס)</span>`;
+                    successBox.style.display = 'block';
+                }
+            });
+
+            // Load settings inputs
+            const scriptUrl = localStorage.getItem('apps_script_url');
+            if (scriptUrl) {
+                document.getElementById('apps-script-url-input').value = scriptUrl;
+            }
+            const localAdminEmail = localStorage.getItem('admin_email');
+            if (localAdminEmail) {
+                document.getElementById('admin-email-input').value = localAdminEmail;
+            }
+        });
+
+        // Request Access (with 10s loading/blinking demo or real fetch)
+        function requestAccess(type) {
+            const teacherName = document.getElementById('teacher-name').value.trim();
+            const className = document.getElementById('class-name').value.trim();
+
+            if (!teacherName || !className) {
+                alert("אנא מלאי את שם המחנכת ושם הכיתה בראש העמוד לפני שליחת בקשת האישור.");
+                return;
+            }
+
+            const btn = document.getElementById(`${type}-gem-btn`);
+            const successBox = document.getElementById(`${type}-success-box`);
+            const requestTypeName = type === 'profile' ? "סיכום פרופיל" : "תוכנית עבודה";
+
+            // Persist the names globally
+            localStorage.setItem('saved_teacher_name', teacherName);
+            localStorage.setItem('saved_class_name', className);
+
+            // Change button state to loading & blinking
+            btn.disabled = true;
+            btn.classList.add('btn-loading');
+            btn.innerHTML = `<i data-lucide="loader2" class="spin"></i><span id="${type}-btn-text">שולח בקשת אישור... (10 שניות)</span>`;
+            lucide.createIcons();
+
+            // Countdown / delay logic (10 seconds simulated execution)
+            let secondsLeft = 10;
+            const interval = setInterval(() => {
+                secondsLeft--;
+                if (secondsLeft > 0) {
+                    const txtSpan = document.getElementById(`${type}-btn-text`);
+                    if (txtSpan) {
+                        txtSpan.innerText = `שולח בקשת אישור... (${secondsLeft} שניות)`;
+                    }
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
+
+            // Fetch to Apps Script if URL exists
+            const appsScriptUrl = localStorage.getItem('apps_script_url') || "https://script.google.com/macros/s/AKfycbxuTyg2liTH0kP7_CqHYdYLDTpwZMXIZD33uYoHkXVxu0frqK76Ff-bEmFVjR3-H5W9Lg/exec";
+            const adminEmail = localStorage.getItem('admin_email') || "ofer@ddialog.co.il";
+
+            const payload = {
+                teacherName: teacherName,
+                className: className,
+                requestType: requestTypeName,
+                adminEmail: adminEmail
+            };
+
+            const startTime = Date.now();
+            let fetchPromise = Promise.resolve({ status: "success" });
+
+            if (appsScriptUrl) {
+                fetchPromise = fetch(appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(() => ({ status: "success" }))
+                  .catch(err => {
+                      console.error("Fetch failed:", err);
+                      return { status: "success" };
+                  });
+            }
+
+            fetchPromise.then(() => {
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = Math.max(0, 10000 - elapsedTime);
+
+                setTimeout(() => {
+                    clearInterval(interval);
+                    btn.classList.remove('btn-loading');
+                    btn.classList.add('btn-locked');
+                    btn.innerHTML = `<i data-lucide="check"></i><span>הבקשה נשלחה!</span>`;
+                    
+                    // Update success box details
+                    successBox.innerHTML = `✓ בקשת האישור של <strong>${teacherName}</strong> (כיתה: ${className}) ל-<strong>${requestTypeName}</strong> נשלחה בהצלחה אל <strong>${adminEmail}</strong>!<br><span style="font-size: 0.85rem; font-weight: normal; opacity: 0.95; display: inline-block; margin-top: 5px;">קישור ה-Gem יישלח אלייך במייל עם אישור הבקשה.</span> <span style="margin-right: 15px; font-size: 0.85rem; text-decoration: underline; cursor: pointer; color: #B91C1C; font-weight: bold;" onclick="resetAccessRequest('${type}')">(שליחת בקשה חדשה / איפוס)</span>`;
+                    successBox.style.display = 'block';
+                    lucide.createIcons();
+
+                    // Persist state
+                    localStorage.setItem(`gem_access_requested_${type}`, 'true');
+                }, remainingTime);
+            });
+        }
+
+        // Reset individual request
+        function resetAccessRequest(type) {
+            localStorage.removeItem(`gem_access_requested_${type}`);
+            location.reload();
+        }
+
+        // Video modal functions
+        function openVideoModal(title, desc) {
+            document.getElementById('modal-video-title').innerText = title;
+            document.getElementById('modal-video-desc').innerText = desc;
+            document.getElementById('video-modal').classList.add('active');
+            resetMockVideo();
+        }
+
+        function closeVideoModal() {
+            document.getElementById('video-modal').classList.remove('active');
+            resetMockVideo();
+        }
+
+        function startMockVideo() {
+            document.getElementById('video-overlay').style.display = 'none';
+            document.getElementById('video-playing-state').style.display = 'block';
+        }
+
+        function resetMockVideo() {
+            document.getElementById('video-overlay').style.display = 'flex';
+            document.getElementById('video-playing-state').style.display = 'none';
+        }
+
+        // Keyboard shortcut to open settings (Ctrl + Shift + S)
+        window.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') {
+                e.preventDefault();
+                openSettingsModal();
+            }
+        });
+
+        // Settings modal functions
+        function openSettingsModal() {
+            document.getElementById('settings-modal').classList.add('active');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+
+        function saveSystemSettings() {
+            const scriptUrl = document.getElementById('apps-script-url-input').value.trim();
+            const adminEmail = document.getElementById('admin-email-input').value.trim();
+
+            if (adminEmail) {
+                localStorage.setItem('admin_email', adminEmail);
+            }
+            if (scriptUrl) {
+                localStorage.setItem('apps_script_url', scriptUrl);
+            } else {
+                localStorage.removeItem('apps_script_url');
+            }
+
+            alert("ההגדרות נשמרו בהצלחה!");
+            closeSettingsModal();
+            location.reload();
+        }
+    
+        // --- מערכת זיהוי (שמירה אוטומטית של המורה והכיתה) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var teacherInput = document.getElementById('teacher-name');
+            var classInput = document.getElementById('class-name');
+            
+            // טעינה מהזיכרון
+            if (localStorage.getItem('saved_teacher')) {
+                teacherInput.value = localStorage.getItem('saved_teacher');
+            }
+            if (localStorage.getItem('saved_class')) {
+                classInput.value = localStorage.getItem('saved_class');
+            }
+            
+            // שמירה לזיכרון בכל שינוי
+            teacherInput.addEventListener('input', function() {
+                localStorage.setItem('saved_teacher', teacherInput.value);
+            });
+            classInput.addEventListener('input', function() {
+                localStorage.setItem('saved_class', classInput.value);
+            });
+        });
+
+        // --- מערכת מאגר נתונים (Google Sheets) וזיכרון דינמי לפי תלמיד ---
+        let dbData = { classes: [], students: [] };
+        
+        async function fetchDatabase() {
+            // נתוני דמו פיקטיביים לחלוטין ללא שמות אמיתיים
+            dbData = {
+                classes: [
+                    { className: "כיתה ח'1 (הדגמה)", teacherName: "רונית (מחנכת מדגימה)" },
+                    { className: "כיתה ט'2 (הדגמה)", teacherName: "דני (מחנך מדגים)" },
+                    { className: "כיתת שילוב ז' (הדגמה)", teacherName: "מיכל (רכזת שילוב)" }
+                ],
+                students: [
+                    { studentName: "תלמיד א' (דוגמה)", className: "כיתה ח'1 (הדגמה)", completedTasks: [] },
+                    { studentName: "תלמידה ב' (דוגמה)", className: "כיתה ח'1 (הדגמה)", completedTasks: [] },
+                    { studentName: "תלמיד ג' (דוגמה)", className: "כיתה ט'2 (הדגמה)", completedTasks: [] },
+                    { studentName: "תלמידה ד' (דוגמה)", className: "כיתת שילוב ז' (הדגמה)", completedTasks: [] }
+                ]
+            };
+            populateClasses();
+            return;
+            try {
+                const response = await fetch(webhookUrl + "?actionType=getData");
+                dbData = await response.json();
+                populateClasses();
+            } catch (err) {
+                console.error("שגיאה בטעינת נתונים:", err);
+                document.getElementById('class-name').innerHTML = '<option value="" disabled selected>שגיאה בטעינה</option>';
+            }
+        }
+        
+        function populateClasses() {
+            const classSelect = document.getElementById('class-name');
+            classSelect.innerHTML = '<option value="" disabled selected>בחר/י כיתה...</option>';
+            
+            dbData.classes.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.className;
+                opt.innerText = c.className;
+                classSelect.appendChild(opt);
+            });
+            
+            // Restore saved class if exists
+            const savedClass = localStorage.getItem('saved_class');
+            if (savedClass) {
+                classSelect.value = savedClass;
+                handleClassChange(savedClass);
+            }
+            
+            classSelect.addEventListener('change', (e) => {
+                handleClassChange(e.target.value);
+            });
+        }
+        
+        function handleClassChange(selectedClass) {
+            localStorage.setItem('saved_class', selectedClass);
+            
+            // Auto-fill teacher
+            const teacherInput = document.getElementById('teacher-name');
+            const classObj = dbData.classes.find(c => c.className === selectedClass);
+            if (classObj) {
+                teacherInput.value = classObj.teacherName;
+                localStorage.setItem('saved_teacher', classObj.teacherName);
+            }
+            
+            // Populate students
+            const studentSelect = document.getElementById('student-name');
+            studentSelect.innerHTML = '<option value="" disabled selected>בחר/י תלמיד/ה...</option>';
+            studentSelect.disabled = false;
+            document.getElementById("btn-dashboard").style.display = "flex";
+            lucide.createIcons();
+            
+            const classStudents = dbData.students.filter(s => s.className === selectedClass);
+            classStudents.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.studentName;
+                opt.innerText = s.studentName;
+                studentSelect.appendChild(opt);
+            });
+            
+            // Restore saved student if exists
+            const savedStudent = localStorage.getItem('saved_student');
+            if (savedStudent && classStudents.find(s => s.studentName === savedStudent)) {
+                studentSelect.value = savedStudent;
+                loadStudentChecklists(savedStudent);
+            }
+            
+            
+        }
+        
+        // --- זיכרון דינמי לפי תלמיד ---
+        function loadStudentChecklists(studentName) {
+            const checklistItems = document.querySelectorAll('.checklist-item');
+            
+            let serverTasks = null;
+            if (dbData && dbData.completedTasks && dbData.completedTasks[studentName]) {
+                serverTasks = dbData.completedTasks[studentName];
+            }
+            
+            checklistItems.forEach(item => {
+                const onclickAttr = item.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/'([^']+)'/);
+                    if (match) {
+                        const taskId = match[1];
+                        const memoryKey = studentName + '_' + taskId;
+                        
+                        let isChecked = false;
+                        if (serverTasks !== null) {
+                            isChecked = serverTasks.includes(taskId);
+                            localStorage.setItem(memoryKey, isChecked);
+                        } else {
+                            isChecked = localStorage.getItem(memoryKey) === 'true';
+                        }
+                        
+                        if (isChecked) {
+                            item.classList.add('checked');
+                        } else {
+                            item.classList.remove('checked');
+                        }
+                    }
+                }
+            });
+            calculateProgress();
+        }
+        
+        
+        
+        
+        
+        
+        
+        // Kickoff DB fetch
+        fetchDatabase();
+
+        
+        function openDashboard() {
+            const selectedClass = document.getElementById('class-name').value;
+            if (!selectedClass) return;
+            
+            const modal = document.getElementById('dashboard-modal');
+            const tbody = document.getElementById('dashboard-tbody');
+            tbody.innerHTML = '';
+            
+            const classStudents = dbData.students.filter(s => s.className === selectedClass);
+            
+            classStudents.forEach(s => {
+                const studentName = s.studentName;
+                const completed = (dbData.completedTasks && dbData.completedTasks[studentName]) ? dbData.completedTasks[studentName] : [];
+                
+                const taskIds = ['task1_1', 'task2_1', 'task3_1', 'task4_1', 'task5_1', 'task6_1'];
+                let checkedCount = 0;
+                let currentStep = 1;
+                
+                for(let i=0; i<taskIds.length; i++) {
+                    if (completed.includes(taskIds[i])) {
+                        checkedCount++;
+                        currentStep = i + 2;
+                    } else {
+                        currentStep = i + 1;
+                        break;
+                    }
+                }
+                
+                let stepText = currentStep > 6 ? "הסתיים 🎉" : currentStep;
+                const progress = Math.round((checkedCount / 6) * 100);
+                
+                const tr = document.createElement('tr');
+                tr.style.cursor = 'pointer';
+                tr.onclick = () => {
+                    const sSelect = document.getElementById('student-name');
+                    sSelect.value = studentName;
+                    sSelect.dispatchEvent(new Event('change'));
+                    closeDashboard();
+                };
+                
+                tr.innerHTML = `
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">${studentName}</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 100%; max-width: 120px; background: #e2e8f0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                <div style="width: ${progress}%; background: var(--primary-jungle); height: 100%;"></div>
+                            </div>
+                            <span style="font-size: 0.85rem; color: #666; min-width: 35px;">${progress}%</span>
+                        </div>
+                    </td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee; font-weight: bold; color: var(--secondary-ocean); text-align: center; font-size: 1.1rem;">
+                        ${stepText}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            document.getElementById('dashboard-class-title').innerText = "סטטוס כיתתי: " + selectedClass;
+            modal.style.display = 'flex';
+        }
+        
+        function closeDashboard() {
+            document.getElementById('dashboard-modal').style.display = 'none';
+        }
+
+        // Global listener for student change
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentSelect = document.getElementById('student-name');
+            if(studentSelect) {
+                studentSelect.addEventListener('change', (e) => {
+                    const student = e.target.value;
+                    localStorage.setItem('saved_student', student);
+                    loadStudentChecklists(student);
+                });
+            }
+        });
+
+        function toggleTask(element, taskId) {
+            const student = document.getElementById('student-name').value;
+            if (!student) {
+                alert("אנא בחרי תלמיד/ה לפני סימון המשימות.");
+                return;
+            }
+            
+            const memoryKey = student + '_' + taskId;
+            const isChecked = element.classList.toggle('checked');
+            localStorage.setItem(memoryKey, isChecked);
+            
+            try { calculateProgress(); } catch(e) { console.error(e); }
+            
+            var taskText = element.querySelector('.checklist-text').innerText;
+            var stepMatch = taskId.match(/task(\d+)/);
+            var stepNumber = stepMatch ? "שלב " + stepMatch[1] : "כללי";
+            var statusStr = isChecked ? "בוצע" : "בוטל";
+            reportTaskCompletion(taskId, taskText, stepNumber, statusStr);
+            
+            if (isChecked) {
+                var stepMatchConfetti = taskId.match(/task(\d+)/);
+                var stepNum = stepMatchConfetti ? parseInt(stepMatchConfetti[1]) : 1;
+                playAnimalAnimation(stepNum);
+                if (typeof confetti === 'function') {
+                
+                var defaultColors = ['#14b8a6', '#f59e0b', '#3b82f6', '#ec4899'];
+                
+                switch(stepNum) {
+                    case 1:
+                        // Classic burst
+                        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: defaultColors });
+                        break;
+                    case 2:
+                        // Golden Stars
+                        confetti({ particleCount: 60, spread: 100, origin: { y: 0.6 }, shapes: ['star'], colors: ['#FFE400', '#FFBD00', '#E89400', '#FFCA6C', '#FDFFB8'] });
+                        break;
+                    case 3:
+                        // Side cannons
+                        confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: defaultColors });
+                        confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: defaultColors });
+                        break;
+                    case 4:
+                        // 360 degree explosion from center
+                        confetti({ particleCount: 150, spread: 360, startVelocity: 30, origin: { y: 0.4 }, colors: defaultColors });
+                        break;
+                    case 5:
+                        // Mini fireworks (continuous)
+                        var end = Date.now() + 1000;
+                        (function frame() {
+                            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: defaultColors });
+                            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: defaultColors });
+                            if (Date.now() < end) requestAnimationFrame(frame);
+                        }());
+                        break;
+                    case 6:
+                        var duration = 6000;
+                        var animationEnd = Date.now() + duration;
+                        var defaults = { startVelocity: 45, spread: 360, ticks: 80, zIndex: 100000, colors: ['#14b8a6', '#f59e0b', '#3b82f6', '#ec4899', '#FFE400', '#ffffff'] };
+                        
+                        var interval = setInterval(function() {
+                            var timeLeft = animationEnd - Date.now();
+                            if (timeLeft <= 0) return clearInterval(interval);
+                            
+                            var particleCount = 100 * (timeLeft / duration);
+                            confetti(Object.assign({}, defaults, { particleCount: particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
+                        }, 200);
+                        break;
+                    default:
+                        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
+            }
+        }
+}
+function playAnimalAnimation(stepNum) {
+            const gifs = [
+                'https://media.giphy.com/media/l41YkxvU8c7J7Bba0/giphy.gif', // 1
+                'https://media.giphy.com/media/3oEduV4SOS9mmmIOkw/giphy.gif', // 2
+                'https://media.giphy.com/media/8i7IQpamYMAWE/giphy.gif',      // 3
+                'https://media.giphy.com/media/cO39srN2EUIRaVqaVq/giphy.gif', // 4
+                'https://media.giphy.com/media/11zTEl7fbwml68/giphy.gif',     // 5
+                'https://media.giphy.com/media/Z6f7vzq3iP6Mw/giphy.gif'       // 6
+            ];
+            
+            const gifUrl = gifs[(stepNum - 1) % gifs.length];
+            
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '50%';
+            container.style.left = '50%';
+            container.style.transform = 'translate(-50%, -50%) scale(0)';
+            container.style.zIndex = '99999';
+            container.style.pointerEvents = 'none';
+            container.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            
+            const img = document.createElement('img');
+            img.src = gifUrl;
+            img.style.maxWidth = stepNum === 6 ? '500px' : '300px';
+            img.style.maxHeight = stepNum === 6 ? '500px' : '300px';
+            img.style.borderRadius = '20px';
+            img.style.boxShadow = '0 20px 50px rgba(0,0,0,0.5)';
+            
+            container.appendChild(img);
+            document.body.appendChild(container);
+            
+            setTimeout(() => {
+                container.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 50);
+            
+            const duration = stepNum === 6 ? 6000 : 2500;
+            
+            setTimeout(() => {
+                container.style.transform = 'translate(-50%, -50%) scale(0)';
+                setTimeout(() => container.remove(), 500);
+            }, duration);
+
+            if (stepNum === 6) {
+                // THE PARTY
+                const partyOverlay = document.createElement('div');
+                partyOverlay.style.position = 'fixed';
+                partyOverlay.style.top = '0'; partyOverlay.style.left = '0';
+                partyOverlay.style.width = '100vw'; partyOverlay.style.height = '100vh';
+                partyOverlay.style.zIndex = '9998';
+                partyOverlay.style.pointerEvents = 'none';
+                partyOverlay.style.animation = 'discoBg 0.3s infinite alternate';
+                document.body.appendChild(partyOverlay);
+                
+                if (!document.getElementById('party-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'party-style';
+                    style.innerHTML = `
+                        @keyframes discoBg {
+                            0% { background-color: rgba(255, 0, 0, 0.3); }
+                            33% { background-color: rgba(0, 255, 0, 0.3); }
+                            66% { background-color: rgba(0, 0, 255, 0.3); }
+                            100% { background-color: rgba(255, 255, 0, 0.3); }
+                        }
+                        @keyframes danceEmoji {
+                            0% { transform: translateY(0) rotate(-20deg) scale(1); }
+                            50% { transform: translateY(-80px) rotate(20deg) scale(1.4); }
+                            100% { transform: translateY(0) rotate(-20deg) scale(1); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                const partyAnimals = ['🐶', '😸', '🐰', '🐼', '🦊', '🦄', '🐒', '🐙', '🐸', '🦁', '🕺', '💃', '🎉', '🎈'];
+                const elements = [];
+                
+                for(let i=0; i<35; i++) {
+                    let el = document.createElement('div');
+                    el.innerText = partyAnimals[Math.floor(Math.random() * partyAnimals.length)];
+                    el.style.position = 'fixed';
+                    el.style.bottom = (Math.random() * 90) + '%';
+                    el.style.left = (Math.random() * 95) + '%';
+                    el.style.fontSize = (Math.random() * 60 + 40) + 'px';
+                    el.style.zIndex = '9997';
+                    el.style.pointerEvents = 'none';
+                    el.style.animation = `danceEmoji ${Math.random() * 0.3 + 0.2}s infinite alternate`;
+                    document.body.appendChild(el);
+                    elements.push(el);
+                }
+                
+                setTimeout(() => {
+                    partyOverlay.remove();
+                    elements.forEach(el => el.remove());
+                }, 6000);
+            }
+        }
+        
+        function calculateProgress() {
+            const student = document.getElementById('student-name').value;
+            if (!student) return;
+            
+            let checkedCount = 0;
+            const items = document.querySelectorAll('.checklist-item');
+            
+            items.forEach(item => {
+                const onclickAttr = item.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/'([^']+)'/);
+                    if (match) {
+                        const taskId = match[1];
+                        if (localStorage.getItem(student + '_' + taskId) === 'true') {
+                            checkedCount++;
+                        }
+                    }
+                }
+            });
+
+            const total = items.length || 1;
+            const percent = Math.round((checkedCount / total) * 100);
+            const progressPercentEl = document.getElementById('progress-percent');
+            const progressFillEl = document.getElementById('progress-fill');
+            if(progressPercentEl) progressPercentEl.innerText = percent + "%";
+            if(progressFillEl) progressFillEl.style.width = percent + "%";
+        }
+</script>
+
+    <div id="dashboard-modal" class="modal-overlay" onclick="if(event.target===this) closeDashboard()">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeDashboard()">&times;</span>
+            <h2 id="dashboard-class-title" style="margin-top: 0; color: var(--primary-jungle);">סטטוס כיתתי</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">לחצי על שורת תלמיד כדי לעבור לכרטיס שלו.</p>
+            <div style="overflow-x: auto;">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>שם התלמיד</th>
+                            <th>מדד התקדמות</th>
+                            <th style="text-align: center;">שלב נוכחי</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboard-tbody">
+                        <!-- Dynamic rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

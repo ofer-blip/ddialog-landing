@@ -21,7 +21,13 @@ import {
   Search, 
   Layers,
   X,
-  Send
+  Send,
+  ExternalLink,
+  Sparkles,
+  Compass,
+  Bot,
+  CheckSquare,
+  Target
 } from "lucide-react";
 
 interface SessionInfo {
@@ -529,352 +535,409 @@ const handleFormSubmit = async (e: React.FormEvent) => {
       {/* Main Container */}
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-12" id="main_content">
         
-        {/* Hero Section */}
-        <section className="relative bg-white rounded-3xl p-6 md:p-12 border border-slate-100 shadow-sm overflow-hidden" id="hero_section">
+        {/* Hero Section - Lean, Direct & Action-Focused */}
+        <section className="relative bg-white rounded-3xl p-6 md:p-10 border border-slate-150 shadow-sm overflow-hidden" id="hero_section">
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full filter blur-3xl -z-10 opacity-70"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-50 rounded-full filter blur-3xl -z-10 opacity-70"></div>
           
-          <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-8">
-            <div className="flex-1 space-y-6">
-              
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2.5 w-full overflow-hidden" id="hero_badges">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 break-words max-w-full">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  מאושר גפ"ן - מסלול ירוק
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100 break-words max-w-full">
-                  <Award className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                  תת-סל: חדשנות ויזמות טכנולוגית
-                </span>
-              </div>
-              
-              {/* Main Headline & Logo */}
-              <div className="flex flex-col-reverse md:flex-row md:items-start justify-between gap-6" id="hero_title_group">
-                <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-[1.25]">
-                  המורים שלך קורסים מהעומס? <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">הפוך את ה-AI לעוזר ההוראה</span> האישי שלהם
+          <div className="space-y-6">
+            {/* Top Badges */}
+            <div className="flex flex-wrap items-center gap-2.5" id="hero_badges">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                מאושר גפ"ן (מספר 64342) • מסלול ירוק
+              </span>
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                <Award className="w-3.5 h-3.5 text-indigo-600" />
+                חדשנות ויזמות פדגוגית
+              </span>
+            </div>
+
+            {/* Headline */}
+            <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-6" id="hero_title_group">
+              <div className="space-y-3 max-w-2xl">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                  בינה מלאכותית שהופכת <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+                    לכלי עבודה פדגוגי בידי המורים
+                  </span>
                 </h2>
-                
-                {/* Embedded Big SVG Logo */}
-                <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 bg-slate-50 p-4 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" id="hero_logo">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full filter drop-shadow-md">
-                    <defs>
-                      <linearGradient id="hero-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#1a73e8" />
-                        <stop offset="60%" stopColor="#7d2ae8" />
-                        <stop offset="100%" stopColor="#00c4cc" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M17 11C11.48 11 7 15.48 7 21C7 23.87 8.2 26.45 10.14 28.28L9.04 33.78C8.9 34.43 9.57 34.98 10.19 34.69L15.77 32.1C16.17 32.16 16.58 32.2 17 32.2C22.52 32.2 27 27.72 27 22.2C27 16.68 22.52 11 17 11Z" fill="url(#hero-logo-grad)" opacity="0.8"/>
-                    <path d="M31 15C25.48 15 21 19.48 21 25C21 25.42 21.03 25.83 21.1 26.23L18.51 31.81C18.22 32.43 18.77 33.1 19.42 32.96L24.92 31.86C26.75 33.8 29.33 35 32.2 35C37.72 35 42.2 30.52 42.2 25C42.2 19.48 37.72 15 31 15Z" fill="url(#hero-logo-grad)"/>
-                    <path d="M29 21L30.1 23.9L33 25L30.1 26.1L29 29L27.9 26.1L25 25L27.9 23.9L29 21Z" fill="#ffffff"/>
-                  </svg>
-                </div>
+                <p className="text-base text-slate-600 leading-relaxed font-medium">
+                  במקום הרצאות תיאורטיות – מטמיעים בצוות כלי עבודה אמיתיים שחוסכים שעות עבודה שבועיות, פותרים עומסים ומייצרים תוצרים מותאמים אישית לבית הספר.
+                </p>
               </div>
 
-              {/* Subtitle description with key technologies highlighted */}
-              <p className="text-lg text-slate-600 leading-relaxed max-w-3xl" id="hero_desc">
-                תוכנית הטמעה מעשית (מספר 64342 בגפ"ן) שחוסכת למורים שעות עבודה שבועיות רבות ומפנה להם זמן יקר. במקום להיאבק בניירת, הצוות שלך ילמד <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">לרקוד עם המכונה</strong> – לפתח סוכני AI מותאמים אישית (<strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Gems</strong>) ב- <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Google AI Studio</strong> ולחקור באופן מאובטח ומבוקר מעל ספרי הלימוד הרשמיים בעזרת <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">NotebookLM</strong>, לצד שילוב כלי העזר החזותיים של <strong className="text-indigo-600 font-bold bg-indigo-50/50 px-1 py-0.5 rounded">Canva</strong>.
-              </p>
-
-              {/* Stats/Details Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-slate-100" id="hero_stats">
-                <div>
-                  <p className="text-xs text-slate-400 font-semibold mb-1">מספר תוכנית בגפ"ן</p>
-                  <p className="text-2xl font-bold text-slate-800 tracking-tight">64342</p>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-semibold mb-1">היקף התוכנית</p>
-                  <p className="text-2xl font-bold text-slate-800">8 מפגשים חווייתיים</p>
-                </div>
-                <div className="col-span-2 md:col-span-1">
-                  <p className="text-xs text-slate-400 font-semibold mb-1">טכנולוגיות מובילות</p>
-                  <p className="text-sm font-bold text-indigo-600 mt-1 leading-snug">Google AI Studio, NotebookLM, Gems & Canva</p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Visual Side Card */}
-            <div className="w-full lg:w-80 p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center text-center space-y-5" id="hero_side_card">
-              <div className="flex gap-4">
-                <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-md border border-slate-100/80 transition-transform duration-300 hover:scale-105">
-                  {/* Google Custom Style G */}
-                  <svg className="w-8 h-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.24 10.285V14.4h6.887c-.275 1.564-1.88 4.604-6.887 4.604-4.33 0-7.86-3.577-7.86-8s3.53-8 7.86-8c2.46 0 4.105 1.025 5.047 1.926l3.243-3.117C18.435 1.21 15.62 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.79-.08-1.4-.19-1.925H12.24z"/>
-                  </svg>
-                </div>
-                <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-md border border-slate-100/80 transition-transform duration-300 hover:scale-105">
-                  {/* Canva Mini-Gradient Badge */}
-                  <div className="w-10 h-10 rounded-lg canva-gradient flex items-center justify-center text-white font-extrabold text-xs tracking-tight">
-                    Canva
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">אקו-סיסטם חינוכי מקיף</span>
-                
-                <div className="space-y-2.5">
-                  <div className="bg-indigo-50/50 rounded-lg p-2 border border-indigo-100/50">
-                    <p className="text-xs font-bold text-indigo-700">חדש! שילוב NotebookLM</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">למידה מבוססת חומרים רשמיים</p>
-                  </div>
-                  <div className="bg-purple-50/50 rounded-lg p-2 border border-purple-100/50">
-                    <p className="text-xs font-bold text-purple-700">סוכני קצה ועוזרי Gems</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">כלים פדגוגיים מותאמים אישית</p>
-                  </div>
-                </div>
+              {/* Logo / Badge */}
+              <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-slate-50 p-3 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-center" id="hero_logo">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full filter drop-shadow-sm">
+                  <defs>
+                    <linearGradient id="hero-logo-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#1a73e8" />
+                      <stop offset="60%" stopColor="#7d2ae8" />
+                      <stop offset="100%" stopColor="#00c4cc" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M17 11C11.48 11 7 15.48 7 21C7 23.87 8.2 26.45 10.14 28.28L9.04 33.78C8.9 34.43 9.57 34.98 10.19 34.69L15.77 32.1C16.17 32.16 16.58 32.2 17 32.2C22.52 32.2 27 27.72 27 22.2C27 16.68 22.52 11 17 11Z" fill="url(#hero-logo-grad2)" opacity="0.8"/>
+                  <path d="M31 15C25.48 15 21 19.48 21 25C21 25.42 21.03 25.83 21.1 26.23L18.51 31.81C18.22 32.43 18.77 33.1 19.42 32.96L24.92 31.86C26.75 33.8 29.33 35 32.2 35C37.72 35 42.2 30.52 42.2 25C42.2 19.48 37.72 15 31 15Z" fill="url(#hero-logo-grad2)"/>
+                  <path d="M29 21L30.1 23.9L33 25L30.1 26.1L29 29L27.9 26.1L25 25L27.9 23.9L29 21Z" fill="#ffffff"/>
+                </svg>
               </div>
             </div>
 
+            {/* Quick Points & CTA */}
+            <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap gap-4 text-xs font-semibold text-slate-700">
+                <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> חיסכון של שעות עבודה שבועיות</span>
+                <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> אפס הזיות (סביבת NotebookLM)</span>
+                <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> ללא עלויות רישוי שנתיות</span>
+              </div>
+
+              <button 
+                type="button"
+                onClick={() => setIsContactOpen(true)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer active:scale-95 shrink-0"
+              >
+                <Phone className="w-4 h-4" />
+                <span>יצירת קשר / תיאום שיחה</span>
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* Clean Video Player Only (No Wrappers or Texts) */}
-        <div className="flex justify-center my-8" id="video_section">
-          <video 
-            src="/ddialog-mobile.mp4" 
-            controls 
-            playsInline 
-            preload="metadata"
-            className="w-full max-w-sm md:max-w-md rounded-3xl shadow-2xl border border-slate-200 aspect-[9/16] bg-black"
-          >
-            הדפדפן שלך אינו תומך בניגון וידאו HTML5.
-          </video>
-        </div>
-
-        {/* Why / Pain Points Section */}
-        <section className="space-y-8" id="pain_points_section">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">מדוע בתי הספר והרשויות חייבים את זה עכשיו?</h3>
-            <p className="text-slate-500 text-sm md:text-base">תרגום של מטרות התוכנית לפתרונות אמיתיים לכאבים בוערים בשטח:</p>
+        {/* Live In-Field Showcase (Appears directly after hero) */}
+        <section className="space-y-4" id="showcase_section">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">תוצרים מן השטח</span>
+              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">דוגמאות לכלים שאנו מפתחים יחד עם הצוותים</h3>
+            </div>
+            <button 
+              onClick={() => setIsContactOpen(true)}
+              className="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition hidden sm:block"
+            >
+              רוצים כלי מותאם לבית ספרכם? דברו איתנו ←
+            </button>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="pain_points_grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            {/* Card 1 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-rose-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_1">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
-                  <Flame className="w-6 h-6" />
+            {/* Row 1, Col 1: TLA Roadmap */}
+            <a 
+              href="/tla-demo.html#step1" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col cursor-pointer"
+            >
+              <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden border-b border-slate-150">
+                <img 
+                  src="/showcase-tla.png" 
+                  alt="מפת דרכים דיגיטלית לבניית תל''א" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-teal-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                    <span>פתיחת הדגמת תל"א</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">שחיקת מורים ועומס אדמיניסטרטיבי בלתי נסבל</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  מורים מקדישים שעות רבות בבית לבדיקת מבחנים, כתיבת מחוונים, מענה להורים ותכנון שיעורים. התוכנית מעניקה להם פתרונות אוטומציה ובניית עוזרי Gems קבועים שיבצעו עבורם משימות כתיבה ותכנון שוטפות, ויחזירו להם זמן יקר למנוחה ולפדגוגיה איכותית.
-                </p>
+                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-teal-800 shadow-sm border border-teal-100">
+                  אפליקציה פדגוגית לתל"א
+                </span>
               </div>
-              <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-rose-600 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
-                <span>מפנים זמן יקר • מייעלים את העבודה השוטפת</span>
+
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
+                    מפת דרכים דיגיטלית לבניית תל"א
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    פירוק שלבים, צ'ק-ליסטים ומחוונים אינטראקטיביים לצוות
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-teal-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                  <span>התנסות</span>
+                  ←
+                </span>
               </div>
+            </a>
+
+            {/* Row 1, Col 2: Shiraz Assistant */}
+            <a 
+              href="https://shiraz.ddialog.co.il/?v=1" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-pink-300 transition-all duration-300 flex flex-col cursor-pointer"
+            >
+              <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden border-b border-slate-150">
+                <img 
+                  src="/showcase-shiraz.png" 
+                  alt="סוכן תוכן וסימולציות מוסדי" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-pink-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                    <span>פתיחת הסוכן בדפדפן</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-pink-800 shadow-sm border border-pink-100">
+                  עוזר הוראה וסוכן תוכן
+                </span>
+              </div>
+
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-pink-600 transition-colors">
+                    סוכן תוכן ומערכי שיעור (מודל שיראז)
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    עוזר אישי מותאם מוסד להוראה, דיפרנציאציה וסימולציות
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-pink-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                  <span>התנסות</span>
+                  ←
+                </span>
+              </div>
+            </a>
+
+            {/* Row 2, Col 1: Live Custom Gem (Under TLA) */}
+            <a 
+              href="https://gemini.google.com/gem/ff93ce7e667b?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex flex-col cursor-pointer"
+            >
+              <div className="relative aspect-[16/9] bg-slate-900 overflow-hidden border-b border-slate-150">
+                <img 
+                  src="/showcase-gem.png" 
+                  alt="עוזר Gems ייעודי ב-Gemini" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                    <span>פתיחת ה-Gem ב-Gemini</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-indigo-800 shadow-sm border border-indigo-100">
+                  Google Gemini Gem
+                </span>
+              </div>
+
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                    עוזר Gems ייעודי (התנסות חיה)
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    פתיחה ישירה ב-Gemini לניתוח וסיכום פרופיל תפקודי
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-indigo-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                  <span>התנסות</span>
+                  ←
+                </span>
+              </div>
+            </a>
+
+            {/* Row 2, Col 2: DNA Diagnostic Tool / EduMap (Under Shiraz) */}
+            <a 
+              href="https://edumap-519fb.web.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col cursor-pointer"
+            >
+              <div className="relative aspect-[16/9] bg-slate-50 overflow-hidden border-b border-slate-150">
+                <img 
+                  src="/showcase-dna.png" 
+                  alt="DNA ארגוני כלי אבחון" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                    <span>פתיחת כלי האבחון בדפדפן</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-emerald-800 shadow-sm border border-emerald-100">
+                  כלי אבחון ארגוני
+                </span>
+              </div>
+
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    DNA ארגוני - כלי אבחון
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    מיפוי ואבחון תהליכים ותרבות ארגונית בבית הספר
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-emerald-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                  <span>התנסות</span>
+                  ←
+                </span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+        {/* 4 Crisp Pain-to-Solution Points - Full-Width Interactive Banners */}
+        <section className="space-y-6" id="pain_points_section">
+          <div className="space-y-2">
+            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מה זה פותר בשטח?</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">4 מענים מדויקים לאתגרים בבית הספר</h3>
+          </div>
+
+          <div className="space-y-4" id="pain_points_list">
+            
+            {/* Banner 1 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-rose-300 hover:bg-gradient-to-l hover:from-rose-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-rose-100 transition-all duration-300 shadow-sm">
+                  <Flame className="w-7 h-7" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-rose-700 transition-colors">
+                    עומס ושחיקת מורים
+                  </h4>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                    אוטומציה מלאה של בדיקות, מחוונים, מענה להורים ותכנון שיעורים – מחזירים לצוות שעות פנאי יקרות ומפחיתים תסכול שוטף.
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100 shrink-0 self-start md:self-center">
+                חיסכון מיידי בזמן
+              </span>
             </div>
 
-            {/* Card 2 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_2">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                  <BrainCircuit className="w-6 h-6" />
+            {/* Banner 2 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-300 hover:bg-gradient-to-l hover:from-indigo-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-indigo-100 transition-all duration-300 shadow-sm">
+                  <BrainCircuit className="w-7 h-7" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">חשש מהזיות AI ופער דיגיטלי בצוות</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  מורים רבים חוששים שבינה מלאכותית תמציא עובדות לא נכונות או שהם יישארו מאחור. שילוב סביבת NotebookLM של גוגל מאפשר להם לעבוד בצורה מבוקרת ומדויקת אך ורק על בסיס קבצים, סילבוסים וספרי לימוד מאושרים – ללא שום הזיות AI.
-                </p>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+                    אפס הזיות AI • למידה מבוקרת
+                  </h4>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                    עבודה מאובטחת בסביבת NotebookLM מעל ספרי הלימוד והסילבוסים המאושרים בלבד – תשובות מדויקות ואמינות ללא המצאת עובדות.
+                  </p>
+                </div>
               </div>
-              <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-indigo-600 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping"></span>
-                <span>מדע מדויק ויציב מבוסס חומרי לימוד רשמיים</span>
-              </div>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
+                דיוק פדגוגי מוחלט
+              </span>
             </div>
 
-            {/* Card 3 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_3">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-                  <ShieldAlert className="w-6 h-6" />
+            {/* Banner 3 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:bg-gradient-to-l hover:from-emerald-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-100 transition-all duration-300 shadow-sm">
+                  <GraduationCap className="w-7 h-7" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">שמירה על אבטחת מידע ואתיקה מוסדית</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  שימוש בכלים לא מאושרים מסכן את פרטיות התלמידים והצוות. אנו מלמדים עבודה בתוך הסביבות המאובטחות והחינמיות של Google ומגבשים יחד קוד אתי בית-ספרי מוגדר, כדי לעבוד בראש שקט ובהתאם להנחיות המשרד.
-                </p>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    הקלה משמעותית בכתיבת תל"א
+                  </h4>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                    הגדרת יעדים פדגוגיים ממוקדים, פישוט טקסטים לתלמידים מתקשים ועולים חדשים, והנגשה דינמית המותאמת לחינוך המיוחד ולכיתות שילוב.
+                  </p>
+                </div>
               </div>
-              <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-amber-600 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping"></span>
-                <span>שמירה קפדנית על פרטיות ואתיקה מקצועית</span>
-              </div>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0 self-start md:self-center">
+                מענה דיפרנציאלי לכל לומד
+              </span>
             </div>
 
-            {/* Card 4 */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all duration-300 flex flex-col justify-between" id="pain_card_4">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6" />
+            {/* Banner 4 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-amber-300 hover:bg-gradient-to-l hover:from-amber-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-amber-100 transition-all duration-300 shadow-sm">
+                  <PiggyBank className="w-7 h-7" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">העומס הכפול בחינוך המיוחד ובכתיבת תל"א</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  רכזי שילוב ומורי חינוך מיוחד קורסים תחת כתיבת תוכניות לימודים אישיות (תל"א) והנגשת חומרים. התוכנית כוללת התאמה ייחודית המאפשרת לצוות לבנות עוזרי Gems לכתיבת יעדי תל"א פדגוגיים מבוססי מטרות, פישוט טקסטים מהיר והתאמות נגישות דינמיות.
-                </p>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                    אפס עלויות רישוי שנתיות
+                  </h4>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                    הקניית מיומנויות בסביבות עבודה רחבות ללא תשלום (Google AI Studio, NotebookLM וחשבונות חינוך) – יציבות פדגוגית קבועה ללא תקציבי עתק.
+                  </p>
+                </div>
               </div>
-              <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-emerald-600 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                <span>הקלה ישירה על צוותי החינוך המיוחד והשילוב</span>
-              </div>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-100 shrink-0 self-start md:self-center">
+                חיסכון תקציבי קבוע
+              </span>
             </div>
 
           </div>
         </section>
 
-        {/* Collaboration Tracks Section */}
-        <section className="space-y-8" id="collaboration_tracks_section">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">גמישות תקציבית ותפעולית</span>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">איך עובדים יחד? 3 מסלולי הטמעה בגפ"ן</h3>
-            <p className="text-slate-500 text-sm md:text-base">
-              התאמה מדויקת לצרכים, למבנה הארגוני ולתקציב של בית הספר שלכם:
-            </p>
+        {/* 3 Tracks - Compact & Action Oriented */}
+        <section className="space-y-4" id="collaboration_tracks_section">
+          <div className="space-y-1">
+            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">מסלולי הפעלה בגפ"ן</span>
+            <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">בחרו את הפורמט המתאים לבית ספרכם</h3>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6" id="collaboration_tracks_grid">
+          <div className="grid md:grid-cols-3 gap-5" id="collaboration_tracks_grid">
             
             {/* Track A */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" id="track_card_1">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">
-                  <Sparkle className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-blue-600 uppercase block mb-1">מפגש חד-פעמי</span>
-                  <h4 className="text-xl font-extrabold text-slate-900">מסלול א': הרצאת השראה וחשיפה</h4>
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  סדנה או הרצאה ממוקדת לכלל צוות המורים והמחנכות בבית הספר. אידיאלי לפתיחת הראש, חשיפת הפוטנציאל הפדגוגי של ה-AI והפגת חששות ופחדים ראשוניים בקרב הצוות.
+            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <span className="text-[11px] font-bold text-blue-600 uppercase">חד-פעמי</span>
+                <h4 className="text-base font-bold text-slate-900">הרצאת השראה וחשיפה</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  מפגש ממוקד לכלל הצוות לפתיחת הראש, חשיפת כלי AI מובילים והפגת חסמים ראשוניים.
                 </p>
               </div>
-              <div className="mt-8 space-y-3">
-                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
-                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ הרצאה מעוררת השראה</span>
-                  <span className="flex items-center gap-1.5">✓ הפחתת חסמים ראשוניים בצוות</span>
-                </div>
-                <button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="w-full py-2.5 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-bold rounded-xl border border-slate-150 hover:border-blue-200 transition cursor-pointer active:scale-98"
-                >
-                  לפרטים ותיאום מפגש
-                </button>
-              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition"
+              >
+                לפרטים ותיאום
+              </button>
             </div>
 
             {/* Track B */}
-            <div className="bg-white p-6 rounded-3xl border-2 border-indigo-600 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden" id="track_card_2">
-              <div className="absolute top-0 left-0 bg-indigo-600 text-white px-3 py-1 rounded-br-2xl text-[10px] font-bold tracking-wider">
-                המסלול המוביל
-              </div>
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-lg">
-                  <Layers className="w-6 h-6" />
+            <div className="bg-white p-5 rounded-2xl border-2 border-indigo-600 shadow-md flex flex-col justify-between space-y-4 relative">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-indigo-600 uppercase">המסלול המוביל</span>
+                  <span className="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-bold">8 מפגשים</span>
                 </div>
-                <div>
-                  <span className="text-xs font-bold text-indigo-600 uppercase block mb-1">פיילוט צוות מוביל</span>
-                  <h4 className="text-xl font-extrabold text-slate-900">מסלול ב': מודל קפסולה</h4>
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  השתלמות וליווי מעשי ממוקד מול "צוות חלוץ" (ההנהלה, רכזי תקשוב ומחנכות נבחרות) על בסיס תוכנית 8 המפגשים שלנו. פיצוח פרומפטים ובניית עוזרי Gems ייעודיים לבית הספר שלכם.
+                <h4 className="text-base font-bold text-slate-900">מודל קפסולה (צוות חלוץ)</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  השתלמות מעשית לצוות מוביל (רכזים ומחנכות) להקמת סוכני AI ופתרונות מותאמים לבית הספר.
                 </p>
               </div>
-              <div className="mt-8 space-y-3">
-                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
-                  <span className="flex items-center gap-1.5 font-semibold text-indigo-750">✓ קורס הטמעה מקיף (8 מפגשים)</span>
-                  <span className="flex items-center gap-1.5 font-semibold text-indigo-750">✓ יצירת מנהיגות טכנולוגית מוסדית</span>
-                </div>
-                <button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition cursor-pointer active:scale-98"
-                >
-                  תיאום פיילוט קפסולה
-                </button>
-              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition shadow-sm"
+              >
+                תיאום פיילוט קפסולה
+              </button>
             </div>
 
             {/* Track C */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between" id="track_card_3">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-lg">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-purple-600 uppercase block mb-1">ליווי שנתי מקיף</span>
-                  <h4 className="text-xl font-extrabold text-slate-900">מסלול ג': ארכיטקטורה פדגוגית</h4>
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  ליווי שנתי מתמשך לעיצוב והתאמה אישית (Customization) של כלי ה-AI למערכות הדאטה, לתרבות הארגונית ולמערכת הניהול הבית-ספרית שלכם (כמו אפסקול / צפונט) להבטחת רצף פדגוגי רב-שנתי.
+            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <span className="text-[11px] font-bold text-purple-600 uppercase">שנתי</span>
+                <h4 className="text-base font-bold text-slate-900">ארכיטקטורה וליווי שנתי</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  ליווי מתמשך והתאמת כלי AI למערכות הניהול של המוסד (צפונט / אפסקול / Drive).
                 </p>
               </div>
-              <div className="mt-8 space-y-3">
-                <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex flex-col gap-1.5">
-                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ ליווי שנתי צמוד של עופר וצוותו</span>
-                  <span className="flex items-center gap-1.5 font-semibold text-slate-700">✓ אינטגרציה מול צפונט / אפסקול / Drive</span>
-                </div>
-                <button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="w-full py-2.5 bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 text-xs font-bold rounded-xl border border-slate-150 hover:border-purple-200 transition cursor-pointer active:scale-98"
-                >
-                  תיאום שיחת ייעוץ שנתי
-                </button>
-              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition"
+              >
+                שיחת ייעוץ שנתי
+              </button>
             </div>
 
-          </div>
-        </section>
-
-        {/* Deliverables & ROI (What do they get?) */}
-        <section className="bg-indigo-950 text-white rounded-3xl p-6 md:p-12 relative overflow-hidden" id="deliverables_section">
-          {/* Ambient light effects inside deep background */}
-          <div className="absolute -right-16 -bottom-16 w-80 h-80 bg-indigo-800 rounded-full opacity-30 filter blur-3xl"></div>
-          <div className="absolute -left-16 -top-16 w-80 h-80 bg-blue-900 rounded-full opacity-30 filter blur-3xl"></div>
-          
-          <div className="relative z-10 space-y-8">
-            <div className="max-w-3xl space-y-2">
-              <span className="text-indigo-400 font-bold text-xs uppercase tracking-wider block">עובר לפעולה פרקטית</span>
-              <h3 className="text-2xl md:text-3xl font-extrabold text-white">מה יוצא לבית הספר מזה? ערך מוחשי ומדיד</h3>
-              <p className="text-indigo-200 text-sm md:text-base">לא נשארים בתיאוריה. מנהלים רואים תוצרים מוחשיים וכלכליים כבר במהלך התוכנית:</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8" id="deliverables_grid">
-              
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/15 space-y-4 flex flex-col justify-between hover:bg-white/10 transition-colors duration-200">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-lg bg-indigo-500/30 flex items-center justify-center text-indigo-300 font-bold text-lg">01</div>
-                  <h4 className="text-xl font-bold text-white flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-indigo-400" />
-                    סביבות מחקר וסוכני למידה לכל מורה
-                  </h4>
-                  <p className="text-sm text-indigo-100/90 leading-relaxed">
-                    כל מורה בונה סביבת מחקר וסיכום אישית ב-**NotebookLM** המבוססת על תוכנית הלימודים שלו, לצד פיתוח **Gems מותאם אישית** ב-**Google AI Studio**. אלו עוזרי הוראה שמשרתים אותו קבוע ומוטמעים מיידית ביומיום הפדגוגי.
-                  </p>
-                </div>
-                <div className="pt-3 text-xs font-semibold text-emerald-400">
-                  ✔ תיוג והתאמה אישית מלאה
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/15 space-y-4 flex flex-col justify-between hover:bg-white/10 transition-colors duration-200">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-lg bg-indigo-500/30 flex items-center justify-center text-indigo-300 font-bold text-lg">02</div>
-                  <h4 className="text-xl font-bold text-white flex items-center gap-2">
-                    <PiggyBank className="w-5 h-5 text-indigo-400" />
-                    חיסכון תקציבי קבוע
-                  </h4>
-                  <p className="text-sm text-indigo-100/90 leading-relaxed">
-                    אנו מקנים שימוש מושכל בסביבות עבודה ובכלים בעלי גרסאות חינמיות רחבות במיוחד (כמו Google AI Studio ,NotebookLM וגרסאות חינוכיות של Canva). דבר זה מבטיח יציבות והמשכיות פדגוגית מלאה ללא עלות נוספת לבית הספר.
-                  </p>
-                </div>
-                <div className="pt-3 text-xs font-semibold text-emerald-400">
-                  ✔ חיסכון קבוע בעלויות רישוי שנתיות
-                </div>
-              </div>
-
-            </div>
           </div>
         </section>
 
@@ -1229,8 +1292,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         </div>
       </footer>
 
-      {/* Floating Chatbot */}
-      <div className="fixed bottom-6 left-6 z-50 no-print font-sans" id="floating_chatbot_widget" dir="rtl">
+      {/* Floating Chatbot - Positioned on Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-50 no-print font-sans" id="floating_chatbot_widget" dir="rtl">
         <AnimatePresence>
           {isChatFloatingOpen && (
             <motion.div
@@ -1238,7 +1301,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
               transition={{ duration: 0.2 }}
-              className="bg-white rounded-3xl border border-slate-150 shadow-2xl overflow-hidden flex flex-col w-[350px] md:w-[385px] h-[500px] mb-4 origin-bottom-left"
+              className="bg-white rounded-3xl border border-slate-150 shadow-2xl overflow-hidden flex flex-col w-[350px] md:w-[385px] h-[500px] mb-4 origin-bottom-right"
               id="floating_chat_card"
             >
               {/* Floating Chat Header */}
@@ -1336,22 +1399,37 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           )}
         </AnimatePresence>
 
-        {/* Floating Bubble Button */}
-        <button
-          onClick={() => setIsChatFloatingOpen(!isChatFloatingOpen)}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:via-indigo-700 hover:to-indigo-800 text-white shadow-2xl hover:shadow-indigo-300 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative group border-0 outline-none"
-          id="floating_chat_bubble_btn"
-        >
-          {isChatFloatingOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <div className="relative">
-              <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white animate-ping"></span>
-              <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white"></span>
-              <span className="text-xl">🤖</span>
-            </div>
+        {/* Floating Bubble Button Group - Bot at extreme right, hint to its left */}
+        <div className="flex flex-row-reverse items-center justify-end gap-3">
+          <button
+            onClick={() => setIsChatFloatingOpen(!isChatFloatingOpen)}
+            className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:via-indigo-700 hover:to-indigo-800 text-white shadow-2xl hover:shadow-indigo-300 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative group border-0 outline-none shrink-0"
+            id="floating_chat_bubble_btn"
+          >
+            {isChatFloatingOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <div className="relative">
+                <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white animate-ping"></span>
+                <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white"></span>
+                <span className="text-xl">🤖</span>
+              </div>
+            )}
+          </button>
+
+          {!isChatFloatingOpen && (
+            <motion.div 
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 }}
+              className="bg-white/95 backdrop-blur-sm border border-indigo-100 shadow-lg px-3.5 py-2 rounded-full text-xs font-bold text-indigo-900 cursor-pointer hidden sm:flex items-center gap-1.5 hover:bg-white hover:shadow-xl transition"
+              onClick={() => setIsChatFloatingOpen(true)}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span>יש שאלות על גפ"ן? שאלו אותי</span>
+            </motion.div>
           )}
-        </button>
+        </div>
       </div>
     </div>
   );
