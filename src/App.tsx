@@ -1202,78 +1202,50 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           <div className="bg-white rounded-3xl p-6 md:p-12 border border-slate-100 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-50 rounded-br-3xl -z-10 opacity-60"></div>
             
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
+            <div className="space-y-6 max-w-3xl">
+              <div>
+                <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתחי ומנחי התוכנית</span>
+                <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                  עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית
+                </h4>
+              </div>
               
-              <div className="lg:col-span-8 space-y-5">
-                <div>
-                  <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתחי ומנחי התוכנית</span>
-                  <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                    עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית
-                  </h4>
-                </div>
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                מהנדס (הטכניון), מרצה ומומחה בהטמעת טכנולוגיות AI וסוכנים חכמים במערכות חינוך וניהול. מביא איתו ניסיון עשיר, פרקטי ונגיש בשטח בליווי צוותי חינוך ורשויות מקומיות לעולם הטכנולוגי החדש, תוך הבנה עמוקה של צרכי מנהלים ומורים.
+              </p>
+
+              {/* Direct Action badged communication list */}
+              <div className="flex flex-wrap gap-3.5 pt-2" id="contact_badges">
                 
-                <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                  מהנדס (הטכניון), מרצה ומומחה בהטמעת טכנולוגיות AI וסוכנים חכמים במערכות חינוך וניהול. מביא איתו ניסיון עשיר, פרקטי ונגיש בשטח בליווי צוותי חינוך ורשויות מקומיות לעולם הטכנולוגי החדש, תוך הבנה עמוקה של צרכי מנהלים ומורים.
-                </p>
+                {/* Phone dial connection */}
+                <a 
+                  href="tel:052-6947202" 
+                  className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
+                >
+                  <Phone className="w-4 h-4 text-indigo-600" />
+                  <span className="font-bold">052-6947202</span>
+                </a>
 
-                {/* Direct Action badged communication list */}
-                <div className="flex flex-wrap gap-3.5 pt-2" id="contact_badges">
-                  
-                  {/* Phone dial connection */}
-                  <a 
-                    href="tel:052-6947202" 
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-100 transition duration-150"
-                  >
-                    <Phone className="w-4 h-4 text-slate-500" />
-                    <span className="font-semibold">052-6947202</span>
-                  </a>
+                {/* Mail to response */}
+                <a 
+                  href="mailto:saritofer.k@gmail.com" 
+                  className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
+                >
+                  <Mail className="w-4 h-4 text-indigo-600" />
+                  <span className="font-bold">saritofer.k@gmail.com</span>
+                </a>
 
-                  {/* Mail to response */}
-                  <a 
-                    href="mailto:saritofer.k@gmail.com" 
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-100 transition duration-150"
-                  >
-                    <Mail className="w-4 h-4 text-slate-500" />
-                    <span className="font-semibold">saritofer.k@gmail.com</span>
-                  </a>
-
-                  {/* Program Number */}
-                  <div 
-                    className="inline-flex items-center justify-between gap-3 px-4 py-2 text-sm text-indigo-800 bg-indigo-50/50 rounded-xl border border-indigo-100"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Layers className="w-4 h-4 text-indigo-500" />
-                      <span className="font-semibold">תוכנית גפ"ן 64342</span>
-                    </div>
+                {/* Program Number */}
+                <div 
+                  className="inline-flex items-center justify-between gap-3 px-5 py-2.5 text-base text-indigo-800 bg-indigo-50 rounded-xl border border-indigo-100 shadow-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-indigo-600" />
+                    <span className="font-bold">תוכנית גפ"ן 64342</span>
                   </div>
-
                 </div>
-              </div>
 
-              {/* Interaction Fast-Contact sidebar / CTA */}
-              <div className="lg:col-span-4 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4" id="instructor_cta">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">תיאום שיחת ייעוץ</span>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  הנחה וליווי מלא להתאמת התוכנית ביעילות לבית ספרכם, החל מתהליך האישור ועד להטמעה בשטח.
-                </p>
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => handleCopyLink("0526947202", "טלפון נייד")}
-                    className="w-full flex items-center justify-between px-3.5 py-2.5 bg-white text-xs font-bold text-slate-800 rounded-xl border border-slate-150 hover:bg-indigo-50/20 hover:border-indigo-200 transition cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2">📞 העתק טלפון נייד</span>
-                    <Copy className="w-3.5 h-3.5 text-slate-400" />
-                  </button>
-                  <button 
-                    onClick={() => handleCopyLink("saritofer.k@gmail.com", "כתובת דואר אלקטרוני")}
-                    className="w-full flex items-center justify-between px-3.5 py-2.5 bg-white text-xs font-bold text-slate-800 rounded-xl border border-slate-150 hover:bg-indigo-50/20 hover:border-indigo-200 transition cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2 font-sans">✉️ העתק אימייל</span>
-                    <Copy className="w-3.5 h-3.5 text-slate-400" />
-                  </button>
-                </div>
               </div>
-              
             </div>
           </div>
         </section>
