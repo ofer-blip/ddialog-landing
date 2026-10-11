@@ -4,6 +4,10 @@
 @theme {
   --font-sans: 'Assistant', 'Rubik', ui-sans-serif, system-ui, sans-serif;
   
+  --text-xs: 0.85rem;
+  --text-sm: 0.96rem;
+  --text-base: 1.08rem;
+
   --color-gemini-blue: #1a73e8;
   --color-gemini-purple: #8ab4f8;
   --color-gemini-dark: #1e1f20;

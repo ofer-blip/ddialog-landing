@@ -542,12 +542,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           <div className="space-y-6">
             {/* Top Badges */}
             <div className="flex flex-wrap items-center gap-2.5" id="hero_badges">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
                 מאושר גפ"ן (מספר 64342) • מסלול ירוק
               </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
-                <Award className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                <Award className="w-4 h-4 text-indigo-600" />
                 חדשנות ויזמות פדגוגית
               </span>
             </div>
@@ -561,7 +561,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     לכלי עבודה פדגוגי בידי המורים
                   </span>
                 </h2>
-                <p className="text-base text-slate-600 leading-relaxed font-medium">
+                <p className="text-lg text-slate-600 leading-relaxed font-medium">
                   במקום הרצאות תיאורטיות – מטמיעים בצוות כלי עבודה אמיתיים שחוסכים שעות עבודה שבועיות, פותרים עומסים ומייצרים תוצרים מותאמים אישית לבית הספר.
                 </p>
               </div>
@@ -585,7 +585,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
             {/* Quick Points & CTA */}
             <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-4 text-xs font-semibold text-slate-700">
+              <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-700">
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> חיסכון של שעות עבודה שבועיות</span>
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> פיתוח משותף של כלים וסוכנים עם הצוות</span>
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> ללא עלויות רישוי שנתיות</span>
@@ -594,7 +594,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               <button 
                 type="button"
                 onClick={() => setIsContactOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer active:scale-95 shrink-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer active:scale-95 shrink-0"
               >
                 <Phone className="w-4 h-4" />
                 <span>יצירת קשר / תיאום שיחה</span>
@@ -634,26 +634,26 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-teal-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-teal-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
                     <span>פתיחת הדגמת תל"א</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </span>
                 </div>
-                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-teal-800 shadow-sm border border-teal-100">
+                <span className="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-teal-800 shadow-sm border border-teal-100">
                   אפליקציה פדגוגית לתל"א
                 </span>
               </div>
 
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4.5 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
+                  <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
                     מפת דרכים דיגיטלית לבניית תל"א
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-600 mt-1 leading-normal">
                     פירוק שלבים, צ'ק-ליסטים ומחוונים אינטראקטיביים לצוות
                   </p>
                 </div>
-                <span className="text-xs font-bold text-teal-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                <span className="text-sm font-bold text-teal-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
                   <span>התנסות</span>
                   ←
                 </span>
@@ -674,26 +674,26 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-pink-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-pink-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
                     <span>פתיחת הסוכן בדפדפן</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </span>
                 </div>
-                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-pink-800 shadow-sm border border-pink-100">
+                <span className="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-pink-800 shadow-sm border border-pink-100">
                   עוזר הוראה וסוכן תוכן
                 </span>
               </div>
 
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4.5 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-pink-600 transition-colors">
+                  <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-pink-600 transition-colors">
                     סוכן תוכן ומערכי שיעור (מודל שיראז)
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-600 mt-1 leading-normal">
                     עוזר אישי מותאם מוסד להוראה, דיפרנציאציה וסימולציות
                   </p>
                 </div>
-                <span className="text-xs font-bold text-pink-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                <span className="text-sm font-bold text-pink-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
                   <span>התנסות</span>
                   ←
                 </span>
@@ -714,26 +714,26 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-indigo-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
                     <span>פתיחת ה-Gem ב-Gemini</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </span>
                 </div>
-                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-indigo-800 shadow-sm border border-indigo-100">
+                <span className="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-indigo-800 shadow-sm border border-indigo-100">
                   Google Gemini Gem
                 </span>
               </div>
 
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4.5 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
                     עוזר Gems ייעודי (התנסות חיה)
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-600 mt-1 leading-normal">
                     פתיחה ישירה ב-Gemini לניתוח וסיכום פרופיל תפקודי
                   </p>
                 </div>
-                <span className="text-xs font-bold text-indigo-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                <span className="text-sm font-bold text-indigo-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
                   <span>התנסות</span>
                   ←
                 </span>
@@ -754,26 +754,26 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-emerald-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
                     <span>פתיחת כלי האבחון בדפדפן</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-4 h-4" />
                   </span>
                 </div>
-                <span className="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-emerald-800 shadow-sm border border-emerald-100">
+                <span className="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-emerald-800 shadow-sm border border-emerald-100">
                   כלי אבחון ארגוני
                 </span>
               </div>
 
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4.5 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     DNA ארגוני - כלי אבחון
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-sm text-slate-600 mt-1 leading-normal">
                     מיפוי ואבחון תהליכים ותרבות ארגונית בבית הספר
                   </p>
                 </div>
-                <span className="text-xs font-bold text-emerald-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                <span className="text-sm font-bold text-emerald-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
                   <span>התנסות</span>
                   ←
                 </span>
@@ -802,12 +802,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-rose-700 transition-colors">
                     עומס ושחיקת מורים
                   </h4>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
                     אוטומציה מלאה של בדיקות, מחוונים, מענה להורים ותכנון שיעורים – מחזירים לצוות שעות פנאי יקרות ומפחיתים תסכול שוטף.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100 shrink-0 self-start md:self-center">
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100 shrink-0 self-start md:self-center">
                 חיסכון מיידי בזמן
               </span>
             </div>
@@ -822,12 +822,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
                     פיתוח משותף של כלים וסוכנים למוסד
                   </h4>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
                     לא רק צורכים טכנולוגיה קיימת – אנו מפתחים יחד עם הנהלת בית הספר והצוות כלים ייעודיים, סוכני תוכן ומפות דרכים שנשארים כנכס קבוע במוסד.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
                 נכסים פדגוגיים למוסד
               </span>
             </div>
@@ -842,12 +842,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     הקלה משמעותית בכתיבת תל"א
                   </h4>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
                     הגדרת יעדים פדגוגיים ממוקדים, פישוט טקסטים לתלמידים מתקשים ועולים חדשים, והנגשה דינמית המותאמת לחינוך המיוחד ולכיתות שילוב.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0 self-start md:self-center">
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0 self-start md:self-center">
                 מענה דיפרנציאלי לכל לומד
               </span>
             </div>
@@ -862,12 +862,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
                     אפס עלויות רישוי שנתיות
                   </h4>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
                     הקניית מיומנויות בסביבות עבודה רחבות ללא תשלום (Google AI Studio, NotebookLM וחשבונות חינוך) – יציבות פדגוגית קבועה ללא תקציבי עתק.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-100 shrink-0 self-start md:self-center">
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-100 shrink-0 self-start md:self-center">
                 חיסכון תקציבי קבוע
               </span>
             </div>
@@ -878,7 +878,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         {/* 3 Tracks - Compact & Action Oriented */}
         <section className="space-y-4" id="collaboration_tracks_section">
           <div className="space-y-1">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">מסלולי הפעלה בגפ"ן</span>
+            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מסלולי הפעלה בגפ"ן</span>
             <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">בחרו את הפורמט המתאים לבית ספרכם</h3>
           </div>
 
@@ -887,15 +887,15 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             {/* Track A */}
             <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
-                <span className="text-[11px] font-bold text-blue-600 uppercase">חד-פעמי</span>
-                <h4 className="text-base font-bold text-slate-900">הרצאת השראה וחשיפה</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <span className="text-xs font-bold text-blue-600 uppercase">חד-פעמי</span>
+                <h4 className="text-lg font-bold text-slate-900">הרצאת השראה וחשיפה</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
                   מפגש ממוקד לכלל הצוות לפתיחת הראש, חשיפת כלי AI מובילים והפגת חסמים ראשוניים.
                 </p>
               </div>
               <button 
                 onClick={() => setIsContactOpen(true)}
-                className="w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition"
+                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
               >
                 לפרטים ותיאום
               </button>
@@ -905,17 +905,17 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             <div className="bg-white p-5 rounded-2xl border-2 border-indigo-600 shadow-md flex flex-col justify-between space-y-4 relative">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-indigo-600 uppercase">המסלול המוביל</span>
-                  <span className="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-bold">8 מפגשים</span>
+                  <span className="text-xs font-bold text-indigo-600 uppercase">המסלול המוביל</span>
+                  <span className="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">8 מפגשים</span>
                 </div>
-                <h4 className="text-base font-bold text-slate-900">מודל קפסולה (צוות חלוץ)</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h4 className="text-lg font-bold text-slate-900">מודל קפסולה (צוות חלוץ)</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
                   השתלמות מעשית לצוות מוביל (רכזים ומחנכות) להקמת סוכני AI ופתרונות מותאמים לבית הספר.
                 </p>
               </div>
               <button 
                 onClick={() => setIsContactOpen(true)}
-                className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition shadow-sm"
+                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-sm"
               >
                 תיאום פיילוט קפסולה
               </button>
@@ -924,15 +924,15 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             {/* Track C */}
             <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
-                <span className="text-[11px] font-bold text-purple-600 uppercase">שנתי</span>
-                <h4 className="text-base font-bold text-slate-900">ארכיטקטורה וליווי שנתי</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <span className="text-xs font-bold text-purple-600 uppercase">שנתי</span>
+                <h4 className="text-lg font-bold text-slate-900">ארכיטקטורה וליווי שנתי</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
                   ליווי מתמשך והתאמת כלי AI למערכות הניהול של המוסד (צפונט / אפסקול / Drive).
                 </p>
               </div>
               <button 
                 onClick={() => setIsContactOpen(true)}
-                className="w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition"
+                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
               >
                 שיחת ייעוץ שנתי
               </button>
@@ -1003,7 +1003,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                       }`}>
                         {session.id}
                       </span>
-                      <span className="font-bold text-slate-900 text-sm md:text-base">{session.title}</span>
+                      <span className="font-bold text-slate-900 text-base md:text-lg">{session.title}</span>
                     </div>
                     
                     {/* Toggle Indicator Arrow */}
@@ -1025,17 +1025,17 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     <div className="px-5 pb-5 pt-1 border-t border-slate-50 space-y-4 bg-slate-50/20">
                       
                       {/* Inner info grid */}
-                      <div className="grid md:grid-cols-12 gap-3 pt-2 text-sm leading-relaxed text-slate-700">
+                      <div className="grid md:grid-cols-12 gap-3 pt-2 text-base leading-relaxed text-slate-700">
                         <div className="md:col-span-3 text-slate-500 font-bold flex items-center gap-1.5 md:flex-col md:items-start md:gap-1">
                           <span className="inline-block bg-slate-100 text-slate-700 p-1 rounded">💼</span>
                           <span>הערך הפרקטי לצוות: </span>
                         </div>
                         <div className="md:col-span-9 bg-white p-3.5 rounded-xl border border-slate-100">
-                          <p className="text-slate-600 font-medium">{session.value}</p>
+                          <p className="text-slate-700 font-medium">{session.value}</p>
                         </div>
                       </div>
 
-                      <div className="grid md:grid-cols-12 gap-3 text-sm leading-relaxed text-slate-700">
+                      <div className="grid md:grid-cols-12 gap-3 text-base leading-relaxed text-slate-700">
                         <div className="md:col-span-3 text-indigo-600 font-bold flex items-center gap-1.5 md:flex-col md:items-start md:gap-1">
                           <span className="inline-block bg-indigo-50 text-indigo-700 p-1 rounded">✨</span>
                           <span>תוצר המפגש: </span>
@@ -1059,8 +1059,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 💡
               </div>
               <div>
-                <h5 className="font-bold text-slate-900 text-base md:text-lg">גמישות פדגוגית מוחלטת בהתאמה אליך</h5>
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed mt-1.5">
+                <h5 className="font-bold text-slate-900 text-lg md:text-xl">גמישות פדגוגית מוחלטת בהתאמה אליך</h5>
+                <p className="text-base text-slate-700 leading-relaxed mt-2">
                   אנו מבינים שלכל בית ספר אפיון, ערכים וחזון ייחודי משלו. התוכנית מתאפיינת בגמישות מלאה – ניתן להתאים את הדגשים, קצב הלמידה והתכנים המעשיים כך שישתלבו בצורה הרמונית עם רוח בית הספר והמטרות השנתיות שאת/ה כמנהל/ת מציב/ה.
                 </p>
               </div>
@@ -1072,8 +1072,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 🌟
               </div>
               <div>
-                <h5 className="font-bold text-slate-900 text-base md:text-lg">התאמה מיוחדת לחינוך מיוחד, כיתות שילוב וכתיבת תל"א</h5>
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed mt-1.5">
+                <h5 className="font-bold text-slate-900 text-lg md:text-xl">התאמה מיוחדת לחינוך מיוחד, כיתות שילוב וכתיבת תל"א</h5>
+                <p className="text-base text-slate-700 leading-relaxed mt-2">
                   בתי ספר רבים משלבים בתוכנית סדנאות ייעודיות לצוותי חינוך מיוחד ומתי"א. אנו מתמקדים בהפחתת העומס הבירוקרטי באמצעות בניית מודלים מותאמים לכתיבה יעילה ובטוחה של יעדי תוכניות לימודים אישיות (תל"א), פישוט והנגשת טקסטים, ופיתוח עזרים חזותיים מותאמים ללמידה מונגשת.
                 </p>
               </div>
@@ -1086,7 +1086,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           <div className="text-center space-y-2">
             <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">התנסות מעשית בבינה מלאכותית</span>
             <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">יש לכם שאלות? שאלו את העוזר הדיגיטלי שלנו</h3>
-            <p className="text-slate-500 text-sm md:text-base">
+            <p className="text-slate-600 text-base md:text-lg">
               במקום לקרוא שאלות ותשובות יבשות, אתם מוזמנים להתנסות בבוט ה-AI של התוכנית. הוא עונה על הכל:
             </p>
           </div>
@@ -1120,7 +1120,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     {!isUser && (
                       <div className="w-8 h-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm shrink-0">🤖</div>
                     )}
-                    <div className={`p-3.5 rounded-2xl max-w-[80%] text-sm leading-relaxed ${
+                    <div className={`p-3.5 rounded-2xl max-w-[80%] text-base leading-relaxed ${
                       isUser 
                         ? "bg-indigo-600 text-white rounded-tl-none font-medium shadow-sm" 
                         : "bg-white text-slate-800 border border-slate-100 rounded-tr-none shadow-sm"
@@ -1149,7 +1149,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   key={idx}
                   onClick={() => handleSendMessage(q)}
                   disabled={isChatLoading}
-                  className="px-3 py-1.5 bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 border border-indigo-100/50 rounded-full text-xs font-bold transition cursor-pointer active:scale-95 disabled:opacity-50"
+                  className="px-3.5 py-1.5 bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 border border-indigo-100/50 rounded-full text-sm font-bold transition cursor-pointer active:scale-95 disabled:opacity-50"
                 >
                   {q}
                 </button>
@@ -1172,7 +1172,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 onChange={(e) => setChatInput(e.target.value)}
                 disabled={isChatLoading}
                 placeholder={isChatLoading ? "העוזר הדיגיטלי כותב תשובה..." : "הקלידו שאלה פה (למשל: כמה מפגשים יש?)..."}
-                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none disabled:bg-slate-50 disabled:text-slate-400"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-base focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all outline-none disabled:bg-slate-50 disabled:text-slate-400"
               />
               <button
                 type="submit"
@@ -1206,13 +1206,13 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               
               <div className="lg:col-span-8 space-y-5">
                 <div>
-                  <span className="text-xs font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתחי ומנחי התוכנית</span>
+                  <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתחי ומנחי התוכנית</span>
                   <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
                     עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית
                   </h4>
                 </div>
                 
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed">
                   מהנדס (הטכניון), מרצה ומומחה בהטמעת טכנולוגיות AI וסוכנים חכמים במערכות חינוך וניהול. מביא איתו ניסיון עשיר, פרקטי ונגיש בשטח בליווי צוותי חינוך ורשויות מקומיות לעולם הטכנולוגי החדש, תוך הבנה עמוקה של צרכי מנהלים ומורים.
                 </p>
 
