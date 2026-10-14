@@ -622,7 +622,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             
             {/* Row 1, Col 1: TLA Roadmap */}
             <a 
-              href="/tla-demo.html#step1" 
+              href="https://tala.ddialog.co.il/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col cursor-pointer"
@@ -635,7 +635,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                   <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-teal-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
-                    <span>פתיחת הדגמת תל"א</span>
+                    <span>כניסה לאפליקציה והתנסות בדמו</span>
                     <ExternalLink className="w-4 h-4" />
                   </span>
                 </div>
