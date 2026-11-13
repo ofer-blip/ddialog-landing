@@ -37,7 +37,9 @@
 │   ├── showcase-tla.png    # צילום מסך עדכני ומעוצב של אפליקציית תל"א (tala.ddialog.co.il)
 │   ├── showcase-shiraz.png # צילום מסך של סוכן שיראז
 │   ├── showcase-gem.png    # צילום מסך של ה-Gem הייעודי
-│   └── favicon / icons     # נכסים גרפיים נוספים
+│   ├── showcase-dna.png    # צילום מסך של כלי אבחון DNA ארגוני
+│   ├── showcase-avivim.svg # תצוגת דמו של לוח הבקרה בית ספר אביבים (avivim.ddialog.co.il)
+│   └── favicon.svg         # אייקון המותג של D-Dialog (בועות דיאלוג וניצוץ, במקום אייקון הרובוט)
 ├── netlify.toml         # הגדרות בנייה (npm run build) ותיקיית פרסום dist
 └── package.json         # תלויות וסקריפטים
 ```
@@ -58,6 +60,13 @@
 3. **עוזר Gems ייעודי ב-Gemini:**
    * **קישור חי:** סביבת Gemini ייעודית מותאמת אישית.
    * **תמונת תצוגה:** `public/showcase-gem.png`.
+4. **DNA ארגוני - כלי אבחון:**
+   * **קישור חי:** [https://edumap-519fb.web.app/](https://edumap-519fb.web.app/)
+   * **תמונת תצוגה:** `public/showcase-dna.png`.
+5. **לוח בקרה ומענה הנהלה — בית ספר אביבים (דמו חי):**
+   * **קישור חי:** [https://avivim.ddialog.co.il/](https://avivim.ddialog.co.il/) (פרוש ב-Netlify מתוך `peaceful-faraday/avivim-dashboard-demo`).
+   * **מאפיינים:** נתוני דמו בלבד (Zero PII), 4 גרפי BI פתוחים, סינון, מודאל מענה הנהלה, ורשימות משימות אינטראקטיביות פתוחות למטה עם שמירה מקומית בדפדפן.
+   * **תצוגה באתר:** כרטיסיית דגל ברוחב מלא (`md:col-span-2`) עם `public/showcase-avivim.svg`.
 
 ---
 
