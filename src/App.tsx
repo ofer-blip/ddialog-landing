@@ -780,6 +780,52 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               </div>
             </a>
 
+            {/* Row 3, Featured Full-Width Card: Avivim School Dashboard Demo */}
+            <a 
+              href="https://avivim.ddialog.co.il/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="md:col-span-2 group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-purple-300 transition-all duration-300 grid grid-cols-1 md:grid-cols-2 cursor-pointer"
+            >
+              <div className="relative aspect-[16/9] md:aspect-auto bg-slate-50 overflow-hidden border-b md:border-b-0 md:border-l border-slate-150">
+                <img 
+                  src="/showcase-avivim.svg" 
+                  alt="לוח בקרה ומענה הנהלה - בית ספר אביבים (דמו)" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white bg-purple-600/90 backdrop-blur-sm px-3.5 py-1.5 rounded-lg shadow">
+                    <span>כניסה ללוח הבקרה (דמו חי)</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </span>
+                </div>
+                <span className="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-purple-800 shadow-sm border border-purple-100">
+                  דשבורד הנהלה וניהול צוות
+                </span>
+              </div>
+
+              <div className="p-6 flex flex-col justify-between gap-4">
+                <div>
+                  <span className="inline-block text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full mb-2">
+                    התנסות חיה בנתוני דמו
+                  </span>
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-purple-700 transition-colors">
+                    לוח בקרה ומענה הנהלה — בית ספר אביבים
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    מבט על מהודק להנהלה: ריכוז דיווחי ישיבות, מעקב פניות צוות, גרפים אינטראקטיביים ורשימות משימות חיות המתעדכנות בזמן אמת.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                  <span className="text-xs text-slate-500 font-medium">כולל סינון, כתיבת הערות ורשימות משימות חיות</span>
+                  <span className="text-sm font-bold text-purple-700 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
+                    <span>התנסות</span>
+                    ←
+                  </span>
+                </div>
+              </div>
+            </a>
+
           </div>
         </section>
 

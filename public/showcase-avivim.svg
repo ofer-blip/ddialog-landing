@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" dir="rtl">
+  <defs>
+    <linearGradient id="heroG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B" />
+      <stop offset="55%" stop-color="#4338CA" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="barG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="#FAF8F5" />
+  <!-- Top Bar -->
+  <rect width="800" height="36" fill="#0F172A" />
+  <rect x="24" y="9" width="130" height="18" rx="9" fill="#10B981" fill-opacity="0.22" stroke="#34D399" stroke-opacity="0.5" />
+  <text x="89" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#A7F3D0">דמו חי • בית ספר אביבים</text>
+  <!-- Hero Banner -->
+  <rect x="24" y="48" width="752" height="92" rx="16" fill="url(#heroG)" />
+  <rect x="698" y="64" width="58" height="58" rx="14" fill="#FFFFFF" fill-opacity="0.96" />
+  <circle cx="727" cy="87" r="13" fill="#10B981" fill-opacity="0.2" />
+  <text x="727" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2E1065">אביבים</text>
+  <text x="682" y="84" text-anchor="end" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">בית ספר אביבים | לוח בקרה ומענה הנהלה</text>
+  <text x="682" y="108" text-anchor="end" font-family="Arial, sans-serif" font-size="11.5" fill="#DDD6FE">מבט על לקבלת החלטות מהירה, סנכרון צוות ומעקב משימות חי</text>
+  <!-- KPI Pills -->
+  <rect x="44" y="66" width="78" height="54" rx="10" fill="#EF4444" fill-opacity="0.3" stroke="#FCA5A5" stroke-opacity="0.6" />
+  <text x="83" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="83" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FEE2E2">ממתינים למענה</text>
+  <rect x="132" y="66" width="78" height="54" rx="10" fill="#FFFFFF" fill-opacity="0.14" />
+  <text x="171" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">12</text>
+  <text x="171" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#E0E7FF">סה"כ דיווחים</text>
+  <!-- Charts Cards -->
+  <rect x="24" y="156" width="240" height="145" rx="14" fill="#FFFFFF" stroke="#E2E8F0" />
+  <text x="248" y="180" text-anchor="end" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E1065">פילוח סטטוס מענה</text>
+  <circle cx="96" cy="238" r="36" fill="none" stroke="#F1F5F9" stroke-width="12" />
+  <circle cx="96" cy="238" r="36" fill="none" stroke="#10B981" stroke-width="12" stroke-dasharray="95 226" />
+  <circle cx="96" cy="238" r="36" fill="none" stroke="#F59E0B" stroke-width="12" stroke-dasharray="60 226" stroke-dashoffset="-95" />
+  <circle cx="96" cy="238" r="36" fill="none" stroke="#EF4444" stroke-width="12" stroke-dasharray="71 226" stroke-dashoffset="-155" />
+  <text x="96" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0F172A">67%</text>
+  <rect x="152" y="210" width="90" height="10" rx="5" fill="#EDE9FE" />
+  <rect x="164" y="232" width="78" height="10" rx="5" fill="#FEF3C7" />
+  <rect x="158" y="254" width="84" height="10" rx="5" fill="#D1FAE5" />
+
+  <rect x="280" y="156" width="240" height="145" rx="14" fill="#FFFFFF" stroke="#E2E8F0" />
+  <text x="504" y="180" text-anchor="end" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E1065">מוקד תלמידים וצוות</text>
+  <rect x="300" y="202" width="180" height="12" rx="6" fill="url(#barG)" />
+  <rect x="330" y="226" width="150" height="12" rx="6" fill="#6D28D9" fill-opacity="0.8" />
+  <rect x="360" y="250" width="120" height="12" rx="6" fill="#10B981" fill-opacity="0.85" />
+  <rect x="390" y="274" width="90" height="12" rx="6" fill="#4338CA" fill-opacity="0.7" />
+
+  <rect x="536" y="156" width="240" height="145" rx="14" fill="#FFFFFF" stroke="#E2E8F0" />
+  <text x="760" y="180" text-anchor="end" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E1065">תחנות שליטה מהירות</text>
+  <rect x="556" y="196" width="200" height="24" rx="8" fill="#6D28D9" />
+  <text x="742" y="212" text-anchor="end" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#FFFFFF">1. דורש מענה היום (4)</text>
+  <rect x="556" y="228" width="200" height="24" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+  <text x="742" y="244" text-anchor="end" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">2. הנחיות הנהלה (8)</text>
+  <rect x="556" y="260" width="200" height="24" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+  <text x="742" y="276" text-anchor="end" font-family="Arial, sans-serif" font-size="10.5" fill="#334155">3. משימות שנסגרו (5)</text>
+
+  <!-- Bottom Live Tasks Strip -->
+  <rect x="24" y="316" width="752" height="110" rx="14" fill="#FFFFFF" stroke="#DDD6FE" />
+  <text x="758" y="340" text-anchor="end" font-family="Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#1E1B4B">רשימות משימות ומעקב צוות חי</text>
+  <rect x="44" y="354" width="712" height="26" rx="8" fill="#F0FDF4" stroke="#BBF7D0" />
+  <text x="742" y="371" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#065F46">✅ חלוקת קבוצות ושיבוץ ציוותי צוות — בוצע ונסגר</text>
+  <rect x="44" y="388" width="712" height="26" rx="8" fill="#FFFBEB" stroke="#FDE68A" />
+  <text x="742" y="405" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#92400E">💬 אישור הזמנת אוטובוס נגיש לטיול סתיו — בביצוע</text>
+</svg>
