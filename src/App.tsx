@@ -872,8 +872,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
                     מפת דרכים דיגיטלית לבניית תל"א
                   </h4>
-                  <p className="text-sm text-slate-600 mt-1 leading-normal">
-                    פירוק שלבים, צ'ק-ליסטים ומחוונים אינטראקטיביים לצוות
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    מלווה את המחנכת צעד-אחר-צעד בבניית התל&quot;א: פירוק שלבים, צ&apos;ק-ליסטים אינטראקטיביים, מד התקדמות וסנכרון מלא מול תיקיית הדרייב של הכיתה.
                   </p>
                 </div>
                 <span className="text-sm font-bold text-teal-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
@@ -912,8 +912,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-pink-600 transition-colors">
                     סוכן תוכן ומערכי שיעור (מודל שיראז)
                   </h4>
-                  <p className="text-sm text-slate-600 mt-1 leading-normal">
-                    עוזר אישי מותאם מוסד להוראה, דיפרנציאציה וסימולציות
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    עוזר הוראה שמכיר את שפת בית הספר: בונה מערכי שיעור, מתאים תכנים לרמות שונות בכיתה ומכין כרטיסיות וסימולציות בדקות.
                   </p>
                 </div>
                 <span className="text-sm font-bold text-pink-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
@@ -952,8 +952,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
                     עוזר Gems ייעודי (התנסות חיה)
                   </h4>
-                  <p className="text-sm text-slate-600 mt-1 leading-normal">
-                    פתיחה ישירה ב-Gemini לניתוח וסיכום פרופיל תפקודי
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    לוקח נתונים גולמיים מהצוות על התלמיד, ומנסח מהם תוך שניות סיכום פרופיל תפקודי מקצועי, מסודר ומוכן לישיבת תל&quot;א.
                   </p>
                 </div>
                 <span className="text-sm font-bold text-indigo-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
@@ -992,8 +992,8 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     DNA ארגוני - כלי אבחון
                   </h4>
-                  <p className="text-sm text-slate-600 mt-1 leading-normal">
-                    מיפוי ואבחון תהליכים ותרבות ארגונית בבית הספר
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    מיפוי מהיר לצוות ולהנהלה: מזהה חוזקות, צווארי בקבוק ואתגרים בתהליכי העבודה ובתרבות הארגונית של בית הספר.
                   </p>
                 </div>
                 <span className="text-sm font-bold text-emerald-600 group-hover:translate-x-[-4px] transition-transform flex items-center gap-1 shrink-0">
