@@ -129,7 +129,7 @@ export default function App() {
 8. שומרים על הכללים: אתיקה חינוכית, קוד אתי בית-ספרי ותערוכת תוצרים.
 
 הנחיות חשובות לבוט:
-1. אם שואלים לגבי מחיר או פרטי התקשרות אישיים שאינם באתר, הפנה אותם באדיבות להשאיר פרטים בטופס יצירת הקשר באתר או ליצור קשר עם עופר קאופמן בטלפון 052-6947202 או מייל saritofer.k@gmail.com.
+1. אם שואלים לגבי מחיר או פרטי התקשרות אישיים שאינם באתר, הפנה אותם באדיבות להשאיר פרטים בטופס יצירת הקשר באתר או ליצור קשר עם עופר קאופמן בטלפון 052-6947202 או מייל ofer@ddialog.co.il.
 2. תמוך והדגש את הערך המוסף העצום של התוכנית לחינוך מיוחד, במיוחד בהקשר של כתיבת תל"א ופישוט תכנים, במידה והנושא עולה.
 3. אל תמציא פרטים על התוכנית שאינם מופיעים כאן. אם אינך יודע משהו, ענה בנימוס והצע להם לתאם שיחת ייעוץ אישית עם עופר.`
               }
@@ -1388,11 +1388,11 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
                 {/* Mail to response */}
                 <a 
-                  href="mailto:saritofer.k@gmail.com" 
+                  href="mailto:ofer@ddialog.co.il" 
                   className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
                 >
                   <Mail className="w-4 h-4 text-indigo-600" />
-                  <span className="font-bold">saritofer.k@gmail.com</span>
+                  <span className="font-bold">ofer@ddialog.co.il</span>
                 </a>
 
                 {/* Program Number */}
