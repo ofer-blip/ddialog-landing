@@ -26,23 +26,21 @@
   }
 }
 
-/* ==========================================================================
-   Screen vs. Print Architecture
-   ========================================================================== */
-
-/* On screen: hide the dedicated print brochure */
+/* On screen: hide print brochure */
 .print-only {
   display: none !important;
 }
 
-/* Print Optimization - Produces exactly a crisp 2-Page Executive Brochure */
+/* ==========================================================================
+   PRINT ARCHITECTURE: STRICT 1-PAGE A4 EXECUTIVE BROCHURE (ONE-PAGER)
+   ========================================================================== */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm 14mm 12mm 14mm;
+    margin: 8mm 10mm 8mm 10mm;
   }
 
-  /* Hide screen-only interactive web content */
+  /* Hide screen interactive website */
   .no-print,
   #app_header,
   #hero_section,
@@ -60,66 +58,34 @@
     display: none !important;
   }
 
-  /* Show the dedicated print-only executive brochure */
+  /* Show the 1-Page Brochure */
   .print-only {
     display: block !important;
     font-family: 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif !important;
     color: #0f172a !important;
     background: #ffffff !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   body {
     background: #ffffff !important;
     color: #0f172a !important;
-    font-size: 11pt !important;
-    line-height: 1.4 !important;
     margin: 0 !important;
     padding: 0 !important;
-  }
-
-  /* Enforce clean page breaks */
-  .print-page-1 {
-    page-break-after: always !important;
-    break-after: page !important;
-    height: auto;
-    min-height: 260mm;
-    box-sizing: border-box;
-  }
-
-  .print-page-2 {
-    page-break-before: always !important;
-    break-before: page !important;
-    height: auto;
-    min-height: 260mm;
-    box-sizing: border-box;
-  }
-
-  /* Clean print borders & backgrounds */
-  .print-box {
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 8px !important;
-    background: #f8fafc !important;
-    padding: 10px 14px !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  .print-highlight {
-    background: #eff6ff !important;
-    border: 1.5px solid #2563eb !important;
-    border-radius: 8px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .print-badge {
-    background: #dbeafe !important;
-    color: #1e40af !important;
-    padding: 2px 8px !important;
-    border-radius: 4px !important;
-    font-weight: 700 !important;
-    font-size: 9pt !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  .one-pager-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    height: 100% !important;
+    max-height: 275mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
   }
 }
