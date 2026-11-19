@@ -1301,14 +1301,14 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               <div className="space-y-3">
                 <div className="flex text-amber-400 text-sm">★★★★★</div>
                 <p className="text-slate-700 text-sm leading-relaxed italic">
-                  &quot;החיסכון בזמן בכתיבת תל&quot;א ובניית מחוונים הפך את ה-AI מכלי מאיים לנכס שהצוות לא מוותר עליו. ההדרכה הייתה מדויקת ובגובה העיניים.&quot;
+                  &quot;הבנייה של עוזר התל&quot;א המותאם לבית הספר הפכה תהליך מורכב וארוך לכלי עבודה מדויק ונגיש לצוות. זה חוסך לנו זמן יקר ומאפשר התאמה אישית טובה יותר לכל תלמיד.&quot;
                 </p>
               </div>
               <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 font-bold flex items-center justify-center text-sm">רפ</div>
+                <div className="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 font-bold flex items-center justify-center text-sm">נג</div>
                 <div>
-                  <div className="font-bold text-slate-900 text-xs">רכזת פדגוגית</div>
-                  <div className="text-[11px] text-slate-500">צוות מוביל • חטיבת ביניים</div>
+                  <div className="font-bold text-slate-900 text-xs">נאדין ג&apos;באלי</div>
+                  <div className="text-[11px] text-slate-500">רכזת ומדריכה פדגוגית • בי&quot;ס &quot;אדם&quot; – בית ברל (חינוך מיוחד)</div>
                 </div>
               </div>
             </div>
