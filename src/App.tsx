@@ -27,7 +27,8 @@ import {
   Compass,
   Bot,
   CheckSquare,
-  Target
+  Target,
+  MessageCircle
 } from "lucide-react";
 
 interface SessionInfo {
@@ -447,14 +448,31 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     </div>
                   </div>
 
-                  <button 
-                    type="submit"
-                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm rounded-xl transition cursor-pointer active:scale-98 shadow-md flex items-center justify-center gap-2"
-                    id="submit_contact_form"
-                  >
-                    <Send className="w-4 h-4 shrink-0" />
-                    <span>שלח פנייה</span>
-                  </button>
+                  <div className="space-y-2.5 pt-1">
+                    <button 
+                      type="submit"
+                      className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm rounded-xl transition cursor-pointer active:scale-98 shadow-md flex items-center justify-center gap-2"
+                      id="submit_contact_form"
+                    >
+                      <Send className="w-4 h-4 shrink-0" />
+                      <span>שלח פנייה לתיאום</span>
+                    </button>
+                    <div className="relative flex py-1 items-center">
+                      <div className="flex-grow border-t border-slate-200"></div>
+                      <span className="flex-shrink mx-3 text-slate-400 text-[11px]">או פנייה ישירה מהירה</span>
+                      <div className="flex-grow border-t border-slate-200"></div>
+                    </div>
+                    <a 
+                      href="https://wa.me/972526947202?text=%D7%94%D7%99%D7%99%20%D7%A2%D7%95%D7%A4%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%9C%D7%92%D7%91%D7%99%20%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%94%D7%93%D7%99%D7%90%D7%9C%D7%95%D7%92%20%D7%94%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%20(%D7%92%D7%A4%22%D7%9F%2064342)."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 font-bold text-xs transition flex items-center justify-center gap-2"
+                      id="modal_whatsapp_quick"
+                    >
+                      <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>שליחת הודעת וואטסאפ ישירה לעופר (052-6947202)</span>
+                    </a>
+                  </div>
                 </form>
               ) : (
                 <motion.div 
@@ -519,14 +537,33 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             </div>
           </div>
 
-          <div id="header_actions">
+          {/* Quick Nav Links (Desktop) */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600" id="header_nav">
+            <a href="#pain_points_section" className="hover:text-indigo-600 transition">מה זה פותר?</a>
+            <a href="#collaboration_tracks_section" className="hover:text-indigo-600 transition">מסלולים</a>
+            <a href="#showcase_section" className="hover:text-indigo-600 transition">כלים מהשטח</a>
+            <a href="#syllabus_section" className="hover:text-indigo-600 transition">סילבוס</a>
+          </nav>
+
+          <div id="header_actions" className="flex items-center gap-2.5">
+            <a 
+              href="https://wa.me/972526947202?text=%D7%94%D7%99%D7%99%20%D7%A2%D7%95%D7%A4%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%9C%D7%92%D7%91%D7%99%20%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%94%D7%93%D7%99%D7%90%D7%9C%D7%95%D7%92%20%D7%94%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%20(%D7%92%D7%A4%22%D7%9F%2064342).%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm flex items-center gap-1.5 transition active:scale-95"
+              id="header_whatsapp_btn"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span className="hidden sm:inline">וואטסאפ מהיר</span>
+              <span className="sm:hidden">וואטסאפ</span>
+            </a>
             <button 
               onClick={() => window.print()}
-              className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 cursor-pointer transform active:scale-95"
+              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-sm transition flex items-center gap-1.5 cursor-pointer active:scale-95"
               id="btn_print"
             >
               <Printer className="w-4 h-4" />
-              <span>שמירה כ-PDF / הדפסה</span>
+              <span className="hidden sm:inline">הדפסה / PDF</span>
             </button>
           </div>
         </div>
@@ -591,17 +628,200 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> ללא עלויות רישוי שנתיות</span>
               </div>
 
-              <button 
-                type="button"
-                onClick={() => setIsContactOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer active:scale-95 shrink-0"
-              >
-                <Phone className="w-4 h-4" />
-                <span>יצירת קשר / תיאום שיחה</span>
-              </button>
+              <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                <a 
+                  href="https://wa.me/972526947202?text=%D7%94%D7%99%D7%99%20%D7%A2%D7%95%D7%A4%D7%A8%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%9C%D7%92%D7%91%D7%99%20%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%20%D7%94%D7%93%D7%99%D7%90%D7%9C%D7%95%D7%92%20%D7%94%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%20(%D7%92%D7%A4%22%D7%9F%2064342).%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition active:scale-95"
+                  id="hero_whatsapp_btn"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>שיחת וואטסאפ מהירה</span>
+                </a>
+                <button 
+                  type="button"
+                  onClick={() => setIsContactOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition active:scale-95 cursor-pointer"
+                  id="hero_contact_btn"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>תיאום שיחה / הצעה</span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* 4 Crisp Pain-to-Solution Points - Full-Width Interactive Banners */}
+        <section className="space-y-6" id="pain_points_section">
+          <div className="space-y-2">
+            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מה זה פותר בשטח?</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">4 מענים מדויקים לאתגרים בבית הספר</h3>
+          </div>
+
+          <div className="space-y-4" id="pain_points_list">
+            
+            {/* Banner 1 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-rose-300 hover:bg-gradient-to-l hover:from-rose-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-rose-100 transition-all duration-300 shadow-sm">
+                  <Flame className="w-7 h-7" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-rose-700 transition-colors">
+                    עומס ושחיקת מורים
+                  </h4>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
+                    אוטומציה מלאה של בדיקות, מחוונים, מענה להורים ותכנון שיעורים – מחזירים לצוות שעות פנאי יקרות ומפחיתים תסכול שוטף.
+                  </p>
+                </div>
+              </div>
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100 shrink-0 self-start md:self-center">
+                חיסכון מיידי בזמן
+              </span>
+            </div>
+
+            {/* Banner 2 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-300 hover:bg-gradient-to-l hover:from-indigo-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-indigo-100 transition-all duration-300 shadow-sm">
+                  <BrainCircuit className="w-7 h-7" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+                    פיתוח משותף של כלים וסוכנים למוסד
+                  </h4>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
+                    לא רק צורכים טכנולוגיה קיימת – אנו מפתחים יחד עם הנהלת בית הספר והצוות כלים ייעודיים, סוכני תוכן ומפות דרכים שנשארים כנכס קבוע במוסד.
+                  </p>
+                </div>
+              </div>
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
+                נכסים פדגוגיים למוסד
+              </span>
+            </div>
+
+            {/* Banner 3 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:bg-gradient-to-l hover:from-emerald-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-100 transition-all duration-300 shadow-sm">
+                  <GraduationCap className="w-7 h-7" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    הקלה משמעותית בכתיבת תל"א
+                  </h4>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
+                    הגדרת יעדים פדגוגיים ממוקדים, פישוט טקסטים לתלמידים מתקשים ועולים חדשים, והנגשה דינמית המותאמת לחינוך המיוחד ולכיתות שילוב.
+                  </p>
+                </div>
+              </div>
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0 self-start md:self-center">
+                מענה דיפרנציאלי לכל לומד
+              </span>
+            </div>
+
+            {/* Banner 4 */}
+            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-amber-300 hover:bg-gradient-to-l hover:from-amber-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-amber-100 transition-all duration-300 shadow-sm">
+                  <PiggyBank className="w-7 h-7" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                    אפס עלויות רישוי שנתיות
+                  </h4>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
+                    הקניית מיומנויות בסביבות עבודה רחבות ללא תשלום (Google AI Studio, NotebookLM וחשבונות חינוך) – יציבות פדגוגית קבועה ללא תקציבי עתק.
+                  </p>
+                </div>
+              </div>
+              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-100 shrink-0 self-start md:self-center">
+                חיסכון תקציבי קבוע
+              </span>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 3 Tracks - Compact & Action Oriented */}
+        <section className="space-y-4" id="collaboration_tracks_section">
+          <div className="space-y-1">
+            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מסלולי הפעלה בגפ"ן</span>
+            <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">בחרו את הפורמט המתאים לבית ספרכם</h3>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5" id="collaboration_tracks_grid">
+            
+            {/* Track A */}
+            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <span className="text-xs font-bold text-blue-600 uppercase">חד-פעמי</span>
+                <h4 className="text-lg font-bold text-slate-900">הרצאת השראה וחשיפה</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  מפגש ממוקד לכלל הצוות לפתיחת הראש, חשיפת כלי AI מובילים והפגת חסמים ראשוניים.
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
+              >
+                לפרטים ותיאום
+              </button>
+            </div>
+
+            {/* Track B */}
+            <div className="bg-white p-5 rounded-2xl border-2 border-indigo-600 shadow-md flex flex-col justify-between space-y-4 relative">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-indigo-600 uppercase">המסלול המוביל</span>
+                  <span className="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">8 מפגשים</span>
+                </div>
+                <h4 className="text-lg font-bold text-slate-900">מודל קפסולה (צוות חלוץ)</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  השתלמות מעשית לצוות מוביל (רכזים ומחנכות) להקמת סוכני AI ופתרונות מותאמים לבית הספר.
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-sm"
+              >
+                תיאום פיילוט קפסולה
+              </button>
+            </div>
+
+            {/* Track C */}
+            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <span className="text-xs font-bold text-purple-600 uppercase">שנתי</span>
+                <h4 className="text-lg font-bold text-slate-900">ארכיטקטורה וליווי שנתי</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  ליווי מתמשך והתאמת כלי AI למערכות הניהול של המוסד (צפונט / אפסקול / Drive).
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsContactOpen(true)}
+                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
+              >
+                שיחת ייעוץ שנתי
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Contact Trigger Button */}
+        <div className="flex justify-center my-6 no-print" id="contact_trigger_above_syllabus_container">
+          <button 
+            type="button"
+            onClick={() => setIsContactOpen(true)}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:via-indigo-700 hover:to-indigo-800 text-white font-extrabold text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer group"
+          >
+            <Mail className="w-4 h-4 text-indigo-100 group-hover:scale-110 transition-transform" />
+            <span>תיאום שיחת ייעוץ והתאמה אישית לבית הספר • צור קשר</span>
+          </button>
+        </div>
 
         {/* Live In-Field Showcase (Appears directly after hero) */}
         <section className="space-y-4" id="showcase_section">
@@ -829,176 +1049,6 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           </div>
         </section>
 
-        {/* 4 Crisp Pain-to-Solution Points - Full-Width Interactive Banners */}
-        <section className="space-y-6" id="pain_points_section">
-          <div className="space-y-2">
-            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מה זה פותר בשטח?</span>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">4 מענים מדויקים לאתגרים בבית הספר</h3>
-          </div>
-
-          <div className="space-y-4" id="pain_points_list">
-            
-            {/* Banner 1 */}
-            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-rose-300 hover:bg-gradient-to-l hover:from-rose-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-rose-100 transition-all duration-300 shadow-sm">
-                  <Flame className="w-7 h-7" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-rose-700 transition-colors">
-                    עומס ושחיקת מורים
-                  </h4>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
-                    אוטומציה מלאה של בדיקות, מחוונים, מענה להורים ותכנון שיעורים – מחזירים לצוות שעות פנאי יקרות ומפחיתים תסכול שוטף.
-                  </p>
-                </div>
-              </div>
-              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100 shrink-0 self-start md:self-center">
-                חיסכון מיידי בזמן
-              </span>
-            </div>
-
-            {/* Banner 2 */}
-            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-300 hover:bg-gradient-to-l hover:from-indigo-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-indigo-100 transition-all duration-300 shadow-sm">
-                  <BrainCircuit className="w-7 h-7" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
-                    פיתוח משותף של כלים וסוכנים למוסד
-                  </h4>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
-                    לא רק צורכים טכנולוגיה קיימת – אנו מפתחים יחד עם הנהלת בית הספר והצוות כלים ייעודיים, סוכני תוכן ומפות דרכים שנשארים כנכס קבוע במוסד.
-                  </p>
-                </div>
-              </div>
-              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0 self-start md:self-center">
-                נכסים פדגוגיים למוסד
-              </span>
-            </div>
-
-            {/* Banner 3 */}
-            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:bg-gradient-to-l hover:from-emerald-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-100 transition-all duration-300 shadow-sm">
-                  <GraduationCap className="w-7 h-7" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                    הקלה משמעותית בכתיבת תל"א
-                  </h4>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
-                    הגדרת יעדים פדגוגיים ממוקדים, פישוט טקסטים לתלמידים מתקשים ועולים חדשים, והנגשה דינמית המותאמת לחינוך המיוחד ולכיתות שילוב.
-                  </p>
-                </div>
-              </div>
-              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0 self-start md:self-center">
-                מענה דיפרנציאלי לכל לומד
-              </span>
-            </div>
-
-            {/* Banner 4 */}
-            <div className="group bg-white p-6 md:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-amber-300 hover:bg-gradient-to-l hover:from-amber-50/30 hover:to-white transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-5 cursor-default">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-amber-100 transition-all duration-300 shadow-sm">
-                  <PiggyBank className="w-7 h-7" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
-                    אפס עלויות רישוי שנתיות
-                  </h4>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl">
-                    הקניית מיומנויות בסביבות עבודה רחבות ללא תשלום (Google AI Studio, NotebookLM וחשבונות חינוך) – יציבות פדגוגית קבועה ללא תקציבי עתק.
-                  </p>
-                </div>
-              </div>
-              <span className="text-sm font-bold px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-100 shrink-0 self-start md:self-center">
-                חיסכון תקציבי קבוע
-              </span>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 3 Tracks - Compact & Action Oriented */}
-        <section className="space-y-4" id="collaboration_tracks_section">
-          <div className="space-y-1">
-            <span className="text-sm font-bold text-indigo-600 uppercase tracking-wider block">מסלולי הפעלה בגפ"ן</span>
-            <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">בחרו את הפורמט המתאים לבית ספרכם</h3>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5" id="collaboration_tracks_grid">
-            
-            {/* Track A */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <span className="text-xs font-bold text-blue-600 uppercase">חד-פעמי</span>
-                <h4 className="text-lg font-bold text-slate-900">הרצאת השראה וחשיפה</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  מפגש ממוקד לכלל הצוות לפתיחת הראש, חשיפת כלי AI מובילים והפגת חסמים ראשוניים.
-                </p>
-              </div>
-              <button 
-                onClick={() => setIsContactOpen(true)}
-                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
-              >
-                לפרטים ותיאום
-              </button>
-            </div>
-
-            {/* Track B */}
-            <div className="bg-white p-5 rounded-2xl border-2 border-indigo-600 shadow-md flex flex-col justify-between space-y-4 relative">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-indigo-600 uppercase">המסלול המוביל</span>
-                  <span className="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">8 מפגשים</span>
-                </div>
-                <h4 className="text-lg font-bold text-slate-900">מודל קפסולה (צוות חלוץ)</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  השתלמות מעשית לצוות מוביל (רכזים ומחנכות) להקמת סוכני AI ופתרונות מותאמים לבית הספר.
-                </p>
-              </div>
-              <button 
-                onClick={() => setIsContactOpen(true)}
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-sm"
-              >
-                תיאום פיילוט קפסולה
-              </button>
-            </div>
-
-            {/* Track C */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <span className="text-xs font-bold text-purple-600 uppercase">שנתי</span>
-                <h4 className="text-lg font-bold text-slate-900">ארכיטקטורה וליווי שנתי</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  ליווי מתמשך והתאמת כלי AI למערכות הניהול של המוסד (צפונט / אפסקול / Drive).
-                </p>
-              </div>
-              <button 
-                onClick={() => setIsContactOpen(true)}
-                className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-bold rounded-xl border border-slate-200 transition"
-              >
-                שיחת ייעוץ שנתי
-              </button>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Contact Trigger Button */}
-        <div className="flex justify-center my-6 no-print" id="contact_trigger_above_syllabus_container">
-          <button 
-            type="button"
-            onClick={() => setIsContactOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:via-indigo-700 hover:to-indigo-800 text-white font-extrabold text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer group"
-          >
-            <Mail className="w-4 h-4 text-indigo-100 group-hover:scale-110 transition-transform" />
-            <span>תיאום שיחת ייעוץ והתאמה אישית לבית הספר • צור קשר</span>
-          </button>
-        </div>
-
         {/* Learning Map - Syllabus Interactive Section */}
         <section className="space-y-8" id="syllabus_section">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -1145,7 +1195,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-base animate-pulse">🤖</div>
                 <div>
                   <h4 className="font-bold text-sm">העוזר הדיגיטלי - הדיאלוג הדיגיטלי</h4>
-                  <p className="text-[10px] text-indigo-100">מחובר ומנוהל ב-Netlify Functions מאובטח</p>
+                  <p className="text-[10px] text-indigo-100">מענה ממוקד לשאלות מנהלים ורכזים על התוכנית</p>
                 </div>
               </div>
               <div className="flex items-center gap-1.5">
@@ -1232,6 +1282,70 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         </section>
 
         {/* Contact Trigger Button */}
+        {/* Social Proof & Testimonials Section */}
+        <section className="space-y-6 max-w-5xl mx-auto py-6" id="testimonials_section">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block">מה אומרים בשטח?</span>
+            <h3 className="text-xl md:text-2xl font-extrabold text-slate-900">קולות מחדר המורים ומההנהלה</h3>
+            <p className="text-slate-500 text-sm max-w-xl mx-auto">
+              בתי ספר שבהם ה-AI כבר עבר משלב הרעיונות לכלים אמיתיים שמקלים על היומיום:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+              <div className="space-y-3">
+                <div className="flex text-amber-400 text-sm">★★★★★</div>
+                <p className="text-slate-700 text-sm leading-relaxed italic">
+                  &quot;החיסכון בזמן בכתיבת תל&quot;א ובניית מחוונים הפך את ה-AI מכלי מאיים לנכס שהצוות לא מוותר עליו. ההדרכה הייתה מדויקת ובגובה העיניים.&quot;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 font-bold flex items-center justify-center text-sm">רפ</div>
+                <div>
+                  <div className="font-bold text-slate-900 text-xs">רכזת פדגוגית</div>
+                  <div className="text-[11px] text-slate-500">צוות מוביל • חטיבת ביניים</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+              <div className="space-y-3">
+                <div className="flex text-amber-400 text-sm">★★★★★</div>
+                <p className="text-slate-700 text-sm leading-relaxed italic">
+                  &quot;סוף סוף תוכנית גפ&quot;ן שלא נשארת בגדר הרצאה תיאורטית. יצאנו עם סוכנים פועלים לבית הספר וללא עלויות רישוי שנתיות נוספות.&quot;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 font-bold flex items-center justify-center text-sm">מב</div>
+                <div>
+                  <div className="font-bold text-slate-900 text-xs">מנהל בית ספר</div>
+                  <div className="text-[11px] text-slate-500">חינוך מיוחד ושילוב</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+              <div className="space-y-3">
+                <div className="flex text-amber-400 text-sm">★★★★★</div>
+                <p className="text-slate-700 text-sm leading-relaxed italic">
+                  &quot;המורים התחילו להשתמש בכלים כבר למחרת המפגש השני. זה הוריד עומס ניהולי עצום ושיפר את איכות המענה להורים.&quot;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-purple-50 text-purple-600 font-bold flex items-center justify-center text-sm">סמ</div>
+                <div>
+                  <div className="font-bold text-slate-900 text-xs">סגנית מנהלת ורכזת תקשוב</div>
+                  <div className="text-[11px] text-slate-500">בית ספר יסודי</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="flex justify-center my-6 no-print" id="contact_trigger_above_developers_container">
           <button 
             type="button"
@@ -1311,7 +1425,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
       </footer>
 
       {/* Floating Chatbot - Positioned on Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50 no-print font-sans" id="floating_chatbot_widget" dir="rtl">
+      <div className="fixed bottom-6 right-6 z-50 no-print font-sans hidden md:block" id="floating_chatbot_widget" dir="rtl">
         <AnimatePresence>
           {isChatFloatingOpen && (
             <motion.div
