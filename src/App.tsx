@@ -1362,49 +1362,61 @@ const handleFormSubmit = async (e: React.FormEvent) => {
           <div className="bg-white rounded-3xl p-6 md:p-12 border border-slate-100 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-50 rounded-br-3xl -z-10 opacity-60"></div>
             
-            <div className="space-y-6 max-w-3xl">
-              <div>
-                <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתחי ומנחי התוכנית</span>
-                <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                  עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית
-                </h4>
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+              {/* Profile Image with subtle professional frame */}
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shrink-0 shadow-lg border-2 border-indigo-100 relative bg-slate-100 group">
+                <img 
+                  src="/ofer-profile.jpg" 
+                  alt="עופר קאופמן" 
+                  className="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105"
+                />
               </div>
-              
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                מהנדס (הטכניון), מרצה ומומחה בהטמעת טכנולוגיות AI וסוכנים חכמים במערכות חינוך וניהול. מביא איתו ניסיון עשיר, פרקטי ונגיש בשטח בליווי צוותי חינוך ורשויות מקומיות לעולם הטכנולוגי החדש, תוך הבנה עמוקה של צרכי מנהלים ומורים.
-              </p>
 
-              {/* Direct Action badged communication list */}
-              <div className="flex flex-wrap gap-3.5 pt-2" id="contact_badges">
-                
-                {/* Phone dial connection */}
-                <a 
-                  href="tel:052-6947202" 
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
-                >
-                  <Phone className="w-4 h-4 text-indigo-600" />
-                  <span className="font-bold">052-6947202</span>
-                </a>
-
-                {/* Mail to response */}
-                <a 
-                  href="mailto:ofer@ddialog.co.il" 
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
-                >
-                  <Mail className="w-4 h-4 text-indigo-600" />
-                  <span className="font-bold">ofer@ddialog.co.il</span>
-                </a>
-
-                {/* Program Number */}
-                <div 
-                  className="inline-flex items-center justify-between gap-3 px-5 py-2.5 text-base text-indigo-800 bg-indigo-50 rounded-xl border border-indigo-100 shadow-sm"
-                >
-                  <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-indigo-600" />
-                    <span className="font-bold">תוכנית גפ"ן 64342</span>
-                  </div>
+              <div className="space-y-5 flex-1 text-center md:text-right">
+                <div>
+                  <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתח ומנחה התוכנית</span>
+                  <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                    עופר קאופמן
+                  </h4>
+                  <p className="text-sm font-semibold text-slate-500 pt-0.5">מהנדס (הטכניון) ומומחה בהטמעת פדגוגיה דיגיטלית ובינה בחינוך</p>
                 </div>
+                
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                  מרצה ומלווה מוסדות חינוך, הנהלות ורשויות מקומיות. מביא איתו ניסיון עשיר, פרקטי ונגיש בשטח בליווי צוותי חינוך ופיתוח פתרונות מותאמים אישית (כולל מענה ייעודי לחינוך מיוחד, כיתות שילוב ותל&quot;א), תוך הבנה עמוקה של צרכי מנהלים ומורים בעבודת השטח היומיומית.
+                </p>
 
+                {/* Direct Action badged communication list */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3.5 pt-2" id="contact_badges">
+                  
+                  {/* Phone dial connection */}
+                  <a 
+                    href="tel:052-6947202" 
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
+                  >
+                    <Phone className="w-4 h-4 text-indigo-600" />
+                    <span className="font-bold">052-6947202</span>
+                  </a>
+
+                  {/* Mail to response */}
+                  <a 
+                    href="mailto:ofer@ddialog.co.il" 
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-base text-slate-800 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl border border-slate-200 transition duration-150 shadow-sm"
+                  >
+                    <Mail className="w-4 h-4 text-indigo-600" />
+                    <span className="font-bold">ofer@ddialog.co.il</span>
+                  </a>
+
+                  {/* Program Number */}
+                  <div 
+                    className="inline-flex items-center justify-between gap-3 px-5 py-2.5 text-base text-indigo-800 bg-indigo-50 rounded-xl border border-indigo-100 shadow-sm"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-indigo-600" />
+                      <span className="font-bold">תוכנית גפ"ן 64342</span>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
