@@ -111,7 +111,7 @@ export default function App() {
 
 מידע על התוכנית:
 - שם התוכנית: הדיאלוג הדיגיטלי - בינה מלאכותית לצוותי חינוך (מספר מענה 64342 במסלול הירוק בגפ"ן).
-- מפתחי ומנחי התוכנית: עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית. עופר הוא מהנדס מהטכניון ומומחה בהטמעת בינות מלאכותיות במערכות חינוך.
+- מפתחי ומנחי התוכנית: עופר קאופמן וצוות המומחים לפדגוגיה דיגיטלית. עופר הוא מומחה בהטמעת פדגוגיה דיגיטלית ובינה חינוכית במערכות חינוך.
 - הבטחה שיווקית: תוכנית מעשית להטמעת AI שחוסכת למורים שעות עבודה שבועיות רבות ומפנה להם זמן יקר. במקום להיאבק בניירת, הצוות לומד "לרקוד עם המכונה".
 - התאמה לחינוך מיוחד ושילוב: התוכנית מציעה התאמה ייחודית ומלאה לחינוך מיוחד, עם דגש על יצירת עוזרי הוראה לכתיבת יעדי תל"א (תכנית לימודים אישית) באופן מהיר ומבוקר, פישוט לשוני של חומרים והנגשת תכני לימוד.
 - טכנולוגיות מובילות בתוכנית: Google AI Studio, NotebookLM, Gems (עוזרים אישיים קבועים) ו-Canva.
@@ -1378,7 +1378,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                   <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900">
                     עופר קאופמן
                   </h4>
-                  <p className="text-sm font-semibold text-slate-500 pt-0.5">מהנדס (הטכניון) ומומחה בהטמעת פדגוגיה דיגיטלית ובינה בחינוך</p>
+                  <p className="text-sm font-semibold text-slate-500 pt-0.5">מומחה בהטמעת פדגוגיה דיגיטלית, בינה חינוכית וליווי מוסדות חינוך</p>
                 </div>
                 
                 <p className="text-base md:text-lg text-slate-600 leading-relaxed">
@@ -1436,7 +1436,189 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         </div>
       </footer>
 
-      {/* Floating Chatbot - Positioned on Bottom Right */}
+
+      {/* ====================================================================
+          DEDICATED 2-PAGE EXECUTIVE BROCHURE (PRINT & PDF ONLY)
+          Hidden on screen, rendered cleanly when printing or saving as PDF
+          ==================================================================== */}
+      <div className="print-only text-right" dir="rtl" id="executive_print_brochure">
+        
+        {/* ================= PAGE 1: EXECUTIVE SUMMARY ================= */}
+        <div className="print-page-1 flex flex-col justify-between">
+          <div>
+            {/* Header / Brand & Gefen Badge */}
+            <div className="border-b-2 border-indigo-600 pb-3 mb-4 flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-black text-slate-900 leading-tight">הדיאלוג הדיגיטלי</h1>
+                <p className="text-xs font-bold text-slate-600">בינה ככלי עבודה פדגוגי בידי המורים • פיתוח סוכנים ועוזרי הוראה מוסדיים</p>
+              </div>
+              <div className="text-left">
+                <span className="inline-block bg-emerald-50 text-emerald-800 border border-emerald-300 font-extrabold text-xs px-3 py-1 rounded-md">
+                  מאושר גפ"ן (מענה 64342) • מסלול ירוק
+                </span>
+                <p className="text-[10px] text-slate-500 font-bold mt-1">סל: חדשנות ויזמות פדגוגית</p>
+              </div>
+            </div>
+
+            {/* Program Vision & Promise */}
+            <div className="print-highlight p-3.5 mb-4">
+              <h2 className="text-base font-black text-blue-900 mb-1">
+                במקום הרצאות תיאורטיות – מטמיעים בצוות כלי עבודה אמיתיים שנשארים במוסד
+              </h2>
+              <p className="text-xs text-slate-700 leading-relaxed">
+                תוכנית הטמעה מעשית ייחודית המכשירה את צוותי ההוראה וההנהלה להשתמש בבינה כדי לחסוך שעות עבודה שבועיות, להפחית שחיקה, ולפתח עוזרי הוראה מוסדיים קבועים – ללא עלויות רישוי שנתיות, תוך שמירה מלאה על פרטיות והנחיות משרד החינוך.
+              </p>
+            </div>
+
+            {/* 4 Pain Points & Solutions Grid */}
+            <div className="mb-4">
+              <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider mb-2 border-r-2 border-indigo-600 pr-2">
+                מה התוכנית פותרת בבית הספר?
+              </h3>
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="print-box">
+                  <div className="font-bold text-xs text-slate-900 mb-0.5">1. צמצום עומס ושחיקת מורים</div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">
+                    ייעול בדיקות, כתיבת מחוונים, ניסוחים רגישים להורים וסיכומי ישיבות — מחזירים לצוות שעות פנאי יקרות.
+                  </p>
+                </div>
+                <div className="print-box">
+                  <div className="font-bold text-xs text-slate-900 mb-0.5">2. נכסים פדגוגיים קבועים למוסד</div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">
+                    לא רק צורכים טכנולוגיה – מפתחים יחד עם הצוות עוזרי הוראה, סוכני תוכן ומפות דרכים שנשארים בבית הספר.
+                  </p>
+                </div>
+                <div className="print-box">
+                  <div className="font-bold text-xs text-slate-900 mb-0.5">3. מענה לתל"א, שילוב וחינוך מיוחד</div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">
+                    הגדרת יעדים פדגוגיים ממוקדים, פישוט לשוני של חומרים והנגשה דינמית המותאמת לכיתות הטרוגניות.
+                  </p>
+                </div>
+                <div className="print-box">
+                  <div className="font-bold text-xs text-slate-900 mb-0.5">4. אפס עלויות רישוי שנתיות</div>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">
+                    הקניית מיומנויות בסביבות עבודה ללא תשלום (NotebookLM וחשבונות חינוך) – יציבות תקציבית קבועה.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Gefen Collaboration Tracks */}
+            <div className="mb-4">
+              <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider mb-2 border-r-2 border-indigo-600 pr-2">
+                מסלולי הפעלה לבחירת בית הספר (תקציב גפ"ן)
+              </h3>
+              <div className="grid grid-cols-3 gap-2.5">
+                <div className="print-box">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-xs text-slate-900">מסלול א': הרצאת השראה</span>
+                    <span className="text-[9px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">חד-פעמי</span>
+                  </div>
+                  <p className="text-[10px] text-slate-600 leading-relaxed">
+                    מפגש ממוקד לכלל הצוות לפתיחת הראש, חשיפה לכלים פדגוגיים חכמים והפגת חסמים ראשוניים.
+                  </p>
+                </div>
+                <div className="print-highlight p-2.5">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-black text-xs text-indigo-950">מסלול ב': מודל קפסולה</span>
+                    <span className="text-[9px] font-black text-indigo-800 bg-white px-1.5 py-0.5 rounded border border-indigo-200">מוביל • 8 מפגשים</span>
+                  </div>
+                  <p className="text-[10px] text-indigo-900 leading-relaxed font-medium">
+                    השתלמות מעשית לצוות מוביל (רכזים ומחנכות) לבניית עוזרי הוראה ופתרונות מותאמים אישית לבית הספר.
+                  </p>
+                </div>
+                <div className="print-box">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-xs text-slate-900">מסלול ג': ליווי שנתי</span>
+                    <span className="text-[9px] font-bold text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded">ליווי מתמשך</span>
+                  </div>
+                  <p className="text-[10px] text-slate-600 leading-relaxed">
+                    הטמעת תהליכי עבודה חכמים במערכות המוסד (Google Drive / צפונט) ופיתוח שוטף של נכסים פדגוגיים.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Page 1 Bottom Footer & Contacts */}
+          <div className="border-t border-slate-300 pt-2.5 mt-2 flex items-center justify-between text-xs">
+            <div>
+              <span className="font-bold text-slate-900">מפתח ומנחה התוכנית: עופר קאופמן</span>
+              <span className="text-slate-500 mr-2">| מומחה בהטמעת פדגוגיה דיגיטלית ובינה בחינוך</span>
+            </div>
+            <div className="flex items-center gap-4 font-bold text-slate-800">
+              <span>טלפון: 052-6947202</span>
+              <span>מייל: ofer@ddialog.co.il</span>
+              <span>אתר: ddialog.co.il</span>
+            </div>
+          </div>
+        </div>
+
+
+        {/* ================= PAGE 2: SYLLABUS & CURRICULUM ================= */}
+        <div className="print-page-2 flex flex-col justify-between">
+          <div>
+            {/* Header Page 2 */}
+            <div className="border-b-2 border-indigo-600 pb-2 mb-3 flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-black text-slate-900">מפת הלמידה: 8 מפגשים אסטרטגיים (מודל קפסולה)</h2>
+                <p className="text-[11px] text-slate-600 font-bold">סילבוס יישומי בגובה העיניים – תוצרים מוחשיים בידי המורים בכל מפגש</p>
+              </div>
+              <div className="text-left text-xs font-bold text-slate-500">
+                תוכנית גפ"ן 64342 • עמוד 2 מתוך 2
+              </div>
+            </div>
+
+            {/* 8 Condensed Sessions Grid (4 rows x 2 cols) */}
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              {sessions.map((s) => (
+                <div key={s.id} className="border border-slate-200 rounded-md p-2 bg-slate-50/50">
+                  <div className="flex items-start gap-1.5 mb-1">
+                    <span className="w-5 h-5 rounded-full bg-indigo-600 text-white font-black text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                      {s.id}
+                    </span>
+                    <h4 className="font-black text-[11px] text-slate-900 leading-snug">
+                      {s.title}
+                    </h4>
+                  </div>
+                  <p className="text-[9.5px] text-slate-600 leading-relaxed mb-1 pr-6.5">
+                    {s.value}
+                  </p>
+                  <div className="text-[9.5px] font-bold text-indigo-900 bg-indigo-50/80 p-1 rounded border border-indigo-100 pr-2">
+                    ✨ תוצר מוחשי: {s.deliverable}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Special Callouts in Page 2 */}
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              <div className="bg-amber-50 border border-amber-200 rounded p-2 text-[10px] text-amber-950 leading-relaxed">
+                <span className="font-black block text-amber-900 mb-0.5">💡 גמישות פדגוגית מלאה בהתאמה למוסד:</span>
+                התוכנית מותאמת אישית לערכי בית הספר, לקצב הצוות וליעדים השנתיים שהמנהל/ת מציב/ה.
+              </div>
+              <div className="bg-emerald-50 border border-emerald-200 rounded p-2 text-[10px] text-emerald-950 leading-relaxed">
+                <span className="font-black block text-emerald-900 mb-0.5">🌟 התאמה מיוחדת לחינוך מיוחד וכיתות שילוב:</span>
+                סדנאות ייעודיות לכתיבת יעדי תל"א, פישוט שפתי והנגשת חומרי למידה בהתאם לצורכי הלומדים.
+              </div>
+            </div>
+          </div>
+
+          {/* Page 2 Bottom Footer & How to order */}
+          <div className="border-t-2 border-indigo-600 pt-2 flex items-center justify-between text-xs">
+            <div>
+              <span className="font-extrabold text-slate-900">איך מזמינים בגפ"ן?</span>
+              <span className="text-slate-600 mr-1.5">נכנסים למערכת גפ"ן &gt; מחפשים מענה <strong>64342</strong> (מסלול ירוק) &gt; או יוצרים קשר ישיר לתיאום מתווה בית-ספרי.</span>
+            </div>
+            <div className="font-black text-indigo-700 whitespace-nowrap">
+              052-6947202 • ofer@ddialog.co.il
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+            {/* Floating Chatbot - Positioned on Bottom Right */}
       <div className="fixed bottom-6 right-6 z-50 no-print font-sans hidden md:block" id="floating_chatbot_widget" dir="rtl">
         <AnimatePresence>
           {isChatFloatingOpen && (

@@ -26,28 +26,100 @@
   }
 }
 
-/* Print Optimization */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-  }
-  .custom-shadow {
-    box-shadow: none !important;
-  }
-  
-  /* Force accordion items to be fully visible during print */
-  .accordion-content {
-    display: block !important;
-    max-height: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  .accordion-icon {
-    display: none !important;
-  }
+/* ==========================================================================
+   Screen vs. Print Architecture
+   ========================================================================== */
+
+/* On screen: hide the dedicated print brochure */
+.print-only {
+  display: none !important;
 }
 
+/* Print Optimization - Produces exactly a crisp 2-Page Executive Brochure */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm 12mm 14mm;
+  }
+
+  /* Hide screen-only interactive web content */
+  .no-print,
+  #app_header,
+  #hero_section,
+  #pain_points_section,
+  #collaboration_tracks_section,
+  #showcase_section,
+  #syllabus_section,
+  #faq_section,
+  #testimonials_section,
+  #contact_section,
+  #app_footer_section,
+  #floating_chatbot_widget,
+  #contact_trigger_above_syllabus_container,
+  #contact_trigger_above_developers_container {
+    display: none !important;
+  }
+
+  /* Show the dedicated print-only executive brochure */
+  .print-only {
+    display: block !important;
+    font-family: 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: #0f172a !important;
+    background: #ffffff !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Enforce clean page breaks */
+  .print-page-1 {
+    page-break-after: always !important;
+    break-after: page !important;
+    height: auto;
+    min-height: 260mm;
+    box-sizing: border-box;
+  }
+
+  .print-page-2 {
+    page-break-before: always !important;
+    break-before: page !important;
+    height: auto;
+    min-height: 260mm;
+    box-sizing: border-box;
+  }
+
+  /* Clean print borders & backgrounds */
+  .print-box {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    background: #f8fafc !important;
+    padding: 10px 14px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-highlight {
+    background: #eff6ff !important;
+    border: 1.5px solid #2563eb !important;
+    border-radius: 8px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-badge {
+    background: #dbeafe !important;
+    color: #1e40af !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    font-size: 9pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
