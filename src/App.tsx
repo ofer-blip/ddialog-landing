@@ -562,11 +562,11 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               download="ddialog-gefen-64342.pdf"
               className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 shadow-sm transition flex items-center gap-1.5 cursor-pointer active:scale-95"
               id="btn_print"
-              title="הורדת ברושור מנהלים מרוכז"
+              title="הורדת ברושור התוכנית"
             >
               <Printer className="w-4 h-4 text-indigo-600" />
-              <span className="hidden sm:inline">ברושור מנהלים (PDF)</span>
-              <span className="sm:hidden">ברושור PDF</span>
+              <span className="hidden sm:inline">הורדת ברושור</span>
+              <span className="sm:hidden">ברושור</span>
             </a>
           </div>
         </div>
