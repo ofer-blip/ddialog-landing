@@ -565,8 +565,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               title="הורדת ברושור התוכנית"
             >
               <Printer className="w-4 h-4 text-indigo-600" />
-              <span className="hidden sm:inline">הורדת ברושור</span>
-              <span className="sm:hidden">ברושור</span>
+              <span>הדפסה</span>
             </a>
           </div>
         </div>
