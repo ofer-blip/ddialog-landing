@@ -557,14 +557,17 @@ const handleFormSubmit = async (e: React.FormEvent) => {
               <span className="hidden sm:inline">וואטסאפ מהיר</span>
               <span className="sm:hidden">וואטסאפ</span>
             </a>
-            <button 
-              onClick={() => window.print()}
-              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-sm transition flex items-center gap-1.5 cursor-pointer active:scale-95"
+            <a 
+              href="/ddialog-gefen-64342.pdf"
+              download="ddialog-gefen-64342.pdf"
+              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 shadow-sm transition flex items-center gap-1.5 cursor-pointer active:scale-95"
               id="btn_print"
+              title="הורדת ברושור מנהלים מרוכז"
             >
-              <Printer className="w-4 h-4" />
-              <span className="hidden sm:inline">הדפסה / PDF</span>
-            </button>
+              <Printer className="w-4 h-4 text-indigo-600" />
+              <span className="hidden sm:inline">ברושור מנהלים (PDF)</span>
+              <span className="sm:hidden">ברושור PDF</span>
+            </a>
           </div>
         </div>
       </header>
