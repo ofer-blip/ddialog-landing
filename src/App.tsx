@@ -1295,12 +1295,12 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="max-w-2xl mx-auto">
             {/* Card 1 */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
               <div className="space-y-3">
                 <div className="flex text-amber-400 text-sm">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic">
+                <p className="text-slate-700 text-sm md:text-base leading-relaxed italic">
                   &quot;הבנייה של עוזר התל&quot;א המותאם לבית הספר הפכה תהליך מורכב וארוך לכלי עבודה מדויק ונגיש לצוות. זה חוסך לנו זמן יקר ומאפשר התאמה אישית טובה יותר לכל תלמיד.&quot;
                 </p>
               </div>
@@ -1309,40 +1309,6 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div>
                   <div className="font-bold text-slate-900 text-xs">נאדין ג&apos;באלי</div>
                   <div className="text-[11px] text-slate-500">רכזת ומדריכה פדגוגית • בי&quot;ס &quot;אדם&quot; – בית ברל (חינוך מיוחד)</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
-              <div className="space-y-3">
-                <div className="flex text-amber-400 text-sm">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic">
-                  &quot;סוף סוף תוכנית גפ&quot;ן שלא נשארת בגדר הרצאה תיאורטית. יצאנו עם סוכנים פועלים לבית הספר וללא עלויות רישוי שנתיות נוספות.&quot;
-                </p>
-              </div>
-              <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 font-bold flex items-center justify-center text-sm">מב</div>
-                <div>
-                  <div className="font-bold text-slate-900 text-xs">מנהל בית ספר</div>
-                  <div className="text-[11px] text-slate-500">חינוך מיוחד ושילוב</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-150 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
-              <div className="space-y-3">
-                <div className="flex text-amber-400 text-sm">★★★★★</div>
-                <p className="text-slate-700 text-sm leading-relaxed italic">
-                  &quot;המורים התחילו להשתמש בכלים כבר למחרת המפגש השני. זה הוריד עומס ניהולי עצום ושיפר את איכות המענה להורים.&quot;
-                </p>
-              </div>
-              <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-purple-50 text-purple-600 font-bold flex items-center justify-center text-sm">סמ</div>
-                <div>
-                  <div className="font-bold text-slate-900 text-xs">סגנית מנהלת ורכזת תקשוב</div>
-                  <div className="text-[11px] text-slate-500">בית ספר יסודי</div>
                 </div>
               </div>
             </div>
@@ -1366,15 +1332,6 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-50 rounded-br-3xl -z-10 opacity-60"></div>
             
             <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              {/* Profile Image with subtle professional frame */}
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shrink-0 shadow-lg border-2 border-indigo-100 relative bg-slate-100 group">
-                <img 
-                  src="/ofer-profile.jpg" 
-                  alt="עופר קאופמן" 
-                  className="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105"
-                />
-              </div>
-
               <div className="space-y-5 flex-1 text-center md:text-right">
                 <div>
                   <span className="text-sm font-bold text-indigo-600 uppercase tracking-widest block mb-1">מפתח ומנחה התוכנית</span>
